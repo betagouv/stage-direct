@@ -3,35 +3,20 @@
 import "@codegouvfr/react-dsfr/main.css";
 import { Footer } from "@codegouvfr/react-dsfr/Footer";
 import { Header } from "@codegouvfr/react-dsfr/Header";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { QueryClient } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
-import { createTRPCClient, httpBatchLink } from "@trpc/client";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
-import superjson from "superjson";
 import { authClient } from "~/lib/auth-client";
 import { getSession } from "~/lib/auth-session";
-import type { AppRouter } from "~/server/router";
+import type { TrpcClient } from "~/router";
 import { TRPCProvider } from "~/utils/trpc";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 1000,
-    },
-  },
-});
-
-const trpcClient = createTRPCClient<AppRouter>({
-  links: [
-    httpBatchLink({
-      url: "/api/trpc",
-      transformer: superjson,
-    }),
-  ],
-});
-
 interface RootContext {
-  session: Awaited<ReturnType<typeof getSession>>;
+  queryClient: QueryClient;
+  trpcClient: TrpcClient;
 }
 
 export const Route = createRootRouteWithContext<RootContext>()({
@@ -50,7 +35,7 @@ export const Route = createRootRouteWithContext<RootContext>()({
 });
 
 function RootComponent() {
-  const { session } = Route.useRouteContext();
+  const { queryClient, trpcClient, session } = Route.useRouteContext();
 
   return (
     <RootDocument>
@@ -110,6 +95,9 @@ function RootComponent() {
             accessibility="non compliant"
             homeLinkProps={{ href: "/", title: "Stage Direct" }}
           />
+
+          <TanStackRouterDevtools position="bottom-right" />
+          <ReactQueryDevtools buttonPosition="bottom-left" />
         </TRPCProvider>
       </QueryClientProvider>
     </RootDocument>
