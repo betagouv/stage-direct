@@ -12,6 +12,11 @@ export default defineConfig({
       "~": path.resolve(import.meta.dirname, "src"),
     },
   },
+  css: {
+    lightningcss: {
+      errorRecovery: true,
+    },
+  },
   plugins: [tanstackStart(), react()],
   ssr: {
     noExternal: ["@codegouvfr/react-dsfr"],
