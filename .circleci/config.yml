@@ -1,0 +1,66 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@7.1.0
+
+executors:
+  default:
+    docker:
+      - image: cimg/node:22.14
+    working_directory: ~/project
+
+commands:
+  install-pnpm:
+    steps:
+      - run:
+          name: Install pnpm
+          command: corepack enable && corepack prepare pnpm@9.15.4 --activate
+  setup:
+    steps:
+      - checkout
+      - install-pnpm
+      - restore_cache:
+          keys:
+            - pnpm-store-{{ checksum "pnpm-lock.yaml" }}
+      - run:
+          name: Install dependencies
+          command: pnpm install --frozen-lockfile
+      - save_cache:
+          key: pnpm-store-{{ checksum "pnpm-lock.yaml" }}
+          paths:
+            - ~/.local/share/pnpm/store
+      - run:
+          name: Generate Prisma client
+          command: pnpm db:generate
+
+jobs:
+  lint:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Lint
+          command: pnpm lint
+
+  typecheck:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Typecheck
+          command: pnpm typecheck
+
+  build:
+    executor: default
+    steps:
+      - setup
+      - run:
+          name: Build all packages
+          command: pnpm build
+
+workflows:
+  ci:
+    jobs:
+      - lint
+      - typecheck
+      - build

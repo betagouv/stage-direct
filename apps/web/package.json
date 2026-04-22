@@ -1,0 +1,53 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "react-dsfr update-icons",
+    "dev": "vite dev",
+    "prebuild": "react-dsfr update-icons",
+    "build": "vite build",
+    "start": "pnpx srvx --prod -s ../client dist/server/server.js",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:seed": "tsx prisma/seed.ts",
+    "test": "vitest",
+    "test:unit": "vitest --project unit --run",
+    "test:integration": "vitest --project integration --run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1030.0",
+    "@aws-sdk/s3-request-presigner": "^3.1030.0",
+    "@codegouvfr/react-dsfr": "^1.14.0",
+    "@prisma/adapter-pg": "^7.5.0",
+    "@prisma/client": "^7.5.0",
+    "@tanstack/react-query": "^5.67.0",
+    "@tanstack/react-router": "^1.114.0",
+    "@tanstack/react-start": "^1.114.0",
+    "@trpc/client": "^11.1.0",
+    "@trpc/server": "^11.1.0",
+    "@trpc/tanstack-react-query": "^11.1.0",
+    "better-auth": "^1.5.0",
+    "pg": "^8.13.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "superjson": "^2.2.2",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0",
+    "@types/pg": "^8.11.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "prisma": "^7.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.8.0",
+    "vite": "^7.0.0",
+    "vitest": "^4.1.4"
+  }
+}
