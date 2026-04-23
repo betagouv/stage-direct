@@ -11,7 +11,18 @@ export function useOnboarding() {
 
   return useMutation({
     mutationFn: async (input: TOnboarding) => {
-      await setProfile.mutateAsync(input);
+      if (input.role === "CRF") {
+        await setProfile.mutateAsync({ role: "CRF", region: input.region });
+      } else if (input.role === "MDS") {
+        await setProfile.mutateAsync({
+          role: "MDS",
+          juridictionId: input.juridictionId,
+          nom: input.nom,
+          prenom: input.prenom,
+        });
+      } else {
+        await setProfile.mutateAsync({ role: "DCS", juridictionId: input.juridictionId });
+      }
     },
     onSuccess: async () => {
       createToast({ priority: "success", message: "Profil finalisé." });

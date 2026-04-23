@@ -10,7 +10,7 @@ export function CredentialsForm() {
 
   const form = useForm({
     defaultValues: { email: "", password: "" },
-    validators: { onSubmit: ZSignIn },
+    validators: { onChange: ZSignIn },
     onSubmit: async ({ value }) => {
       await signIn.mutateAsync(value);
     },

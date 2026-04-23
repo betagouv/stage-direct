@@ -8,6 +8,8 @@ export const Route = createFileRoute("/")({
       throw redirect({ to: "/se-connecter" });
     }
   },
+  loader: ({ context: { queryClient, trpc } }) =>
+    queryClient.ensureQueryData(trpc.user.list.queryOptions()),
   component: HomePage,
 });
 

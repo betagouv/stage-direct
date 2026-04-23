@@ -25,50 +25,9 @@ export function SignUpForm() {
       juridictionId: "",
       region: "",
     },
-    validators: {
-      onSubmit: ({ value }) => {
-        const input =
-          value.role === "CRF"
-            ? {
-                role: "CRF" as const,
-                email: value.email,
-                nom: value.nom,
-                prenom: value.prenom,
-                password: value.password,
-                region: value.region,
-              }
-            : {
-                role: value.role,
-                email: value.email,
-                nom: value.nom,
-                prenom: value.prenom,
-                password: value.password,
-                juridictionId: value.juridictionId,
-              };
-        const parsed = ZSignUp.safeParse(input);
-        return parsed.success ? undefined : parsed.error.issues[0]?.message;
-      },
-    },
+    validators: { onChange: ZSignUp },
     onSubmit: async ({ value }) => {
-      const payload =
-        value.role === "CRF"
-          ? {
-              role: "CRF" as const,
-              email: value.email,
-              nom: value.nom,
-              prenom: value.prenom,
-              password: value.password,
-              region: value.region,
-            }
-          : {
-              role: value.role,
-              email: value.email,
-              nom: value.nom,
-              prenom: value.prenom,
-              password: value.password,
-              juridictionId: value.juridictionId,
-            };
-      await signUp.mutateAsync(payload);
+      await signUp.mutateAsync(value);
     },
   });
 

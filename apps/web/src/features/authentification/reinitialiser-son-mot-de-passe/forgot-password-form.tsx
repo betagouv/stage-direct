@@ -9,7 +9,7 @@ export function ForgotPasswordForm() {
 
   const form = useForm({
     defaultValues: { email: "" },
-    validators: { onSubmit: ZForgotPassword },
+    validators: { onChange: ZForgotPassword },
     onSubmit: async ({ value }) => {
       await forgotPassword.mutateAsync(value);
     },

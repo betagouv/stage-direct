@@ -27,36 +27,9 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
       nom: "",
       prenom: "",
     },
-    validators: {
-      onSubmit: ({ value }) => {
-        const input =
-          value.role === "CRF"
-            ? { role: "CRF" as const, region: value.region }
-            : value.role === "MDS"
-              ? {
-                  role: "MDS" as const,
-                  juridictionId: value.juridictionId,
-                  nom: value.nom,
-                  prenom: value.prenom,
-                }
-              : { role: "DCS" as const, juridictionId: value.juridictionId };
-        const parsed = ZOnboarding.safeParse(input);
-        return parsed.success ? undefined : parsed.error.issues[0]?.message;
-      },
-    },
+    validators: { onChange: ZOnboarding },
     onSubmit: async ({ value }) => {
-      const payload =
-        value.role === "CRF"
-          ? { role: "CRF" as const, region: value.region }
-          : value.role === "MDS"
-            ? {
-                role: "MDS" as const,
-                juridictionId: value.juridictionId,
-                nom: value.nom,
-                prenom: value.prenom,
-              }
-            : { role: "DCS" as const, juridictionId: value.juridictionId };
-      await onboarding.mutateAsync(payload);
+      await onboarding.mutateAsync(value);
     },
   });
 

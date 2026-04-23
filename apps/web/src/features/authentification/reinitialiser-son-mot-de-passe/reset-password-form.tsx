@@ -13,7 +13,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
   const form = useForm({
     defaultValues: { password: "", confirmPassword: "" },
-    validators: { onSubmit: ZResetPassword },
+    validators: { onChange: ZResetPassword },
     onSubmit: async ({ value }) => {
       await resetPassword.mutateAsync({ token, password: value.password });
     },

@@ -19,11 +19,12 @@ import { Header } from "~/components/header";
 import { Toaster } from "~/components/ui/toaster";
 import { getSession } from "~/lib/auth-session";
 import type { TrpcClient } from "~/router";
-import { TRPCProvider } from "~/utils/trpc";
+import { TRPCProvider, type TrpcOptionsProxy } from "~/utils/trpc";
 
 interface RootContext {
   queryClient: QueryClient;
   trpcClient: TrpcClient;
+  trpc: TrpcOptionsProxy;
 }
 
 export const Route = createRootRouteWithContext<RootContext>()({
