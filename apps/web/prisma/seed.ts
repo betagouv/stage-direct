@@ -172,7 +172,7 @@ async function seed() {
     const nom = NOMS[i];
     const user = await prisma.user.create({
       data: {
-        email: `crf.${prenom.toLowerCase()}.${nom.toLowerCase()}@justice.fr`,
+        email: `crf.${prenom.toLowerCase()}.${nom.toLowerCase()}@stage-direct.fr`,
         name: `${prenom} ${nom}`,
         role: "CRF",
         emailVerified: true,
@@ -196,7 +196,7 @@ async function seed() {
     const nom = NOMS[i + 2];
     const user = await prisma.user.create({
       data: {
-        email: `dcs.${prenom.toLowerCase()}.${nom.toLowerCase()}@justice.fr`,
+        email: `dcs.${prenom.toLowerCase()}.${nom.toLowerCase()}@stage-direct.fr`,
         name: `${prenom} ${nom}`,
         role: "DCS",
         emailVerified: true,
@@ -220,7 +220,7 @@ async function seed() {
         data: {
           nom,
           prenom,
-          email: `mds.${prenom.toLowerCase()}.${nom.toLowerCase()}.${f.fonction.toLowerCase()}@justice.fr`,
+          email: `mds.${prenom.toLowerCase()}.${nom.toLowerCase()}.${f.fonction.toLowerCase()}@stage-direct.fr`,
           fonction: f.fonction,
           juridictionId: jur.id,
         },
@@ -248,7 +248,7 @@ async function seed() {
         data: {
           nom,
           prenom,
-          email: `adj.${prenom.toLowerCase()}.${nom.toLowerCase()}@enm.justice.fr`,
+          email: `adj.${prenom.toLowerCase()}.${nom.toLowerCase()}@enm.stage-direct.fr`,
           type: "ADJ",
           promotionId: promotion.id,
         },
