@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import "@codegouvfr/react-dsfr/main.css";
+import "~/globals.css";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -15,6 +16,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
 import { Footer } from "~/components/footer";
 import { Header } from "~/components/header";
+import { Toaster } from "~/components/ui/toaster";
 import { getSession } from "~/lib/auth-session";
 import type { TrpcClient } from "~/router";
 import { TRPCProvider } from "~/utils/trpc";
@@ -57,6 +59,7 @@ function RootComponent() {
           <Header user={session?.user} />
           <Outlet />
           <Footer />
+          <Toaster />
           <TanStackRouterDevtools position="bottom-right" />
           <ReactQueryDevtools buttonPosition="bottom-left" />
         </TRPCProvider>

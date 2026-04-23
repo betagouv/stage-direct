@@ -2,9 +2,7 @@ import { z } from "zod";
 
 export const ZResetPassword = z
   .object({
-    password: z
-      .string()
-      .min(12, "Votre mot de passe doit contenir au moins 12 caractères"),
+    password: z.string().min(12, "Votre mot de passe doit contenir au moins 12 caractères"),
     confirmPassword: z.string().min(1, "Veuillez confirmer votre mot de passe"),
   })
   .refine((d) => d.password === d.confirmPassword, {

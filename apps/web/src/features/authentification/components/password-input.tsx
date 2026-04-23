@@ -2,7 +2,9 @@ import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input, type InputProps } from "@codegouvfr/react-dsfr/Input";
 import { useState } from "react";
 
-type NativeInput = NonNullable<Extract<InputProps, { nativeTextAreaProps?: undefined | never }>["nativeInputProps"]>;
+type NativeInput = NonNullable<
+  Extract<InputProps, { nativeTextAreaProps?: undefined | never }>["nativeInputProps"]
+>;
 
 type PasswordInputProps = {
   label: string;

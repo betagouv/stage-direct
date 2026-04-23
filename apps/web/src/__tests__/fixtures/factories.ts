@@ -1,4 +1,4 @@
-import type { FonctionStage, TypeApprenant, UserRole } from "~/generated/prisma";
+import type { FonctionStage, TypeApprenant, UserRole } from "~/generated/prisma/enums";
 import { getTestDb } from "../helpers/test-db";
 
 export async function createUser(

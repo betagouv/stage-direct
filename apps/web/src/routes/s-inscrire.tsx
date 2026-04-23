@@ -1,11 +1,8 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { SignUpPage } from "~/features/authentification/s-inscrire";
+import { redirectIfAuthenticated } from "~/lib/route-guards";
 
 export const Route = createFileRoute("/s-inscrire")({
-  beforeLoad: ({ context: { session } }) => {
-    if (session) {
-      throw redirect({ to: "/" });
-    }
-  },
+  beforeLoad: redirectIfAuthenticated,
   component: SignUpPage,
 });

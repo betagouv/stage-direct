@@ -1,32 +1,23 @@
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useTRPC } from "~/utils/trpc";
 import { PasswordInput } from "../components/password-input";
 import { RoleTabs } from "./role-tabs";
-import { listJuridictions, listRegions } from "./server/list-juridictions.fn";
 import { type SignUpRole, ZSignUp } from "./server/schemas/sign-up";
 import { useSignUp } from "./server/use-sign-up";
 
 export function SignUpForm() {
-  const [role, setRole] = useState<SignUpRole>("DCS");
   const signUp = useSignUp();
-
-  const juridictionsQuery = useQuery({
-    queryKey: ["juridictions"],
-    queryFn: () => listJuridictions(),
-  });
-  const regionsQuery = useQuery({
-    queryKey: ["regions"],
-    queryFn: () => listRegions(),
-    enabled: role === "CRF",
-  });
+  const trpc = useTRPC();
+  const juridictionsQuery = useQuery(trpc.authentification.listJuridictions.queryOptions());
+  const regionsQuery = useQuery(trpc.authentification.listRegions.queryOptions());
 
   const form = useForm({
     defaultValues: {
+      role: "DCS" as SignUpRole,
       email: "",
       nom: "",
       prenom: "",
@@ -34,23 +25,50 @@ export function SignUpForm() {
       juridictionId: "",
       region: "",
     },
+    validators: {
+      onSubmit: ({ value }) => {
+        const input =
+          value.role === "CRF"
+            ? {
+                role: "CRF" as const,
+                email: value.email,
+                nom: value.nom,
+                prenom: value.prenom,
+                password: value.password,
+                region: value.region,
+              }
+            : {
+                role: value.role,
+                email: value.email,
+                nom: value.nom,
+                prenom: value.prenom,
+                password: value.password,
+                juridictionId: value.juridictionId,
+              };
+        const parsed = ZSignUp.safeParse(input);
+        return parsed.success ? undefined : parsed.error.issues[0]?.message;
+      },
+    },
     onSubmit: async ({ value }) => {
-      const base = {
-        email: value.email,
-        nom: value.nom,
-        prenom: value.prenom,
-        password: value.password,
-      };
-      const input =
-        role === "CRF"
-          ? { ...base, role: "CRF" as const, region: value.region }
-          : { ...base, role, juridictionId: value.juridictionId };
-
-      const parsed = ZSignUp.safeParse(input);
-      if (!parsed.success) {
-        throw new Error(parsed.error.issues.map((i) => i.message).join(", "));
-      }
-      await signUp.mutateAsync(parsed.data);
+      const payload =
+        value.role === "CRF"
+          ? {
+              role: "CRF" as const,
+              email: value.email,
+              nom: value.nom,
+              prenom: value.prenom,
+              password: value.password,
+              region: value.region,
+            }
+          : {
+              role: value.role,
+              email: value.email,
+              nom: value.nom,
+              prenom: value.prenom,
+              password: value.password,
+              juridictionId: value.juridictionId,
+            };
+      await signUp.mutateAsync(payload);
     },
   });
 
@@ -60,24 +78,26 @@ export function SignUpForm() {
         e.preventDefault();
         form.handleSubmit();
       }}
-      style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+      className="fr-flex fr-direction-column fr-flex-gap-5v"
     >
       <div>
-        <h1 style={{ marginBottom: "0.25rem" }}>Créer un compte StageDirect</h1>
-        <p className="fr-text--sm" style={{ color: "var(--text-mention-grey)" }}>
+        <h1 className="fr-mb-1v">Créer un compte StageDirect</h1>
+        <p className="fr-text--sm fr-text-mention--grey">
           Tous les champs du formulaire sont obligatoires.
         </p>
       </div>
 
-      <div>
-        <p className="fr-text--sm fr-mb-1w" style={{ fontWeight: 700 }}>
-          Vous êtes
-        </p>
-        <p className="fr-text--xs fr-mb-1w" style={{ color: "var(--text-mention-grey)" }}>
-          Sélectionnez votre statut par rapport à l'institution judiciaire
-        </p>
-        <RoleTabs value={role} onChange={setRole} />
-      </div>
+      <form.Field name="role">
+        {(field) => (
+          <div>
+            <p className="fr-text--sm fr-mb-1w fr-text--bold">Vous êtes</p>
+            <p className="fr-text--xs fr-mb-1w fr-text-mention--grey">
+              Sélectionnez votre statut par rapport à l'institution judiciaire
+            </p>
+            <RoleTabs value={field.state.value} onChange={(role) => field.handleChange(role)} />
+          </div>
+        )}
+      </form.Field>
 
       <form.Field name="email">
         {(field) => (
@@ -96,37 +116,41 @@ export function SignUpForm() {
         )}
       </form.Field>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-        <form.Field name="nom">
-          {(field) => (
-            <Input
-              label="Nom"
-              state={field.state.meta.errors.length ? "error" : undefined}
-              stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
-              nativeInputProps={{
-                name: field.name,
-                value: field.state.value,
-                onBlur: field.handleBlur,
-                onChange: (e) => field.handleChange(e.target.value),
-              }}
-            />
-          )}
-        </form.Field>
-        <form.Field name="prenom">
-          {(field) => (
-            <Input
-              label="Prénom"
-              state={field.state.meta.errors.length ? "error" : undefined}
-              stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
-              nativeInputProps={{
-                name: field.name,
-                value: field.state.value,
-                onBlur: field.handleBlur,
-                onChange: (e) => field.handleChange(e.target.value),
-              }}
-            />
-          )}
-        </form.Field>
+      <div className="fr-grid-row fr-grid-row--gutters">
+        <div className="fr-col-12 fr-col-md-6">
+          <form.Field name="nom">
+            {(field) => (
+              <Input
+                label="Nom"
+                state={field.state.meta.errors.length ? "error" : undefined}
+                stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                nativeInputProps={{
+                  name: field.name,
+                  value: field.state.value,
+                  onBlur: field.handleBlur,
+                  onChange: (e) => field.handleChange(e.target.value),
+                }}
+              />
+            )}
+          </form.Field>
+        </div>
+        <div className="fr-col-12 fr-col-md-6">
+          <form.Field name="prenom">
+            {(field) => (
+              <Input
+                label="Prénom"
+                state={field.state.meta.errors.length ? "error" : undefined}
+                stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                nativeInputProps={{
+                  name: field.name,
+                  value: field.state.value,
+                  onBlur: field.handleBlur,
+                  onChange: (e) => field.handleChange(e.target.value),
+                }}
+              />
+            )}
+          </form.Field>
+        </div>
       </div>
 
       <form.Field name="password">
@@ -146,78 +170,63 @@ export function SignUpForm() {
         )}
       </form.Field>
 
-      {role === "CRF" ? (
-        <form.Field name="region">
-          {(field) => (
-            <Select
-              label="Région"
-              state={field.state.meta.errors.length ? "error" : undefined}
-              stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
-              nativeSelectProps={{
-                name: field.name,
-                value: field.state.value,
-                onBlur: field.handleBlur,
-                onChange: (e) => field.handleChange(e.target.value),
-              }}
-            >
-              <option value="">Sélectionnez une région</option>
-              {regionsQuery.data?.map((r) => (
-                <option key={r} value={r}>
-                  {r}
-                </option>
-              ))}
-            </Select>
-          )}
-        </form.Field>
-      ) : (
-        <form.Field name="juridictionId">
-          {(field) => (
-            <Select
-              label="Cours d'appel / Juridiction"
-              state={field.state.meta.errors.length ? "error" : undefined}
-              stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
-              nativeSelectProps={{
-                name: field.name,
-                value: field.state.value,
-                onBlur: field.handleBlur,
-                onChange: (e) => field.handleChange(e.target.value),
-              }}
-            >
-              <option value="">Sélectionnez une juridiction</option>
-              {juridictionsQuery.data?.map((j) => (
-                <option key={j.id} value={j.id}>
-                  {j.nom}
-                </option>
-              ))}
-            </Select>
-          )}
-        </form.Field>
-      )}
+      <form.Subscribe selector={(s) => s.values.role}>
+        {(role) =>
+          role === "CRF" ? (
+            <form.Field name="region">
+              {(field) => (
+                <Select
+                  label="Région"
+                  state={field.state.meta.errors.length ? "error" : undefined}
+                  stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                  nativeSelectProps={{
+                    name: field.name,
+                    value: field.state.value,
+                    onBlur: field.handleBlur,
+                    onChange: (e) => field.handleChange(e.target.value),
+                  }}
+                >
+                  <option value="">Sélectionnez une région</option>
+                  {regionsQuery.data?.map((r) => (
+                    <option key={r} value={r}>
+                      {r}
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </form.Field>
+          ) : (
+            <form.Field name="juridictionId">
+              {(field) => (
+                <Select
+                  label="Cours d'appel / Juridiction"
+                  state={field.state.meta.errors.length ? "error" : undefined}
+                  stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                  nativeSelectProps={{
+                    name: field.name,
+                    value: field.state.value,
+                    onBlur: field.handleBlur,
+                    onChange: (e) => field.handleChange(e.target.value),
+                  }}
+                >
+                  <option value="">Sélectionnez une juridiction</option>
+                  {juridictionsQuery.data?.map((j) => (
+                    <option key={j.id} value={j.id}>
+                      {j.nom}
+                    </option>
+                  ))}
+                </Select>
+              )}
+            </form.Field>
+          )
+        }
+      </form.Subscribe>
 
-      {signUp.isError && (
-        <Alert
-          severity="error"
-          small
-          description={signUp.error instanceof Error ? signUp.error.message : "Erreur"}
-        />
-      )}
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: "1rem",
-          flexWrap: "wrap",
-        }}
-      >
+      <div className="fr-flex fr-justify-content-space-between fr-align-items-center fr-flex-wrap fr-flex-gap-4v">
         <Button type="submit" disabled={signUp.isPending}>
           {signUp.isPending ? "Création..." : "Créer un compte"}
         </Button>
-        <a
-          href="mailto:contact@stage-direct.beta.gouv.fr"
-          className="fr-link"
-        >
+        <a href="mailto:contact@stage-direct.beta.gouv.fr" className="fr-link">
           Besoin d'aide ?
         </a>
       </div>

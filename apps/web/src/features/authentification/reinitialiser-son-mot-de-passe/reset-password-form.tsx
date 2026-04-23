@@ -1,4 +1,3 @@
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { useForm } from "@tanstack/react-form";
 import { PasswordInput } from "../components/password-input";
@@ -14,12 +13,9 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
 
   const form = useForm({
     defaultValues: { password: "", confirmPassword: "" },
+    validators: { onSubmit: ZResetPassword },
     onSubmit: async ({ value }) => {
-      const parsed = ZResetPassword.safeParse(value);
-      if (!parsed.success) {
-        throw new Error(parsed.error.issues.map((i) => i.message).join(", "));
-      }
-      await resetPassword.mutateAsync({ token, password: parsed.data.password });
+      await resetPassword.mutateAsync({ token, password: value.password });
     },
   });
 
@@ -29,7 +25,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
         e.preventDefault();
         form.handleSubmit();
       }}
-      style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+      className="fr-flex fr-direction-column fr-flex-gap-4v"
     >
       <form.Field name="password">
         {(field) => (
@@ -64,24 +60,14 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
         )}
       </form.Field>
 
-      <Button type="submit" disabled={resetPassword.isPending || !token} iconId="fr-icon-arrow-right-line" iconPosition="right">
+      <Button
+        type="submit"
+        disabled={resetPassword.isPending || !token}
+        iconId="fr-icon-arrow-right-line"
+        iconPosition="right"
+      >
         {resetPassword.isPending ? "Réinitialisation..." : "Réinitialiser le mot de passe"}
       </Button>
-
-      {resetPassword.isSuccess && (
-        <Alert
-          severity="success"
-          small
-          description="Mot de passe réinitialisé. Redirection vers la connexion..."
-        />
-      )}
-      {resetPassword.isError && (
-        <Alert
-          severity="error"
-          small
-          description={resetPassword.error instanceof Error ? resetPassword.error.message : "Erreur"}
-        />
-      )}
     </form>
   );
 }

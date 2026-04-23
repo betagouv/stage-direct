@@ -1,4 +1,5 @@
 import { authClient } from "~/lib/auth-client";
+import styles from "./proconnect-button.module.css";
 
 type ProConnectButtonProps = {
   callbackURL?: string;
@@ -14,39 +15,13 @@ export function ProConnectButton({ callbackURL = "/onboarding" }: ProConnectButt
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={handleClick}
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          gap: "0.75rem",
-          background: "#000091",
-          color: "#ffffff",
-          padding: "0.75rem 1.5rem",
-          border: "none",
-          borderRadius: "4px",
-          fontWeight: 700,
-          fontSize: "1rem",
-          cursor: "pointer",
-        }}
-      >
-        <span
-          aria-hidden="true"
-          style={{
-            background: "#FFD700",
-            color: "#000091",
-            fontWeight: 900,
-            fontSize: "0.75rem",
-            padding: "2px 6px",
-            borderRadius: "2px",
-          }}
-        >
+      <button type="button" onClick={handleClick} className={styles.button}>
+        <span aria-hidden="true" className={styles.badge}>
           PRO
         </span>
         S'identifier avec ProConnect
       </button>
-      <div style={{ marginTop: "0.5rem" }}>
+      <div className="fr-mt-1w">
         <a
           href="https://www.proconnect.gouv.fr/"
           target="_blank"

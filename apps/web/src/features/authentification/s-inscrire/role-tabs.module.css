@@ -1,0 +1,19 @@
+.tablist {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.tab {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-default-grey);
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.tab[aria-selected="true"] {
+  border-color: var(--border-action-high-blue-france);
+  color: var(--text-action-high-blue-france);
+}

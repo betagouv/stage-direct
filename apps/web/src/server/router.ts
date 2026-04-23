@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { alerteRouter } from "./routers/alerte";
 import { auditeurRouter } from "./routers/auditeur";
+import { authentificationRouter } from "./routers/authentification";
 import { dashboardRouter } from "./routers/dashboard";
 import { evaluationRouter } from "./routers/evaluation";
 import { juridictionRouter } from "./routers/juridiction";
@@ -17,6 +18,7 @@ export const appRouter = router({
       return ctx.prisma.user.findUnique({ where: { id: input.id } });
     }),
   }),
+  authentification: authentificationRouter,
   juridiction: juridictionRouter,
   promotion: promotionRouter,
   auditeur: auditeurRouter,

@@ -5,11 +5,11 @@ import { ForgotPasswordForm } from "./forgot-password-form";
 export function ForgotPasswordPage() {
   return (
     <AuthLayout>
-      <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+      <div className="fr-flex fr-direction-column fr-flex-gap-5v">
         <h1>Mot de passe oublié</h1>
         <p>
-          Saisissez l'email de votre compte. Si un compte existe, un lien de
-          réinitialisation vous sera envoyé.
+          Saisissez l'email de votre compte. Si un compte existe, un lien de réinitialisation vous
+          sera envoyé.
         </p>
         <ForgotPasswordForm />
         <hr />

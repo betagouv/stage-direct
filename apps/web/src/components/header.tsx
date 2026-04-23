@@ -1,29 +1,21 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Header as DsfrHeader } from "@codegouvfr/react-dsfr/Header";
+import { BrandTop } from "./brand-top";
 import { UserMenu } from "./user-menu";
 
 type HeaderProps = {
   user?: { name?: string | null; email: string } | null;
 };
 
-const BRAND_TOP = (
-  <>
-    MINISTÈRE
-    <br />
-    DE LA JUSTICE
-  </>
-);
-
 const HOME_LINK_PROPS = { href: "/", title: "Stage Direct" };
-const SERVICE_TAGLINE =
-  "Connectons les futurs magistrats à leurs lieux de formation";
+const SERVICE_TAGLINE = "Connectons les futurs magistrats à leurs lieux de formation";
 
 export function Header({ user }: HeaderProps) {
   const quickAccessItems = user
     ? [
         <Button
           key="notifications"
-          priority="tertiary no outline"
+          priority="tertiary"
           iconId="fr-icon-notification-3-line"
           linkProps={{ href: "/notifications" }}
         >
@@ -34,7 +26,7 @@ export function Header({ user }: HeaderProps) {
     : [
         <Button
           key="faq"
-          priority="tertiary no outline"
+          priority="tertiary"
           iconId="fr-icon-question-line"
           linkProps={{ href: "/foire-aux-questions" }}
         >
@@ -42,17 +34,17 @@ export function Header({ user }: HeaderProps) {
         </Button>,
         <Button
           key="signup"
-          priority="tertiary no outline"
+          priority="tertiary"
           iconId="fr-icon-add-circle-line"
-          linkProps={{ href: "/inscription" }}
+          linkProps={{ href: "/s-inscrire" }}
         >
           Créer un compte
         </Button>,
         <Button
           key="login"
-          priority="tertiary no outline"
+          priority="tertiary"
           iconId="fr-icon-account-circle-line"
-          linkProps={{ href: "/login" }}
+          linkProps={{ href: "/se-connecter" }}
         >
           Se connecter
         </Button>,
@@ -60,7 +52,7 @@ export function Header({ user }: HeaderProps) {
 
   return (
     <DsfrHeader
-      brandTop={BRAND_TOP}
+      brandTop={<BrandTop />}
       homeLinkProps={HOME_LINK_PROPS}
       operatorLogo={{
         orientation: "horizontal",

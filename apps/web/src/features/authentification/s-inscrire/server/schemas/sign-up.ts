@@ -1,15 +1,10 @@
 import { z } from "zod";
 
 const base = z.object({
-  email: z
-    .string()
-    .min(1, "Veuillez saisir votre email")
-    .email("Veuillez saisir un email valide"),
+  email: z.string().min(1, "Veuillez saisir votre email").email("Veuillez saisir un email valide"),
   nom: z.string().min(1, "Veuillez saisir votre nom"),
   prenom: z.string().min(1, "Veuillez saisir votre prénom"),
-  password: z
-    .string()
-    .min(12, "Votre mot de passe doit contenir au moins 12 caractères"),
+  password: z.string().min(12, "Votre mot de passe doit contenir au moins 12 caractères"),
 });
 
 export const ZSignUp = z.discriminatedUnion("role", [

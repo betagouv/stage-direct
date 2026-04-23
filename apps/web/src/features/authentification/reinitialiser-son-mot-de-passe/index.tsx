@@ -10,7 +10,7 @@ type ResetPasswordPageProps = {
 export function ResetPasswordPage({ token }: ResetPasswordPageProps) {
   return (
     <AuthLayout>
-      <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+      <div className="fr-flex fr-direction-column fr-flex-gap-5v">
         <h1>Réinitialiser votre mot de passe</h1>
         {token ? (
           <ResetPasswordForm token={token} />

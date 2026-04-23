@@ -1,22 +1,15 @@
 import { Footer as DsfrFooter } from "@codegouvfr/react-dsfr/Footer";
-
-const BRAND_TOP = (
-  <>
-    MINISTÈRE
-    <br />
-    DE LA JUSTICE
-  </>
-);
+import { BrandTop } from "./brand-top";
 
 export function Footer() {
   return (
     <DsfrFooter
-      brandTop={BRAND_TOP}
+      brandTop={<BrandTop />}
       homeLinkProps={{ href: "/", title: "Stage Direct" }}
       accessibility="non compliant"
       contentDescription={
         <>
-          <span style={{ fontWeight: "bold" }}>Stage Direct</span>
+          <span className="fr-text--bold">Stage Direct</span>
           <br />
           Connectons les futurs magistrats à leurs lieux de formation
         </>

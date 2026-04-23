@@ -1,4 +1,3 @@
-import { Alert } from "@codegouvfr/react-dsfr/Alert";
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useForm } from "@tanstack/react-form";
@@ -10,12 +9,9 @@ export function ForgotPasswordForm() {
 
   const form = useForm({
     defaultValues: { email: "" },
+    validators: { onSubmit: ZForgotPassword },
     onSubmit: async ({ value }) => {
-      const parsed = ZForgotPassword.safeParse(value);
-      if (!parsed.success) {
-        throw new Error(parsed.error.issues.map((i) => i.message).join(", "));
-      }
-      await forgotPassword.mutateAsync(parsed.data);
+      await forgotPassword.mutateAsync(value);
     },
   });
 
@@ -25,7 +21,7 @@ export function ForgotPasswordForm() {
         e.preventDefault();
         form.handleSubmit();
       }}
-      style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+      className="fr-flex fr-direction-column fr-flex-gap-4v"
     >
       <form.Field name="email">
         {(field) => (
@@ -44,24 +40,14 @@ export function ForgotPasswordForm() {
         )}
       </form.Field>
 
-      <Button type="submit" disabled={forgotPassword.isPending} iconId="fr-icon-arrow-right-line" iconPosition="right">
+      <Button
+        type="submit"
+        disabled={forgotPassword.isPending}
+        iconId="fr-icon-arrow-right-line"
+        iconPosition="right"
+      >
         {forgotPassword.isPending ? "Envoi..." : "Envoyer le lien de réinitialisation"}
       </Button>
-
-      {forgotPassword.isSuccess && (
-        <Alert
-          severity="success"
-          small
-          description="Si un compte existe pour cet email, un lien de réinitialisation vient d'être envoyé."
-        />
-      )}
-      {forgotPassword.isError && (
-        <Alert
-          severity="error"
-          small
-          description={forgotPassword.error instanceof Error ? forgotPassword.error.message : "Erreur"}
-        />
-      )}
     </form>
   );
 }

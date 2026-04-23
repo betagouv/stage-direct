@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
+import { createToast } from "~/components/ui/create-toast";
 import { authClient } from "~/lib/auth-client";
 
 export function useResetPassword() {
@@ -15,7 +16,17 @@ export function useResetPassword() {
       }
     },
     onSuccess: () => {
-      setTimeout(() => router.navigate({ to: "/se-connecter" }), 1500);
+      createToast({
+        priority: "success",
+        message: "Votre mot de passe a été réinitialisé. Connectez-vous.",
+      });
+      router.navigate({ to: "/se-connecter" });
+    },
+    onError: (error) => {
+      createToast({
+        priority: "error",
+        message: error instanceof Error ? error.message : "Erreur",
+      });
     },
   });
 }
