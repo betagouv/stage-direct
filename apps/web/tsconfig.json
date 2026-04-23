@@ -12,5 +12,5 @@
       "~/*": ["./src/*"]
     }
   },
-  "include": ["src", "*.config.ts"]
+  "include": ["src"]
 }

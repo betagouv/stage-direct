@@ -1,0 +1,41 @@
+.dividerWrap {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.dividerLabel {
+  background: var(--background-default-grey);
+  padding: 0 1rem;
+  color: var(--text-mention-grey);
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+}
+
+.dividerLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-default-grey);
+  z-index: 0;
+}
+
+.signupCallout {
+  background: var(--background-alt-grey);
+  padding: 2rem;
+  margin-top: 1.5rem;
+  margin-left: -3rem;
+  margin-right: -3rem;
+  margin-bottom: -4rem;
+}
+
+@media (max-width: 48em) {
+  .signupCallout {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    margin-bottom: -2rem;
+  }
+}

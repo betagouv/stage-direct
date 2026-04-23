@@ -1,0 +1,40 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: calc(100vh - 280px);
+}
+
+.panel {
+  background: var(--background-action-high-blue-france);
+  color: var(--text-inverted-blue-france);
+  padding: 4rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panelTitle {
+  color: inherit;
+  margin-bottom: 1.5rem;
+}
+
+.panelText {
+  color: inherit;
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+.main {
+  padding: 4rem 3rem;
+  background: var(--background-default-grey);
+}
+
+@media (max-width: 48em) {
+  .root {
+    grid-template-columns: 1fr;
+  }
+  .panel,
+  .main {
+    padding: 2rem 1.5rem;
+  }
+}

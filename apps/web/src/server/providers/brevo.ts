@@ -69,3 +69,30 @@ export async function sendEmail(params: SendEmailParams) {
     }),
   });
 }
+
+async function sendTemplateEmail(params: {
+  to: string;
+  templateId: number;
+  templateParams: Record<string, string>;
+}) {
+  return brevoFetch("/smtp/email", {
+    method: "POST",
+    body: JSON.stringify({
+      to: [{ email: params.to }],
+      templateId: params.templateId,
+      params: params.templateParams,
+    }),
+  });
+}
+
+export async function sendResetPasswordEmail(email: string, url: string) {
+  const templateId = Number(process.env.BREVO_TEMPLATE_RESET_PASSWORD);
+  if (!templateId) {
+    throw new Error("BREVO_TEMPLATE_RESET_PASSWORD is not set");
+  }
+  await sendTemplateEmail({
+    to: email,
+    templateId,
+    templateParams: { RESET_LINK: url },
+  });
+}

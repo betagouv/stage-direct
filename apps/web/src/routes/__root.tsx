@@ -1,22 +1,30 @@
 /// <reference types="vite/client" />
 
 import "@codegouvfr/react-dsfr/main.css";
-import { Footer } from "@codegouvfr/react-dsfr/Footer";
-import { Header } from "@codegouvfr/react-dsfr/Header";
+import "~/globals.css";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import {
+  createRootRouteWithContext,
+  HeadContent,
+  Outlet,
+  redirect,
+  Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import type { ReactNode } from "react";
-import { authClient } from "~/lib/auth-client";
+import { Footer } from "~/components/footer";
+import { Header } from "~/components/header";
+import { Toaster } from "~/components/ui/toaster";
 import { getSession } from "~/lib/auth-session";
 import type { TrpcClient } from "~/router";
-import { TRPCProvider } from "~/utils/trpc";
+import { TRPCProvider, type TrpcOptionsProxy } from "~/utils/trpc";
 
 interface RootContext {
   queryClient: QueryClient;
   trpcClient: TrpcClient;
+  trpc: TrpcOptionsProxy;
 }
 
 export const Route = createRootRouteWithContext<RootContext>()({
@@ -27,8 +35,16 @@ export const Route = createRootRouteWithContext<RootContext>()({
       { title: "Stage Direct" },
     ],
   }),
-  beforeLoad: async () => {
+  beforeLoad: async ({ location }) => {
     const session = await getSession();
+    if (
+      session?.user &&
+      !session.user.role &&
+      location.pathname !== "/onboarding" &&
+      location.pathname !== "/se-connecter"
+    ) {
+      throw redirect({ to: "/onboarding" });
+    }
     return { session };
   },
   component: RootComponent,
@@ -41,61 +57,10 @@ function RootComponent() {
     <RootDocument>
       <QueryClientProvider client={queryClient}>
         <TRPCProvider trpcClient={trpcClient} queryClient={queryClient}>
-          <Header
-            brandTop={
-              <>
-                REPUBLIQUE
-                <br />
-                FRANCAISE
-              </>
-            }
-            homeLinkProps={{ href: "/", title: "Stage Direct" }}
-            serviceTitle="Stage Direct"
-            serviceTagline="Solution claire, outillee et partagee de gestion des stages"
-            quickAccessItems={
-              session?.user
-                ? [
-                    {
-                      iconId: "ri-account-circle-line",
-                      text: session.user.name || session.user.email,
-                      buttonProps: { onClick: undefined },
-                    },
-                    {
-                      iconId: "ri-logout-box-line",
-                      text: "Se deconnecter",
-                      buttonProps: {
-                        onClick: () => {
-                          authClient.signOut().then(() => {
-                            window.location.href = "/login";
-                          });
-                        },
-                      },
-                    },
-                  ]
-                : [
-                    {
-                      iconId: "ri-login-box-line",
-                      linkProps: { href: "/login" },
-                      text: "Se connecter",
-                    },
-                  ]
-            }
-          />
-
+          <Header user={session?.user} />
           <Outlet />
-
-          <Footer
-            brandTop={
-              <>
-                REPUBLIQUE
-                <br />
-                FRANCAISE
-              </>
-            }
-            accessibility="non compliant"
-            homeLinkProps={{ href: "/", title: "Stage Direct" }}
-          />
-
+          <Footer />
+          <Toaster />
           <TanStackRouterDevtools position="bottom-right" />
           <ReactQueryDevtools buttonPosition="bottom-left" />
         </TRPCProvider>

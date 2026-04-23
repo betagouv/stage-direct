@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
-import type { UserRole } from "~/generated/prisma";
+import type { UserRole } from "~/generated/prisma/enums";
 import { auth } from "./providers/auth";
 import { prisma } from "./providers/prisma";
 
@@ -31,7 +31,7 @@ const hasRole = (...roles: UserRole[]) =>
       where: { id: ctx.session.user.id },
       select: { id: true, role: true },
     });
-    if (!user || !roles.includes(user.role)) {
+    if (!user?.role || !roles.includes(user.role)) {
       throw new TRPCError({ code: "FORBIDDEN", message: "Acces non autorise" });
     }
     return next({

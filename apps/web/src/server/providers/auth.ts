@@ -1,33 +1,43 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { magicLink } from "better-auth/plugins";
+import { genericOAuth } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { sendEmail } from "./brevo";
+import { sendResetPasswordEmail } from "./brevo";
 import { prisma } from "./prisma";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  user: {
+    additionalFields: {
+      role: { type: "string", required: false, input: false },
+    },
+  },
   emailAndPassword: {
     enabled: true,
+    minPasswordLength: 12,
+    sendResetPassword: async ({ user, url }) => {
+      await sendResetPasswordEmail(user.email, url);
+    },
   },
   plugins: [
     tanstackStartCookies(),
-    magicLink({
-      sendMagicLink: async ({ email, url }) => {
-        await sendEmail({
-          to: [{ email }],
-          subject: "Votre lien de connexion Stage Direct",
-          htmlContent: `
-            <p>Bonjour,</p>
-            <p>Cliquez sur le lien ci-dessous pour vous connecter a Stage Direct :</p>
-            <p><a href="${url}">Se connecter</a></p>
-            <p>Ce lien est valable 10 minutes.</p>
-            <p>L'equipe Stage Direct</p>
-          `,
-        });
-      },
+    genericOAuth({
+      config: [
+        {
+          providerId: "proconnect",
+          clientId: process.env.PROCONNECT_CLIENT_ID ?? "",
+          clientSecret: process.env.PROCONNECT_CLIENT_SECRET ?? "",
+          discoveryUrl: process.env.PROCONNECT_DISCOVERY_URL ?? "",
+          scopes: ["openid", "email", "given_name", "usual_name"],
+          mapProfileToUser: (profile) => ({
+            email: profile.email,
+            name: `${profile.given_name ?? ""} ${profile.usual_name ?? ""}`.trim(),
+            emailVerified: true,
+          }),
+        },
+      ],
     }),
   ],
 });

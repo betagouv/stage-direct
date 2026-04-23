@@ -9,12 +9,37 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
+import { Route as SeConnecterRouteImport } from './routes/se-connecter'
+import { Route as SInscrireRouteImport } from './routes/s-inscrire'
+import { Route as ReinitialiserSonMotDePasseRouteImport } from './routes/reinitialiser-son-mot-de-passe'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
 import { Route as IndexRouteImport } from './routes/index'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const SeConnecterRoute = SeConnecterRouteImport.update({
+  id: '/se-connecter',
+  path: '/se-connecter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SInscrireRoute = SInscrireRouteImport.update({
+  id: '/s-inscrire',
+  path: '/s-inscrire',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReinitialiserSonMotDePasseRoute =
+  ReinitialiserSonMotDePasseRouteImport.update({
+    id: '/reinitialiser-son-mot-de-passe',
+    path: '/reinitialiser-son-mot-de-passe',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
+  id: '/mot-de-passe-oublie',
+  path: '/mot-de-passe-oublie',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,37 +50,100 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/login': typeof LoginRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
+  '/s-inscrire': typeof SInscrireRoute
+  '/se-connecter': typeof SeConnecterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/login': typeof LoginRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
+  '/s-inscrire': typeof SInscrireRoute
+  '/se-connecter': typeof SeConnecterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/login': typeof LoginRoute
+  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
+  '/onboarding': typeof OnboardingRoute
+  '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
+  '/s-inscrire': typeof SInscrireRoute
+  '/se-connecter': typeof SeConnecterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login'
+  fullPaths:
+    | '/'
+    | '/mot-de-passe-oublie'
+    | '/onboarding'
+    | '/reinitialiser-son-mot-de-passe'
+    | '/s-inscrire'
+    | '/se-connecter'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login'
-  id: '__root__' | '/' | '/login'
+  to:
+    | '/'
+    | '/mot-de-passe-oublie'
+    | '/onboarding'
+    | '/reinitialiser-son-mot-de-passe'
+    | '/s-inscrire'
+    | '/se-connecter'
+  id:
+    | '__root__'
+    | '/'
+    | '/mot-de-passe-oublie'
+    | '/onboarding'
+    | '/reinitialiser-son-mot-de-passe'
+    | '/s-inscrire'
+    | '/se-connecter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  LoginRoute: typeof LoginRoute
+  MotDePasseOublieRoute: typeof MotDePasseOublieRoute
+  OnboardingRoute: typeof OnboardingRoute
+  ReinitialiserSonMotDePasseRoute: typeof ReinitialiserSonMotDePasseRoute
+  SInscrireRoute: typeof SInscrireRoute
+  SeConnecterRoute: typeof SeConnecterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/se-connecter': {
+      id: '/se-connecter'
+      path: '/se-connecter'
+      fullPath: '/se-connecter'
+      preLoaderRoute: typeof SeConnecterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/s-inscrire': {
+      id: '/s-inscrire'
+      path: '/s-inscrire'
+      fullPath: '/s-inscrire'
+      preLoaderRoute: typeof SInscrireRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reinitialiser-son-mot-de-passe': {
+      id: '/reinitialiser-son-mot-de-passe'
+      path: '/reinitialiser-son-mot-de-passe'
+      fullPath: '/reinitialiser-son-mot-de-passe'
+      preLoaderRoute: typeof ReinitialiserSonMotDePasseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mot-de-passe-oublie': {
+      id: '/mot-de-passe-oublie'
+      path: '/mot-de-passe-oublie'
+      fullPath: '/mot-de-passe-oublie'
+      preLoaderRoute: typeof MotDePasseOublieRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,7 +158,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  LoginRoute: LoginRoute,
+  MotDePasseOublieRoute: MotDePasseOublieRoute,
+  OnboardingRoute: OnboardingRoute,
+  ReinitialiserSonMotDePasseRoute: ReinitialiserSonMotDePasseRoute,
+  SInscrireRoute: SInscrireRoute,
+  SeConnecterRoute: SeConnecterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
