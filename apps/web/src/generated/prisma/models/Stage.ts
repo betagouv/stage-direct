@@ -729,6 +729,10 @@ export type StageUncheckedUpdateManyWithoutAuditeurNestedInput = {
   deleteMany?: Prisma.StageScalarWhereInput | Prisma.StageScalarWhereInput[]
 }
 
+export type EnumFonctionStageFieldUpdateOperationsInput = {
+  set?: $Enums.FonctionStage
+}
+
 export type EnumStatutStageFieldUpdateOperationsInput = {
   set?: $Enums.StatutStage
 }

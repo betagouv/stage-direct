@@ -5,7 +5,7 @@ import { useTRPC } from "~/utils/trpc";
 export const Route = createFileRoute("/")({
   beforeLoad: ({ context: { session } }) => {
     if (!session) {
-      throw redirect({ to: "/login" });
+      throw redirect({ to: "/se-connecter" });
     }
   },
   component: HomePage,
