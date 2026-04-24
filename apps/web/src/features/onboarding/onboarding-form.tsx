@@ -3,7 +3,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
-import { getFieldErrorMessage } from "~/utils/form-errors";
+import { getFieldErrorProps } from "~/utils/form-errors";
 import { useTRPC } from "~/utils/trpc";
 import { RoleTabs } from "../authentification/s-inscrire/role-tabs";
 import { type OnboardingRole, ZOnboarding } from "./server/schemas/onboarding";
@@ -69,8 +69,7 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
                   {(field) => (
                     <Input
                       label="Nom"
-                      state={field.state.meta.errors.length ? "error" : undefined}
-                      stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                      {...getFieldErrorProps(field.state.meta)}
                       nativeInputProps={{
                         name: field.name,
                         value: field.state.value,
@@ -86,8 +85,7 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
                   {(field) => (
                     <Input
                       label="Prénom"
-                      state={field.state.meta.errors.length ? "error" : undefined}
-                      stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                      {...getFieldErrorProps(field.state.meta)}
                       nativeInputProps={{
                         name: field.name,
                         value: field.state.value,
@@ -110,8 +108,7 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
               {(field) => (
                 <Select
                   label="Région"
-                  state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                  {...getFieldErrorProps(field.state.meta)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,
@@ -133,8 +130,7 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
               {(field) => (
                 <Select
                   label="Cours d'appel / Juridiction"
-                  state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                  {...getFieldErrorProps(field.state.meta)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,

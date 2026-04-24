@@ -14,6 +14,7 @@ import { Route as SInscrireRouteImport } from './routes/s-inscrire'
 import { Route as ReinitialiserSonMotDePasseRouteImport } from './routes/reinitialiser-son-mot-de-passe'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
+import { Route as FoireAuxQuestionsRouteImport } from './routes/foire-aux-questions'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -44,6 +45,11 @@ const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
   path: '/mot-de-passe-oublie',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FoireAuxQuestionsRoute = FoireAuxQuestionsRouteImport.update({
+  id: '/foire-aux-questions',
+  path: '/foire-aux-questions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -62,6 +68,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/foire-aux-questions': typeof FoireAuxQuestionsRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/foire-aux-questions': typeof FoireAuxQuestionsRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
@@ -83,6 +91,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/foire-aux-questions': typeof FoireAuxQuestionsRoute
   '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
   '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/foire-aux-questions'
     | '/mot-de-passe-oublie'
     | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/foire-aux-questions'
     | '/mot-de-passe-oublie'
     | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/foire-aux-questions'
     | '/mot-de-passe-oublie'
     | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FoireAuxQuestionsRoute: typeof FoireAuxQuestionsRoute
   MotDePasseOublieRoute: typeof MotDePasseOublieRoute
   OnboardingRoute: typeof OnboardingRoute
   ReinitialiserSonMotDePasseRoute: typeof ReinitialiserSonMotDePasseRoute
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MotDePasseOublieRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/foire-aux-questions': {
+      id: '/foire-aux-questions'
+      path: '/foire-aux-questions'
+      fullPath: '/foire-aux-questions'
+      preLoaderRoute: typeof FoireAuxQuestionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FoireAuxQuestionsRoute: FoireAuxQuestionsRoute,
   MotDePasseOublieRoute: MotDePasseOublieRoute,
   OnboardingRoute: OnboardingRoute,
   ReinitialiserSonMotDePasseRoute: ReinitialiserSonMotDePasseRoute,

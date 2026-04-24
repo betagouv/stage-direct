@@ -3,7 +3,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
-import { getFieldErrorMessage } from "~/utils/form-errors";
+import { getFieldErrorProps } from "~/utils/form-errors";
 import { useTRPC } from "~/utils/trpc";
 import { PasswordInput } from "../components/password-input";
 import { RoleTabs } from "./role-tabs";
@@ -66,8 +66,7 @@ export function SignUpForm() {
                 E-mail (@justice.fr) <span className="fr-text-default--error">*</span>
               </>
             }
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               type: "email",
               name: field.name,
@@ -90,8 +89,7 @@ export function SignUpForm() {
                     Nom <span className="fr-text-default--error">*</span>
                   </>
                 }
-                state={field.state.meta.errors.length ? "error" : undefined}
-                stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                {...getFieldErrorProps(field.state.meta)}
                 nativeInputProps={{
                   name: field.name,
                   value: field.state.value,
@@ -112,8 +110,7 @@ export function SignUpForm() {
                     Prénom <span className="fr-text-default--error">*</span>
                   </>
                 }
-                state={field.state.meta.errors.length ? "error" : undefined}
-                stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                {...getFieldErrorProps(field.state.meta)}
                 nativeInputProps={{
                   name: field.name,
                   value: field.state.value,
@@ -136,8 +133,7 @@ export function SignUpForm() {
               </>
             }
             hintText="12 caractères minimum"
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,
@@ -159,8 +155,7 @@ export function SignUpForm() {
                       Région <span className="fr-text-default--error">*</span>
                     </>
                   }
-                  state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                  {...getFieldErrorProps(field.state.meta)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,
@@ -186,8 +181,7 @@ export function SignUpForm() {
                       Cours d'appel / Juridiction <span className="fr-text-default--error">*</span>
                     </>
                   }
-                  state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+                  {...getFieldErrorProps(field.state.meta)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,

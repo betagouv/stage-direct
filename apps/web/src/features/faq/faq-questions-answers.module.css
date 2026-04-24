@@ -1,0 +1,15 @@
+.accordionContainer {
+  background-color: #fff;
+}
+
+@media (min-width: 48em) {
+  .accordionContainer {
+    padding: 3rem 4rem;
+  }
+}
+
+@media (max-width: 48em) {
+  .accordionContainer {
+    padding: 1.5rem;
+  }
+}

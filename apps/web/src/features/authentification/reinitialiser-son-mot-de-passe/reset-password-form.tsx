@@ -1,6 +1,6 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { useForm } from "@tanstack/react-form";
-import { getFieldErrorMessage } from "~/utils/form-errors";
+import { getFieldErrorProps } from "~/utils/form-errors";
 import { PasswordInput } from "../components/password-input";
 import { ZResetPassword } from "./server/schemas/reset-password";
 import { useResetPassword } from "./server/use-reset-password";
@@ -33,8 +33,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
           <PasswordInput
             label="Nouveau mot de passe"
             hintText="12 caractères minimum"
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,
@@ -49,8 +48,7 @@ export function ResetPasswordForm({ token }: ResetPasswordFormProps) {
         {(field) => (
           <PasswordInput
             label="Confirmer le mot de passe"
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,

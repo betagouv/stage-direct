@@ -38,6 +38,7 @@ export function Header({ user }: HeaderProps) {
         <Button
           key="login"
           priority="secondary"
+          size="large"
           iconId="fr-icon-account-circle-line"
           linkProps={{ href: "/se-connecter" }}
         >

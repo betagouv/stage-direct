@@ -1,7 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useForm } from "@tanstack/react-form";
-import { getFieldErrorMessage } from "~/utils/form-errors";
+import { getFieldErrorProps } from "~/utils/form-errors";
 import { PasswordInput } from "../components/password-input";
 import { ZSignIn } from "./server/schemas/sign-in";
 import { useSignIn } from "./server/use-sign-in";
@@ -34,8 +34,7 @@ export function CredentialsForm() {
                 E-mail <span className="fr-text-default--error">*</span>
               </>
             }
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               type: "email",
               name: field.name,
@@ -56,8 +55,7 @@ export function CredentialsForm() {
                 Mot de passe <span className="fr-text-default--error">*</span>
               </>
             }
-            state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
+            {...getFieldErrorProps(field.state.meta)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,
