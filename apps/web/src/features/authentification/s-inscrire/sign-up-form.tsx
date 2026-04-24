@@ -3,6 +3,7 @@ import { Input } from "@codegouvfr/react-dsfr/Input";
 import { Select } from "@codegouvfr/react-dsfr/Select";
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
+import { getFieldErrorMessage } from "~/utils/form-errors";
 import { useTRPC } from "~/utils/trpc";
 import { PasswordInput } from "../components/password-input";
 import { RoleTabs } from "./role-tabs";
@@ -40,16 +41,14 @@ export function SignUpForm() {
       className="fr-flex fr-direction-column fr-flex-gap-5v"
     >
       <div>
-        <h1 className="fr-mb-1v">Créer un compte StageDirect</h1>
-        <p className="fr-text--sm fr-text-mention--grey">
-          Tous les champs du formulaire sont obligatoires.
-        </p>
+        <h1 className="fr-h3 fr-mb-1v">Créer un compte StageDirect</h1>
+        <p className="fr-text--sm fr-mb-0">Tous les champs du formulaire sont obligatoires.</p>
       </div>
-
+      <hr className="fr-py-0" style={{ height: 1 }} />
       <form.Field name="role">
         {(field) => (
           <div>
-            <p className="fr-text--sm fr-mb-1w fr-text--bold">Vous êtes</p>
+            <p className="fr-mb-1w">Vous êtes</p>
             <p className="fr-text--xs fr-mb-1w fr-text-mention--grey">
               Sélectionnez votre statut par rapport à l'institution judiciaire
             </p>
@@ -61,9 +60,14 @@ export function SignUpForm() {
       <form.Field name="email">
         {(field) => (
           <Input
-            label="E-mail (@justice.fr)"
+            classes={{ root: "fr-mb-0" }}
+            label={
+              <>
+                E-mail (@justice.fr) <span className="fr-text-default--error">*</span>
+              </>
+            }
             state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
             nativeInputProps={{
               type: "email",
               name: field.name,
@@ -80,9 +84,14 @@ export function SignUpForm() {
           <form.Field name="nom">
             {(field) => (
               <Input
-                label="Nom"
+                classes={{ root: "fr-mb-0" }}
+                label={
+                  <>
+                    Nom <span className="fr-text-default--error">*</span>
+                  </>
+                }
                 state={field.state.meta.errors.length ? "error" : undefined}
-                stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
                 nativeInputProps={{
                   name: field.name,
                   value: field.state.value,
@@ -97,9 +106,14 @@ export function SignUpForm() {
           <form.Field name="prenom">
             {(field) => (
               <Input
-                label="Prénom"
+                classes={{ root: "fr-mb-0" }}
+                label={
+                  <>
+                    Prénom <span className="fr-text-default--error">*</span>
+                  </>
+                }
                 state={field.state.meta.errors.length ? "error" : undefined}
-                stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
                 nativeInputProps={{
                   name: field.name,
                   value: field.state.value,
@@ -115,10 +129,15 @@ export function SignUpForm() {
       <form.Field name="password">
         {(field) => (
           <PasswordInput
-            label="Mot de passe"
+            classes={{ root: "fr-mb-0" }}
+            label={
+              <>
+                Mot de passe <span className="fr-text-default--error">*</span>
+              </>
+            }
             hintText="12 caractères minimum"
             state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,
@@ -135,9 +154,13 @@ export function SignUpForm() {
             <form.Field name="region">
               {(field) => (
                 <Select
-                  label="Région"
+                  label={
+                    <>
+                      Région <span className="fr-text-default--error">*</span>
+                    </>
+                  }
                   state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,
@@ -158,9 +181,13 @@ export function SignUpForm() {
             <form.Field name="juridictionId">
               {(field) => (
                 <Select
-                  label="Cours d'appel / Juridiction"
+                  label={
+                    <>
+                      Cours d'appel / Juridiction <span className="fr-text-default--error">*</span>
+                    </>
+                  }
                   state={field.state.meta.errors.length ? "error" : undefined}
-                  stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+                  stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
                   nativeSelectProps={{
                     name: field.name,
                     value: field.state.value,
@@ -182,7 +209,7 @@ export function SignUpForm() {
       </form.Subscribe>
 
       <div className="fr-flex fr-justify-content-space-between fr-align-items-center fr-flex-wrap fr-flex-gap-4v">
-        <Button type="submit" disabled={signUp.isPending}>
+        <Button type="submit" disabled={signUp.isPending} size="large">
           {signUp.isPending ? "Création..." : "Créer un compte"}
         </Button>
         <a href="mailto:contact@stage-direct.beta.gouv.fr" className="fr-link">

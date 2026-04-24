@@ -15,6 +15,8 @@ import { Route as ReinitialiserSonMotDePasseRouteImport } from './routes/reiniti
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc/$'
+import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const SeConnecterRoute = SeConnecterRouteImport.update({
   id: '/se-connecter',
@@ -47,6 +49,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
+  id: '/api/trpc/$',
+  path: '/api/trpc/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -55,6 +67,8 @@ export interface FileRoutesByFullPath {
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
   '/s-inscrire': typeof SInscrireRoute
   '/se-connecter': typeof SeConnecterRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -63,6 +77,8 @@ export interface FileRoutesByTo {
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
   '/s-inscrire': typeof SInscrireRoute
   '/se-connecter': typeof SeConnecterRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -72,6 +88,8 @@ export interface FileRoutesById {
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
   '/s-inscrire': typeof SInscrireRoute
   '/se-connecter': typeof SeConnecterRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -82,6 +100,8 @@ export interface FileRouteTypes {
     | '/reinitialiser-son-mot-de-passe'
     | '/s-inscrire'
     | '/se-connecter'
+    | '/api/auth/$'
+    | '/api/trpc/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -90,6 +110,8 @@ export interface FileRouteTypes {
     | '/reinitialiser-son-mot-de-passe'
     | '/s-inscrire'
     | '/se-connecter'
+    | '/api/auth/$'
+    | '/api/trpc/$'
   id:
     | '__root__'
     | '/'
@@ -98,6 +120,8 @@ export interface FileRouteTypes {
     | '/reinitialiser-son-mot-de-passe'
     | '/s-inscrire'
     | '/se-connecter'
+    | '/api/auth/$'
+    | '/api/trpc/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -107,6 +131,8 @@ export interface RootRouteChildren {
   ReinitialiserSonMotDePasseRoute: typeof ReinitialiserSonMotDePasseRoute
   SInscrireRoute: typeof SInscrireRoute
   SeConnecterRoute: typeof SeConnecterRoute
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
+  ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -153,6 +179,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/trpc/$': {
+      id: '/api/trpc/$'
+      path: '/api/trpc/$'
+      fullPath: '/api/trpc/$'
+      preLoaderRoute: typeof ApiTrpcSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -163,6 +203,8 @@ const rootRouteChildren: RootRouteChildren = {
   ReinitialiserSonMotDePasseRoute: ReinitialiserSonMotDePasseRoute,
   SInscrireRoute: SInscrireRoute,
   SeConnecterRoute: SeConnecterRoute,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
+  ApiTrpcSplatRoute: ApiTrpcSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -11,7 +11,8 @@ export function Footer() {
         <>
           <span className="fr-text--bold">Stage Direct</span>
           <br />
-          Connectons les futurs magistrats à leurs lieux de formation
+          StageDirect facilite la mise en relation entre les magistrats, greffiers et les experts
+          judicaires.
         </>
       }
     />

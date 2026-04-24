@@ -27,13 +27,31 @@
   },
   "files": {
     "includes": [
-      "apps/**/*.{ts,tsx}",
-      "packages/**/*.{ts,tsx}",
+      "apps/**/*.{ts,tsx,css}",
+      "packages/**/*.{ts,tsx,css}",
       "!!**/generated",
       "!!**/*.gen.ts",
       "!!**/node_modules",
       "!!**/dist",
       "!!**/.output"
     ]
-  }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "apps/web/src/helpers/**/*.css",
+        "apps/web/src/components/ui/toaster.module.css"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noImportantStyles": "off"
+          },
+          "correctness": {
+            "noUnknownUnit": "off"
+          }
+        }
+      }
+    }
+  ]
 }

@@ -21,7 +21,7 @@ export function ResetPasswordPage({ token }: ResetPasswordPageProps) {
             description="Lien invalide ou expiré. Demandez un nouveau lien de réinitialisation."
           />
         )}
-        <hr />
+        <hr className="fr-py-0" style={{ height: 1 }} />
         <Button
           priority="secondary"
           iconId="fr-icon-arrow-left-line"

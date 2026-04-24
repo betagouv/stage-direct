@@ -9,6 +9,12 @@ import type { AppRouter } from "./server/router";
 
 export type TrpcClient = ReturnType<typeof createTRPCClient<AppRouter>>;
 
+function getTrpcUrl() {
+  if (typeof window !== "undefined") return "/api/trpc";
+  const base = process.env.BETTER_AUTH_URL ?? "http://localhost:3000";
+  return `${base}/api/trpc`;
+}
+
 export function getRouter() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,7 +25,7 @@ export function getRouter() {
   const trpcClient = createTRPCClient<AppRouter>({
     links: [
       httpBatchLink({
-        url: "/api/trpc",
+        url: getTrpcUrl(),
         transformer: superjson,
       }),
     ],

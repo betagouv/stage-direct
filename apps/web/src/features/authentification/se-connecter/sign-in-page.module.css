@@ -1,7 +1,7 @@
 .dividerWrap {
   position: relative;
   text-align: center;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
 }
 
 .dividerLabel {
@@ -25,17 +25,32 @@
 
 .signupCallout {
   background: var(--background-alt-grey);
-  padding: 2rem;
-  margin-top: 1.5rem;
+  padding: 2rem 3rem;
   margin-left: -3rem;
   margin-right: -3rem;
   margin-bottom: -4rem;
+  flex: 1 0 auto;
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 2.5rem;
 }
 
 @media (max-width: 48em) {
+  .dividerWrap {
+    margin: 0;
+  }
+
   .signupCallout {
+    padding: 2rem 1.5rem;
     margin-left: -1.5rem;
     margin-right: -1.5rem;
     margin-bottom: -2rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }

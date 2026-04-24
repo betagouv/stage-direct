@@ -1,6 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useForm } from "@tanstack/react-form";
+import { getFieldErrorMessage } from "~/utils/form-errors";
 import { ZForgotPassword } from "./server/schemas/forgot-password";
 import { useForgotPassword } from "./server/use-forgot-password";
 
@@ -21,14 +22,19 @@ export function ForgotPasswordForm() {
         e.preventDefault();
         form.handleSubmit();
       }}
-      className="fr-flex fr-direction-column fr-flex-gap-4v"
+      className="fr-flex fr-direction-column fr-flex-gap-8v"
     >
       <form.Field name="email">
         {(field) => (
           <Input
-            label="E-mail"
+            classes={{ root: "fr-mb-0" }}
+            label={
+              <>
+                E-mail <span className="fr-text-default--error">*</span>
+              </>
+            }
             state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
             nativeInputProps={{
               type: "email",
               name: field.name,
@@ -40,13 +46,8 @@ export function ForgotPasswordForm() {
         )}
       </form.Field>
 
-      <Button
-        type="submit"
-        disabled={forgotPassword.isPending}
-        iconId="fr-icon-arrow-right-line"
-        iconPosition="right"
-      >
-        {forgotPassword.isPending ? "Envoi..." : "Envoyer le lien de réinitialisation"}
+      <Button type="submit" disabled={forgotPassword.isPending} size="large">
+        {forgotPassword.isPending ? "Envoi..." : "Réinitialiser votre mot de passe"}
       </Button>
     </form>
   );

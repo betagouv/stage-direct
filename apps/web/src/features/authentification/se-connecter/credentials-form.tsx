@@ -1,6 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input } from "@codegouvfr/react-dsfr/Input";
 import { useForm } from "@tanstack/react-form";
+import { getFieldErrorMessage } from "~/utils/form-errors";
 import { PasswordInput } from "../components/password-input";
 import { ZSignIn } from "./server/schemas/sign-in";
 import { useSignIn } from "./server/use-sign-in";
@@ -22,14 +23,19 @@ export function CredentialsForm() {
         e.preventDefault();
         form.handleSubmit();
       }}
-      className="fr-flex fr-direction-column fr-flex-gap-4v"
+      className="fr-flex fr-direction-column fr-flex-gap-8v fr-mb-4w"
     >
       <form.Field name="email">
         {(field) => (
           <Input
-            label="E-mail"
+            classes={{ root: "fr-mb-0" }}
+            label={
+              <>
+                E-mail <span className="fr-text-default--error">*</span>
+              </>
+            }
             state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
             nativeInputProps={{
               type: "email",
               name: field.name,
@@ -44,9 +50,14 @@ export function CredentialsForm() {
       <form.Field name="password">
         {(field) => (
           <PasswordInput
-            label="Mot de passe"
+            classes={{ root: "fr-mb-0" }}
+            label={
+              <>
+                Mot de passe <span className="fr-text-default--error">*</span>
+              </>
+            }
             state={field.state.meta.errors.length ? "error" : undefined}
-            stateRelatedMessage={String(field.state.meta.errors[0] ?? "")}
+            stateRelatedMessage={getFieldErrorMessage(field.state.meta.errors)}
             nativeInputProps={{
               name: field.name,
               value: field.state.value,
@@ -57,9 +68,11 @@ export function CredentialsForm() {
         )}
       </form.Field>
 
-      <a href="/mot-de-passe-oublie" className="fr-link">
-        Mot de passe oublié ?
-      </a>
+      <div>
+        <a href="/mot-de-passe-oublie" className="fr-link">
+          Mot de passe oublié ?
+        </a>
+      </div>
 
       <Button
         type="submit"

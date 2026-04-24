@@ -5,28 +5,41 @@
 }
 
 .panel {
-  background: var(--background-action-high-blue-france);
-  color: var(--text-inverted-blue-france);
+  background: linear-gradient(var(--brand-indigo), var(--brand-indigo) 90%);
+  color: #fff;
   padding: 4rem 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  gap: 1.5rem;
+}
+
+.panel :global(.fr-artwork-major) {
+  fill: #fff;
+}
+
+.panel :global(.fr-artwork-minor) {
+  fill: var(--brand-lavender);
 }
 
 .panelTitle {
   color: inherit;
-  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
+  line-height: 4rem;
 }
 
-.panelText {
-  color: inherit;
-  font-size: 1.125rem;
-  line-height: 1.6;
+.panelDescription {
+  color: var(--brand-lavender);
+  font-size: 2rem;
+  line-height: 2.5rem;
 }
 
 .main {
   padding: 4rem 3rem;
   background: var(--background-default-grey);
+  display: flex;
+  flex-direction: column;
+}
+
+.main > * {
+  flex: 1 0 auto;
 }
 
 @media (max-width: 48em) {
@@ -36,5 +49,16 @@
   .panel,
   .main {
     padding: 2rem 1.5rem;
+  }
+
+  .panelTitle {
+    color: inherit;
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .panelDescription {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 }

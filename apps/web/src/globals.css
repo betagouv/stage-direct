@@ -9,3 +9,9 @@
 @import url("./helpers/colors.css");
 @import url("./helpers/link.css");
 @import url("./helpers/cursor.css");
+
+:root {
+  --brand-indigo: #313178;
+  --brand-lavender: #bfb3e8;
+  --brand-purple: #8b3dff;
+}

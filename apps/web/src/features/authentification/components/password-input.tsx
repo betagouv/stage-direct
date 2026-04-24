@@ -1,14 +1,17 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Input, type InputProps } from "@codegouvfr/react-dsfr/Input";
+import clsx from "clsx";
 import { useState } from "react";
+import styles from "./password-input.module.css";
 
 type NativeInput = NonNullable<
   Extract<InputProps, { nativeTextAreaProps?: undefined | never }>["nativeInputProps"]
 >;
 
 type PasswordInputProps = {
-  label: string;
+  label: React.ReactNode;
   hintText?: string;
+  classes?: InputProps["classes"];
   state?: "default" | "error" | "success" | "info";
   stateRelatedMessage?: string;
   nativeInputProps?: Omit<NativeInput, "type">;
@@ -17,6 +20,7 @@ type PasswordInputProps = {
 export function PasswordInput({
   label,
   hintText,
+  classes,
   state,
   stateRelatedMessage,
   nativeInputProps,
@@ -24,6 +28,7 @@ export function PasswordInput({
   const [visible, setVisible] = useState(false);
   return (
     <Input
+      classes={{ ...classes, root: clsx(classes?.root, styles.root) }}
       label={label}
       hintText={hintText}
       state={state}

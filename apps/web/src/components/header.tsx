@@ -26,23 +26,18 @@ export function Header({ user }: HeaderProps) {
     : [
         <Button
           key="faq"
-          priority="tertiary"
+          priority="tertiary no outline"
           iconId="fr-icon-question-line"
           linkProps={{ href: "/foire-aux-questions" }}
         >
           Foire aux questions
         </Button>,
-        <Button
-          key="signup"
-          priority="tertiary"
-          iconId="fr-icon-add-circle-line"
-          linkProps={{ href: "/s-inscrire" }}
-        >
+        <Button key="signup" priority="tertiary" linkProps={{ href: "/s-inscrire" }}>
           Créer un compte
         </Button>,
         <Button
           key="login"
-          priority="tertiary"
+          priority="secondary"
           iconId="fr-icon-account-circle-line"
           linkProps={{ href: "/se-connecter" }}
         >
@@ -54,11 +49,6 @@ export function Header({ user }: HeaderProps) {
     <DsfrHeader
       brandTop={<BrandTop />}
       homeLinkProps={HOME_LINK_PROPS}
-      operatorLogo={{
-        orientation: "horizontal",
-        imgUrl: "/stage-direct-logo.svg",
-        alt: "Stage Direct",
-      }}
       serviceTitle="Stage Direct"
       serviceTagline={SERVICE_TAGLINE}
       quickAccessItems={quickAccessItems}
