@@ -16,9 +16,7 @@ export function NotFoundPage() {
             Si vous avez tapé l'adresse web dans le navigateur, vérifiez qu'elle est correcte.
           </p>
           <p className="fr-m-0">La page n'est peut-être plus disponible.</p>
-          <p>
-            Dans ce cas, pour continuer votre visite vous pouvez consulter la page d'accueil.
-          </p>
+          <p>Dans ce cas, pour continuer votre visite vous pouvez consulter la page d'accueil.</p>
           <Button iconId="ri-arrow-left-line" iconPosition="left" linkProps={{ href: "/" }}>
             Page d'accueil
           </Button>

@@ -1,6 +1,5 @@
 import { redirect } from "@tanstack/react-router";
-
-type Session = { user: { role?: string | null } | null } | null;
+import type { Session } from "~/lib/session-query";
 
 type BeforeLoadCtx = {
   context: { session: Session };
@@ -18,4 +17,3 @@ export function redirectIfGuest({ context: { session } }: BeforeLoadCtx) {
     throw redirect({ to: "/se-connecter" });
   }
 }
-

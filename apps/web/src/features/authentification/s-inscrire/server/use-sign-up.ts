@@ -1,12 +1,14 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { createToast } from "~/components/ui/create-toast";
 import { authClient } from "~/lib/auth-client";
+import { getSessionQueryOptions } from "~/lib/session-query";
 import { useTRPC } from "~/utils/trpc";
 import type { TSignUp } from "./schemas/sign-up";
 
 export function useSignUp() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const trpc = useTRPC();
   const setProfile = useMutation(trpc.authentification.setUserRoleAndProfile.mutationOptions());
 
@@ -40,6 +42,7 @@ export function useSignUp() {
     },
     onSuccess: async () => {
       createToast({ priority: "success", message: "Votre compte a été créé." });
+      await queryClient.invalidateQueries({ queryKey: getSessionQueryOptions().queryKey });
       await router.invalidate();
       router.navigate({ to: "/" });
     },

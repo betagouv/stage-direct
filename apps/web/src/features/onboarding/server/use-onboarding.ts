@@ -1,11 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "@tanstack/react-router";
 import { createToast } from "~/components/ui/create-toast";
+import { getSessionQueryOptions } from "~/lib/session-query";
 import { useTRPC } from "~/utils/trpc";
 import type { TOnboarding } from "./schemas/onboarding";
 
 export function useOnboarding() {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const trpc = useTRPC();
   const setProfile = useMutation(trpc.authentification.setUserRoleAndProfile.mutationOptions());
 
@@ -36,6 +38,7 @@ export function useOnboarding() {
     },
     onSuccess: async () => {
       createToast({ priority: "success", message: "Profil finalisé." });
+      await queryClient.invalidateQueries({ queryKey: getSessionQueryOptions().queryKey });
       await router.invalidate();
       router.navigate({ to: "/" });
     },

@@ -19,7 +19,13 @@ import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 import { Route as unauthenticatedPublicSeConnecterRouteImport } from './routes/(unauthenticated)/_public/se-connecter'
 import { Route as unauthenticatedPublicSInscrireRouteImport } from './routes/(unauthenticated)/_public/s-inscrire'
 import { Route as unauthenticatedPublicMotDePasseOublieRouteImport } from './routes/(unauthenticated)/_public/mot-de-passe-oublie'
+import { Route as authenticatedAuthTableauDeBordRouteImport } from './routes/(authenticated)/_auth/tableau-de-bord'
+import { Route as authenticatedAuthRessourcesEnmRouteImport } from './routes/(authenticated)/_auth/ressources-enm'
+import { Route as authenticatedAuthPlanningRouteImport } from './routes/(authenticated)/_auth/planning'
 import { Route as authenticatedAuthOnboardingRouteImport } from './routes/(authenticated)/_auth/onboarding'
+import { Route as authenticatedAuthEvaluationsRouteImport } from './routes/(authenticated)/_auth/evaluations'
+import { Route as authenticatedAuthCentreDAideRouteImport } from './routes/(authenticated)/_auth/centre-d-aide'
+import { Route as authenticatedAuthApprenantsRouteImport } from './routes/(authenticated)/_auth/apprenants'
 
 const ReinitialiserSonMotDePasseRoute =
   ReinitialiserSonMotDePasseRouteImport.update({
@@ -73,17 +79,59 @@ const unauthenticatedPublicMotDePasseOublieRoute =
     path: '/mot-de-passe-oublie',
     getParentRoute: () => unauthenticatedPublicRoute,
   } as any)
+const authenticatedAuthTableauDeBordRoute =
+  authenticatedAuthTableauDeBordRouteImport.update({
+    id: '/tableau-de-bord',
+    path: '/tableau-de-bord',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
+const authenticatedAuthRessourcesEnmRoute =
+  authenticatedAuthRessourcesEnmRouteImport.update({
+    id: '/ressources-enm',
+    path: '/ressources-enm',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
+const authenticatedAuthPlanningRoute =
+  authenticatedAuthPlanningRouteImport.update({
+    id: '/planning',
+    path: '/planning',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
 const authenticatedAuthOnboardingRoute =
   authenticatedAuthOnboardingRouteImport.update({
     id: '/onboarding',
     path: '/onboarding',
     getParentRoute: () => authenticatedAuthRoute,
   } as any)
+const authenticatedAuthEvaluationsRoute =
+  authenticatedAuthEvaluationsRouteImport.update({
+    id: '/evaluations',
+    path: '/evaluations',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
+const authenticatedAuthCentreDAideRoute =
+  authenticatedAuthCentreDAideRouteImport.update({
+    id: '/centre-d-aide',
+    path: '/centre-d-aide',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
+const authenticatedAuthApprenantsRoute =
+  authenticatedAuthApprenantsRouteImport.update({
+    id: '/apprenants',
+    path: '/apprenants',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
+  '/apprenants': typeof authenticatedAuthApprenantsRoute
+  '/centre-d-aide': typeof authenticatedAuthCentreDAideRoute
+  '/evaluations': typeof authenticatedAuthEvaluationsRoute
   '/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/planning': typeof authenticatedAuthPlanningRoute
+  '/ressources-enm': typeof authenticatedAuthRessourcesEnmRoute
+  '/tableau-de-bord': typeof authenticatedAuthTableauDeBordRoute
   '/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
   '/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
   '/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
@@ -94,7 +142,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
+  '/apprenants': typeof authenticatedAuthApprenantsRoute
+  '/centre-d-aide': typeof authenticatedAuthCentreDAideRoute
+  '/evaluations': typeof authenticatedAuthEvaluationsRoute
   '/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/planning': typeof authenticatedAuthPlanningRoute
+  '/ressources-enm': typeof authenticatedAuthRessourcesEnmRoute
+  '/tableau-de-bord': typeof authenticatedAuthTableauDeBordRoute
   '/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
   '/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
   '/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
@@ -108,7 +162,13 @@ export interface FileRoutesById {
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
   '/(authenticated)/_auth': typeof authenticatedAuthRouteWithChildren
   '/(unauthenticated)/_public': typeof unauthenticatedPublicRouteWithChildren
+  '/(authenticated)/_auth/apprenants': typeof authenticatedAuthApprenantsRoute
+  '/(authenticated)/_auth/centre-d-aide': typeof authenticatedAuthCentreDAideRoute
+  '/(authenticated)/_auth/evaluations': typeof authenticatedAuthEvaluationsRoute
   '/(authenticated)/_auth/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/(authenticated)/_auth/planning': typeof authenticatedAuthPlanningRoute
+  '/(authenticated)/_auth/ressources-enm': typeof authenticatedAuthRessourcesEnmRoute
+  '/(authenticated)/_auth/tableau-de-bord': typeof authenticatedAuthTableauDeBordRoute
   '/(unauthenticated)/_public/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
   '/(unauthenticated)/_public/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
   '/(unauthenticated)/_public/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
@@ -121,7 +181,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/foire-aux-questions'
     | '/reinitialiser-son-mot-de-passe'
+    | '/apprenants'
+    | '/centre-d-aide'
+    | '/evaluations'
     | '/onboarding'
+    | '/planning'
+    | '/ressources-enm'
+    | '/tableau-de-bord'
     | '/mot-de-passe-oublie'
     | '/s-inscrire'
     | '/se-connecter'
@@ -132,7 +198,13 @@ export interface FileRouteTypes {
   to:
     | '/foire-aux-questions'
     | '/reinitialiser-son-mot-de-passe'
+    | '/apprenants'
+    | '/centre-d-aide'
+    | '/evaluations'
     | '/onboarding'
+    | '/planning'
+    | '/ressources-enm'
+    | '/tableau-de-bord'
     | '/mot-de-passe-oublie'
     | '/s-inscrire'
     | '/se-connecter'
@@ -145,7 +217,13 @@ export interface FileRouteTypes {
     | '/reinitialiser-son-mot-de-passe'
     | '/(authenticated)/_auth'
     | '/(unauthenticated)/_public'
+    | '/(authenticated)/_auth/apprenants'
+    | '/(authenticated)/_auth/centre-d-aide'
+    | '/(authenticated)/_auth/evaluations'
     | '/(authenticated)/_auth/onboarding'
+    | '/(authenticated)/_auth/planning'
+    | '/(authenticated)/_auth/ressources-enm'
+    | '/(authenticated)/_auth/tableau-de-bord'
     | '/(unauthenticated)/_public/mot-de-passe-oublie'
     | '/(unauthenticated)/_public/s-inscrire'
     | '/(unauthenticated)/_public/se-connecter'
@@ -235,6 +313,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof unauthenticatedPublicMotDePasseOublieRouteImport
       parentRoute: typeof unauthenticatedPublicRoute
     }
+    '/(authenticated)/_auth/tableau-de-bord': {
+      id: '/(authenticated)/_auth/tableau-de-bord'
+      path: '/tableau-de-bord'
+      fullPath: '/tableau-de-bord'
+      preLoaderRoute: typeof authenticatedAuthTableauDeBordRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
+    '/(authenticated)/_auth/ressources-enm': {
+      id: '/(authenticated)/_auth/ressources-enm'
+      path: '/ressources-enm'
+      fullPath: '/ressources-enm'
+      preLoaderRoute: typeof authenticatedAuthRessourcesEnmRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
+    '/(authenticated)/_auth/planning': {
+      id: '/(authenticated)/_auth/planning'
+      path: '/planning'
+      fullPath: '/planning'
+      preLoaderRoute: typeof authenticatedAuthPlanningRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
     '/(authenticated)/_auth/onboarding': {
       id: '/(authenticated)/_auth/onboarding'
       path: '/onboarding'
@@ -242,16 +341,49 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authenticatedAuthOnboardingRouteImport
       parentRoute: typeof authenticatedAuthRoute
     }
+    '/(authenticated)/_auth/evaluations': {
+      id: '/(authenticated)/_auth/evaluations'
+      path: '/evaluations'
+      fullPath: '/evaluations'
+      preLoaderRoute: typeof authenticatedAuthEvaluationsRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
+    '/(authenticated)/_auth/centre-d-aide': {
+      id: '/(authenticated)/_auth/centre-d-aide'
+      path: '/centre-d-aide'
+      fullPath: '/centre-d-aide'
+      preLoaderRoute: typeof authenticatedAuthCentreDAideRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
+    '/(authenticated)/_auth/apprenants': {
+      id: '/(authenticated)/_auth/apprenants'
+      path: '/apprenants'
+      fullPath: '/apprenants'
+      preLoaderRoute: typeof authenticatedAuthApprenantsRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
   }
 }
 
 interface authenticatedAuthRouteChildren {
+  authenticatedAuthApprenantsRoute: typeof authenticatedAuthApprenantsRoute
+  authenticatedAuthCentreDAideRoute: typeof authenticatedAuthCentreDAideRoute
+  authenticatedAuthEvaluationsRoute: typeof authenticatedAuthEvaluationsRoute
   authenticatedAuthOnboardingRoute: typeof authenticatedAuthOnboardingRoute
+  authenticatedAuthPlanningRoute: typeof authenticatedAuthPlanningRoute
+  authenticatedAuthRessourcesEnmRoute: typeof authenticatedAuthRessourcesEnmRoute
+  authenticatedAuthTableauDeBordRoute: typeof authenticatedAuthTableauDeBordRoute
   authenticatedAuthIndexRoute: typeof authenticatedAuthIndexRoute
 }
 
 const authenticatedAuthRouteChildren: authenticatedAuthRouteChildren = {
+  authenticatedAuthApprenantsRoute: authenticatedAuthApprenantsRoute,
+  authenticatedAuthCentreDAideRoute: authenticatedAuthCentreDAideRoute,
+  authenticatedAuthEvaluationsRoute: authenticatedAuthEvaluationsRoute,
   authenticatedAuthOnboardingRoute: authenticatedAuthOnboardingRoute,
+  authenticatedAuthPlanningRoute: authenticatedAuthPlanningRoute,
+  authenticatedAuthRessourcesEnmRoute: authenticatedAuthRessourcesEnmRoute,
+  authenticatedAuthTableauDeBordRoute: authenticatedAuthTableauDeBordRoute,
   authenticatedAuthIndexRoute: authenticatedAuthIndexRoute,
 }
 

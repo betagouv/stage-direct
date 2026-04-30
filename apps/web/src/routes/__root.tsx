@@ -2,6 +2,7 @@
 
 import "@codegouvfr/react-dsfr/main.css";
 import "~/globals.css";
+import "~/lib/dsfr-link";
 import type { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -18,7 +19,7 @@ import { Footer } from "~/components/footer";
 import { Header } from "~/components/header";
 import { Toaster } from "~/components/ui/toaster";
 import { NotFoundPage } from "~/features/not-found";
-import { getSession } from "~/lib/auth-session";
+import { getSessionQueryOptions } from "~/lib/session-query";
 import type { TrpcClient } from "~/router";
 import { TRPCProvider, type TrpcOptionsProxy } from "~/utils/trpc";
 
@@ -37,8 +38,8 @@ export const Route = createRootRouteWithContext<RootContext>()({
       { title: "Stage Direct" },
     ],
   }),
-  beforeLoad: async ({ location }) => {
-    const session = await getSession();
+  beforeLoad: async ({ context: { queryClient }, location }) => {
+    const session = await queryClient.ensureQueryData(getSessionQueryOptions());
     if (
       session?.user &&
       !session.user.role &&

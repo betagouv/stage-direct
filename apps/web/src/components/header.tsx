@@ -1,6 +1,7 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
 import { Header as DsfrHeader } from "@codegouvfr/react-dsfr/Header";
 import { BrandTop } from "./brand-top";
+import { MainNav } from "./main-navigation";
 import { UserMenu } from "./user-menu";
 
 type HeaderProps = {
@@ -51,6 +52,7 @@ export function Header({ user }: HeaderProps) {
       homeLinkProps={HOME_LINK_PROPS}
       serviceTitle="Stage Direct"
       quickAccessItems={quickAccessItems}
+      navigation={user ? <MainNav /> : undefined}
     />
   );
 }

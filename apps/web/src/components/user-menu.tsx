@@ -1,5 +1,8 @@
 import { Button } from "@codegouvfr/react-dsfr/Button";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "@tanstack/react-router";
 import { authClient } from "~/lib/auth-client";
+import { getSessionQueryOptions } from "~/lib/session-query";
 import { createToast } from "./ui/create-toast";
 import { Dropdown } from "./ui/dropdown";
 
@@ -8,10 +11,15 @@ type UserMenuProps = {
 };
 
 export function UserMenu({ user }: UserMenuProps) {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
   const handleSignout = async () => {
     await authClient.signOut();
+    await queryClient.invalidateQueries({ queryKey: getSessionQueryOptions().queryKey });
+    await router.invalidate();
     createToast({ priority: "success", message: "Vous êtes maintenant déconnecté." });
-    window.location.href = "/se-connecter";
+    router.navigate({ to: "/se-connecter" });
   };
 
   return (
