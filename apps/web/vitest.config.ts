@@ -27,7 +27,10 @@ export default defineConfig({
           hookTimeout: 60000,
           fileParallelism: false,
           env: {
-            DATABASE_URL_TEST: "postgresql://test:test@localhost:6001/stage_direct_test",
+            DATABASE_URL_TEST:
+              process.env.DATABASE_URL_TEST ??
+              "postgresql://test:test@localhost:6001/stage_direct_test",
+            BETTER_AUTH_URL: process.env.BETTER_AUTH_URL ?? "http://localhost:3000",
           },
         },
       },

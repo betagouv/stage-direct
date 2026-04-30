@@ -50,17 +50,6 @@ commands:
       - run:
           name: Generate Prisma client
           command: pnpm db:generate
-  wait-for-postgres:
-    steps:
-      - run:
-          name: Wait for Postgres
-          command: |
-            for i in $(seq 1 30); do
-              nc -z localhost 5432 && echo "postgres up" && exit 0
-              sleep 1
-            done
-            echo "postgres did not start" && exit 1
-
 jobs:
   lint:
     executor: default
@@ -90,9 +79,9 @@ jobs:
     executor: with-postgres
     environment:
       DATABASE_URL_TEST: postgresql://test:test@localhost:5432/stage_direct_test
+      BETTER_AUTH_URL: http://localhost:3000
     steps:
       - setup
-      - wait-for-postgres
       - run:
           name: Run integration tests
           command: pnpm test:integration
@@ -106,10 +95,14 @@ jobs:
       CI: "true"
     steps:
       - setup
-      - wait-for-postgres
       - run:
           name: Apply schema to test DB
-          command: pnpm --filter web db:push --accept-data-loss
+          command: |
+            for i in $(seq 1 30); do
+              pnpm --filter web db:push --accept-data-loss && exit 0
+              sleep 1
+            done
+            echo "postgres did not become ready for schema push" && exit 1
       - run:
           name: Run Playwright tests
           command: pnpm test:e2e
