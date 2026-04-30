@@ -1,15 +1,16 @@
 import path from "node:path";
 import { defineConfig } from "vitest/config";
 
+const alias = {
+  "~": path.resolve(import.meta.dirname, "src"),
+};
+
 export default defineConfig({
-  resolve: {
-    alias: {
-      "~": path.resolve(import.meta.dirname, "src"),
-    },
-  },
+  resolve: { alias },
   test: {
     projects: [
       {
+        resolve: { alias },
         test: {
           name: "unit",
           include: ["src/**/*.test.ts"],
@@ -18,6 +19,7 @@ export default defineConfig({
         },
       },
       {
+        resolve: { alias },
         test: {
           name: "integration",
           include: ["src/**/*.integration.test.ts"],

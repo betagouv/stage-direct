@@ -9,6 +9,9 @@
     "lint:fix": "biome check --write .",
     "format": "biome format --write .",
     "typecheck": "pnpm -r typecheck",
+    "test:unit": "pnpm --filter web test:unit",
+    "test:integration": "pnpm --filter web test:integration",
+    "test:e2e": "pnpm --filter e2e test",
     "db:generate": "pnpm --filter web db:generate",
     "db:push": "pnpm --filter web db:push",
     "db:studio": "pnpm --filter web db:studio"

@@ -31,10 +31,9 @@ export async function waitForDb(maxAttempts = 30) {
 
 export function syncSchema() {
   const webRoot = path.resolve(import.meta.dirname, "../../..");
-  execSync("npx prisma db push --skip-generate --accept-data-loss", {
+  execSync(`npx prisma db push --accept-data-loss --url=${DATABASE_URL_TEST}`, {
     cwd: webRoot,
-    env: { ...process.env, DATABASE_URL: DATABASE_URL_TEST },
-    stdio: "pipe",
+    stdio: "inherit",
   });
 }
 
@@ -42,22 +41,22 @@ export async function cleanTables() {
   const db = getTestDb();
   await db.$queryRawUnsafe(`
     TRUNCATE TABLE
-      "Relance",
-      "Evaluation",
-      "EvaluationCrf",
-      "Alerte",
-      "Stage",
-      "Auditeur",
-      "Mds",
-      "Dcs",
-      "Crf",
-      "Promotion",
-      "Circulaire",
-      "Session",
-      "Account",
-      "Verification",
-      "User",
-      "Juridiction"
+      "relance",
+      "evaluation",
+      "evaluation_crf",
+      "alerte",
+      "stage",
+      "auditeur",
+      "mds",
+      "dcs",
+      "crf",
+      "promotion",
+      "circulaire",
+      "session",
+      "account",
+      "verification",
+      "user",
+      "juridiction"
     RESTART IDENTITY CASCADE
   `);
 }

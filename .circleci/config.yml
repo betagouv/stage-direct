@@ -8,6 +8,24 @@ executors:
     docker:
       - image: cimg/node:22.14
     working_directory: ~/project
+  with-postgres:
+    docker:
+      - image: cimg/node:22.14
+      - image: cimg/postgres:17.0
+        environment:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: stage_direct_test
+    working_directory: ~/project
+  playwright:
+    docker:
+      - image: mcr.microsoft.com/playwright:v1.59.1-jammy
+      - image: cimg/postgres:17.0
+        environment:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: stage_direct_test
+    working_directory: ~/project
 
 commands:
   install-pnpm:
@@ -32,6 +50,16 @@ commands:
       - run:
           name: Generate Prisma client
           command: pnpm db:generate
+  wait-for-postgres:
+    steps:
+      - run:
+          name: Wait for Postgres
+          command: |
+            for i in $(seq 1 30); do
+              nc -z localhost 5432 && echo "postgres up" && exit 0
+              sleep 1
+            done
+            echo "postgres did not start" && exit 1
 
 jobs:
   lint:
@@ -58,9 +86,41 @@ jobs:
           name: Build all packages
           command: pnpm build
 
+  test-integration:
+    executor: with-postgres
+    environment:
+      DATABASE_URL_TEST: postgresql://test:test@localhost:5432/stage_direct_test
+    steps:
+      - setup
+      - wait-for-postgres
+      - run:
+          name: Run integration tests
+          command: pnpm test:integration
+
+  test-e2e:
+    executor: playwright
+    environment:
+      DATABASE_URL: postgresql://test:test@localhost:5432/stage_direct_test
+      BETTER_AUTH_URL: http://localhost:3000
+      BETTER_AUTH_SECRET: ci-test-secret-do-not-use-in-prod
+      CI: "true"
+    steps:
+      - setup
+      - wait-for-postgres
+      - run:
+          name: Apply schema to test DB
+          command: pnpm --filter web db:push --accept-data-loss
+      - run:
+          name: Run Playwright tests
+          command: pnpm test:e2e
+
 workflows:
   ci:
     jobs:
       - lint
       - typecheck
       - build
+      - test-integration
+      - test-e2e:
+          requires:
+            - build
