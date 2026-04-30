@@ -9,51 +9,41 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SeConnecterRouteImport } from './routes/se-connecter'
-import { Route as SInscrireRouteImport } from './routes/s-inscrire'
 import { Route as ReinitialiserSonMotDePasseRouteImport } from './routes/reinitialiser-son-mot-de-passe'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as MotDePasseOublieRouteImport } from './routes/mot-de-passe-oublie'
 import { Route as FoireAuxQuestionsRouteImport } from './routes/foire-aux-questions'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as unauthenticatedPublicRouteImport } from './routes/(unauthenticated)/_public'
+import { Route as authenticatedAuthRouteImport } from './routes/(authenticated)/_auth'
+import { Route as authenticatedAuthIndexRouteImport } from './routes/(authenticated)/_auth/index'
 import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc/$'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as unauthenticatedPublicSeConnecterRouteImport } from './routes/(unauthenticated)/_public/se-connecter'
+import { Route as unauthenticatedPublicSInscrireRouteImport } from './routes/(unauthenticated)/_public/s-inscrire'
+import { Route as unauthenticatedPublicMotDePasseOublieRouteImport } from './routes/(unauthenticated)/_public/mot-de-passe-oublie'
+import { Route as authenticatedAuthOnboardingRouteImport } from './routes/(authenticated)/_auth/onboarding'
 
-const SeConnecterRoute = SeConnecterRouteImport.update({
-  id: '/se-connecter',
-  path: '/se-connecter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SInscrireRoute = SInscrireRouteImport.update({
-  id: '/s-inscrire',
-  path: '/s-inscrire',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ReinitialiserSonMotDePasseRoute =
   ReinitialiserSonMotDePasseRouteImport.update({
     id: '/reinitialiser-son-mot-de-passe',
     path: '/reinitialiser-son-mot-de-passe',
     getParentRoute: () => rootRouteImport,
   } as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MotDePasseOublieRoute = MotDePasseOublieRouteImport.update({
-  id: '/mot-de-passe-oublie',
-  path: '/mot-de-passe-oublie',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const FoireAuxQuestionsRoute = FoireAuxQuestionsRouteImport.update({
   id: '/foire-aux-questions',
   path: '/foire-aux-questions',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const unauthenticatedPublicRoute = unauthenticatedPublicRouteImport.update({
+  id: '/(unauthenticated)/_public',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authenticatedAuthRoute = authenticatedAuthRouteImport.update({
+  id: '/(authenticated)/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const authenticatedAuthIndexRoute = authenticatedAuthIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => authenticatedAuthRoute,
 } as any)
 const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
   id: '/api/trpc/$',
@@ -65,124 +55,121 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const unauthenticatedPublicSeConnecterRoute =
+  unauthenticatedPublicSeConnecterRouteImport.update({
+    id: '/se-connecter',
+    path: '/se-connecter',
+    getParentRoute: () => unauthenticatedPublicRoute,
+  } as any)
+const unauthenticatedPublicSInscrireRoute =
+  unauthenticatedPublicSInscrireRouteImport.update({
+    id: '/s-inscrire',
+    path: '/s-inscrire',
+    getParentRoute: () => unauthenticatedPublicRoute,
+  } as any)
+const unauthenticatedPublicMotDePasseOublieRoute =
+  unauthenticatedPublicMotDePasseOublieRouteImport.update({
+    id: '/mot-de-passe-oublie',
+    path: '/mot-de-passe-oublie',
+    getParentRoute: () => unauthenticatedPublicRoute,
+  } as any)
+const authenticatedAuthOnboardingRoute =
+  authenticatedAuthOnboardingRouteImport.update({
+    id: '/onboarding',
+    path: '/onboarding',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
-  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
-  '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
-  '/s-inscrire': typeof SInscrireRoute
-  '/se-connecter': typeof SeConnecterRoute
+  '/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
+  '/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
+  '/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/': typeof authenticatedAuthIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
-  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
-  '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
-  '/s-inscrire': typeof SInscrireRoute
-  '/se-connecter': typeof SeConnecterRoute
+  '/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
+  '/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
+  '/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/': typeof authenticatedAuthIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
-  '/mot-de-passe-oublie': typeof MotDePasseOublieRoute
-  '/onboarding': typeof OnboardingRoute
   '/reinitialiser-son-mot-de-passe': typeof ReinitialiserSonMotDePasseRoute
-  '/s-inscrire': typeof SInscrireRoute
-  '/se-connecter': typeof SeConnecterRoute
+  '/(authenticated)/_auth': typeof authenticatedAuthRouteWithChildren
+  '/(unauthenticated)/_public': typeof unauthenticatedPublicRouteWithChildren
+  '/(authenticated)/_auth/onboarding': typeof authenticatedAuthOnboardingRoute
+  '/(unauthenticated)/_public/mot-de-passe-oublie': typeof unauthenticatedPublicMotDePasseOublieRoute
+  '/(unauthenticated)/_public/s-inscrire': typeof unauthenticatedPublicSInscrireRoute
+  '/(unauthenticated)/_public/se-connecter': typeof unauthenticatedPublicSeConnecterRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
+  '/(authenticated)/_auth/': typeof authenticatedAuthIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/foire-aux-questions'
-    | '/mot-de-passe-oublie'
-    | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
+    | '/onboarding'
+    | '/mot-de-passe-oublie'
     | '/s-inscrire'
     | '/se-connecter'
     | '/api/auth/$'
     | '/api/trpc/$'
+    | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/foire-aux-questions'
-    | '/mot-de-passe-oublie'
-    | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
+    | '/onboarding'
+    | '/mot-de-passe-oublie'
     | '/s-inscrire'
     | '/se-connecter'
     | '/api/auth/$'
     | '/api/trpc/$'
+    | '/'
   id:
     | '__root__'
-    | '/'
     | '/foire-aux-questions'
-    | '/mot-de-passe-oublie'
-    | '/onboarding'
     | '/reinitialiser-son-mot-de-passe'
-    | '/s-inscrire'
-    | '/se-connecter'
+    | '/(authenticated)/_auth'
+    | '/(unauthenticated)/_public'
+    | '/(authenticated)/_auth/onboarding'
+    | '/(unauthenticated)/_public/mot-de-passe-oublie'
+    | '/(unauthenticated)/_public/s-inscrire'
+    | '/(unauthenticated)/_public/se-connecter'
     | '/api/auth/$'
     | '/api/trpc/$'
+    | '/(authenticated)/_auth/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   FoireAuxQuestionsRoute: typeof FoireAuxQuestionsRoute
-  MotDePasseOublieRoute: typeof MotDePasseOublieRoute
-  OnboardingRoute: typeof OnboardingRoute
   ReinitialiserSonMotDePasseRoute: typeof ReinitialiserSonMotDePasseRoute
-  SInscrireRoute: typeof SInscrireRoute
-  SeConnecterRoute: typeof SeConnecterRoute
+  authenticatedAuthRoute: typeof authenticatedAuthRouteWithChildren
+  unauthenticatedPublicRoute: typeof unauthenticatedPublicRouteWithChildren
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
   ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/se-connecter': {
-      id: '/se-connecter'
-      path: '/se-connecter'
-      fullPath: '/se-connecter'
-      preLoaderRoute: typeof SeConnecterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/s-inscrire': {
-      id: '/s-inscrire'
-      path: '/s-inscrire'
-      fullPath: '/s-inscrire'
-      preLoaderRoute: typeof SInscrireRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/reinitialiser-son-mot-de-passe': {
       id: '/reinitialiser-son-mot-de-passe'
       path: '/reinitialiser-son-mot-de-passe'
       fullPath: '/reinitialiser-son-mot-de-passe'
       preLoaderRoute: typeof ReinitialiserSonMotDePasseRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mot-de-passe-oublie': {
-      id: '/mot-de-passe-oublie'
-      path: '/mot-de-passe-oublie'
-      fullPath: '/mot-de-passe-oublie'
-      preLoaderRoute: typeof MotDePasseOublieRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/foire-aux-questions': {
@@ -192,12 +179,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FoireAuxQuestionsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/(unauthenticated)/_public': {
+      id: '/(unauthenticated)/_public'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof unauthenticatedPublicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(authenticated)/_auth': {
+      id: '/(authenticated)/_auth'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof authenticatedAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/(authenticated)/_auth/': {
+      id: '/(authenticated)/_auth/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof authenticatedAuthIndexRouteImport
+      parentRoute: typeof authenticatedAuthRoute
     }
     '/api/trpc/$': {
       id: '/api/trpc/$'
@@ -213,17 +214,73 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/(unauthenticated)/_public/se-connecter': {
+      id: '/(unauthenticated)/_public/se-connecter'
+      path: '/se-connecter'
+      fullPath: '/se-connecter'
+      preLoaderRoute: typeof unauthenticatedPublicSeConnecterRouteImport
+      parentRoute: typeof unauthenticatedPublicRoute
+    }
+    '/(unauthenticated)/_public/s-inscrire': {
+      id: '/(unauthenticated)/_public/s-inscrire'
+      path: '/s-inscrire'
+      fullPath: '/s-inscrire'
+      preLoaderRoute: typeof unauthenticatedPublicSInscrireRouteImport
+      parentRoute: typeof unauthenticatedPublicRoute
+    }
+    '/(unauthenticated)/_public/mot-de-passe-oublie': {
+      id: '/(unauthenticated)/_public/mot-de-passe-oublie'
+      path: '/mot-de-passe-oublie'
+      fullPath: '/mot-de-passe-oublie'
+      preLoaderRoute: typeof unauthenticatedPublicMotDePasseOublieRouteImport
+      parentRoute: typeof unauthenticatedPublicRoute
+    }
+    '/(authenticated)/_auth/onboarding': {
+      id: '/(authenticated)/_auth/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof authenticatedAuthOnboardingRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
   }
 }
 
+interface authenticatedAuthRouteChildren {
+  authenticatedAuthOnboardingRoute: typeof authenticatedAuthOnboardingRoute
+  authenticatedAuthIndexRoute: typeof authenticatedAuthIndexRoute
+}
+
+const authenticatedAuthRouteChildren: authenticatedAuthRouteChildren = {
+  authenticatedAuthOnboardingRoute: authenticatedAuthOnboardingRoute,
+  authenticatedAuthIndexRoute: authenticatedAuthIndexRoute,
+}
+
+const authenticatedAuthRouteWithChildren =
+  authenticatedAuthRoute._addFileChildren(authenticatedAuthRouteChildren)
+
+interface unauthenticatedPublicRouteChildren {
+  unauthenticatedPublicMotDePasseOublieRoute: typeof unauthenticatedPublicMotDePasseOublieRoute
+  unauthenticatedPublicSInscrireRoute: typeof unauthenticatedPublicSInscrireRoute
+  unauthenticatedPublicSeConnecterRoute: typeof unauthenticatedPublicSeConnecterRoute
+}
+
+const unauthenticatedPublicRouteChildren: unauthenticatedPublicRouteChildren = {
+  unauthenticatedPublicMotDePasseOublieRoute:
+    unauthenticatedPublicMotDePasseOublieRoute,
+  unauthenticatedPublicSInscrireRoute: unauthenticatedPublicSInscrireRoute,
+  unauthenticatedPublicSeConnecterRoute: unauthenticatedPublicSeConnecterRoute,
+}
+
+const unauthenticatedPublicRouteWithChildren =
+  unauthenticatedPublicRoute._addFileChildren(
+    unauthenticatedPublicRouteChildren,
+  )
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   FoireAuxQuestionsRoute: FoireAuxQuestionsRoute,
-  MotDePasseOublieRoute: MotDePasseOublieRoute,
-  OnboardingRoute: OnboardingRoute,
   ReinitialiserSonMotDePasseRoute: ReinitialiserSonMotDePasseRoute,
-  SInscrireRoute: SInscrireRoute,
-  SeConnecterRoute: SeConnecterRoute,
+  authenticatedAuthRoute: authenticatedAuthRouteWithChildren,
+  unauthenticatedPublicRoute: unauthenticatedPublicRouteWithChildren,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
   ApiTrpcSplatRoute: ApiTrpcSplatRoute,
 }
@@ -232,10 +289,11 @@ export const routeTree = rootRouteImport
   ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { startInstance } from './start.ts'
 declare module '@tanstack/react-start' {
   interface Register {
     ssr: true
     router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
   }
 }

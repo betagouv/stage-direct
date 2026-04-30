@@ -17,6 +17,7 @@ import type { ReactNode } from "react";
 import { Footer } from "~/components/footer";
 import { Header } from "~/components/header";
 import { Toaster } from "~/components/ui/toaster";
+import { NotFoundPage } from "~/features/not-found";
 import { getSession } from "~/lib/auth-session";
 import type { TrpcClient } from "~/router";
 import { TRPCProvider, type TrpcOptionsProxy } from "~/utils/trpc";
@@ -32,6 +33,7 @@ export const Route = createRootRouteWithContext<RootContext>()({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "robots", content: "noindex, nofollow" },
       { title: "Stage Direct" },
     ],
   }),
@@ -48,6 +50,7 @@ export const Route = createRootRouteWithContext<RootContext>()({
     return { session };
   },
   component: RootComponent,
+  notFoundComponent: NotFoundPage,
 });
 
 function RootComponent() {

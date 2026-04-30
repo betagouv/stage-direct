@@ -1,10 +1,13 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { prefetchAuthentificationQueries } from "~/features/authentification/prefetch";
 import { OnboardingPage } from "~/features/onboarding";
-import { redirectIfProfileComplete } from "~/lib/route-guards";
 
-export const Route = createFileRoute("/onboarding")({
-  beforeLoad: redirectIfProfileComplete,
+export const Route = createFileRoute("/(authenticated)/_auth/onboarding")({
+  beforeLoad: ({ context: { session } }) => {
+    if (session?.user.role) {
+      throw redirect({ to: "/" });
+    }
+  },
   loader: ({ context: { queryClient, trpc } }) =>
     prefetchAuthentificationQueries(queryClient, trpc),
   component: RouteComponent,

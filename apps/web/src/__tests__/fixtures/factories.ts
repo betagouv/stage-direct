@@ -2,13 +2,24 @@ import type { FonctionStage, TypeApprenant, UserRole } from "~/generated/prisma/
 import { getTestDb } from "../helpers/test-db";
 
 export async function createUser(
-  overrides: { id?: string; email?: string; name?: string; role?: UserRole } = {},
+  overrides: {
+    id?: string;
+    email?: string;
+    name?: string;
+    nom?: string;
+    prenom?: string;
+    telephone?: string;
+    role?: UserRole;
+  } = {},
 ) {
   const db = getTestDb();
   return db.user.create({
     data: {
-      email: overrides.email ?? `user-${Date.now()}@test.fr`,
+      email: overrides.email ?? `stagedirect-user-${Date.now()}@justice.fr`,
       name: overrides.name ?? "Test User",
+      nom: overrides.nom ?? "User",
+      prenom: overrides.prenom ?? "Test",
+      telephone: overrides.telephone,
       role: overrides.role ?? "DCS",
       emailVerified: true,
       ...(overrides.id ? { id: overrides.id } : {}),
@@ -49,17 +60,30 @@ export async function createMds(overrides: {
   nom?: string;
   prenom?: string;
   email?: string;
+  telephone?: string;
   fonction?: FonctionStage;
   juridictionId: string;
 }) {
   const db = getTestDb();
+  const nom = overrides.nom ?? "Dupont";
+  const prenom = overrides.prenom ?? "Marie";
+  const email = overrides.email ?? `stagedirect-mds-${Date.now()}@justice.fr`;
+  const { fonction, juridictionId, telephone } = overrides;
   return db.mds.create({
     data: {
-      nom: overrides.nom ?? "Dupont",
-      prenom: overrides.prenom ?? "Marie",
-      email: overrides.email ?? `mds-${Date.now()}@justice.fr`,
-      fonction: overrides.fonction ?? "PARQUET",
-      juridictionId: overrides.juridictionId,
+      fonction: fonction ?? "PARQUET",
+      juridiction: { connect: { id: juridictionId } },
+      user: {
+        create: {
+          email,
+          nom,
+          prenom,
+          telephone,
+          name: `${prenom} ${nom}`.trim(),
+          role: "MDS" as UserRole,
+          emailVerified: true,
+        },
+      },
     },
   });
 }
@@ -89,17 +113,30 @@ export async function createAuditeur(overrides: {
   nom?: string;
   prenom?: string;
   email?: string;
+  telephone?: string;
   type?: TypeApprenant;
   promotionId: string;
 }) {
   const db = getTestDb();
+  const nom = overrides.nom ?? "Martin";
+  const prenom = overrides.prenom ?? "Maxime";
+  const email = overrides.email ?? `stagedirect-adj-${Date.now()}@justice.fr`;
+  const { promotionId, type, telephone } = overrides;
   return db.auditeur.create({
     data: {
-      nom: overrides.nom ?? "Martin",
-      prenom: overrides.prenom ?? "Maxime",
-      email: overrides.email ?? `adj-${Date.now()}@enm.justice.fr`,
-      type: overrides.type ?? "ADJ",
-      promotionId: overrides.promotionId,
+      type: type ?? "ADJ",
+      promotion: { connect: { id: promotionId } },
+      user: {
+        create: {
+          email,
+          nom,
+          prenom,
+          telephone,
+          name: `${prenom} ${nom}`.trim(),
+          role: "ADJ" as UserRole,
+          emailVerified: true,
+        },
+      },
     },
   });
 }

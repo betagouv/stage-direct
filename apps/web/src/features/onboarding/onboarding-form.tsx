@@ -60,46 +60,40 @@ export function OnboardingForm({ userEmail, userName }: OnboardingFormProps) {
         )}
       </form.Field>
 
-      <form.Subscribe selector={(s) => s.values.role}>
-        {(role) =>
-          role === "MDS" ? (
-            <div className="fr-grid-row fr-grid-row--gutters">
-              <div className="fr-col-12 fr-col-md-6">
-                <form.Field name="nom">
-                  {(field) => (
-                    <Input
-                      label="Nom"
-                      {...getFieldErrorProps(field.state.meta)}
-                      nativeInputProps={{
-                        name: field.name,
-                        value: field.state.value,
-                        onBlur: field.handleBlur,
-                        onChange: (e) => field.handleChange(e.target.value),
-                      }}
-                    />
-                  )}
-                </form.Field>
-              </div>
-              <div className="fr-col-12 fr-col-md-6">
-                <form.Field name="prenom">
-                  {(field) => (
-                    <Input
-                      label="Prénom"
-                      {...getFieldErrorProps(field.state.meta)}
-                      nativeInputProps={{
-                        name: field.name,
-                        value: field.state.value,
-                        onBlur: field.handleBlur,
-                        onChange: (e) => field.handleChange(e.target.value),
-                      }}
-                    />
-                  )}
-                </form.Field>
-              </div>
-            </div>
-          ) : null
-        }
-      </form.Subscribe>
+      <div className="fr-grid-row fr-grid-row--gutters">
+        <div className="fr-col-12 fr-col-md-6">
+          <form.Field name="nom">
+            {(field) => (
+              <Input
+                label="Nom"
+                {...getFieldErrorProps(field.state.meta)}
+                nativeInputProps={{
+                  name: field.name,
+                  value: field.state.value,
+                  onBlur: field.handleBlur,
+                  onChange: (e) => field.handleChange(e.target.value),
+                }}
+              />
+            )}
+          </form.Field>
+        </div>
+        <div className="fr-col-12 fr-col-md-6">
+          <form.Field name="prenom">
+            {(field) => (
+              <Input
+                label="Prénom"
+                {...getFieldErrorProps(field.state.meta)}
+                nativeInputProps={{
+                  name: field.name,
+                  value: field.state.value,
+                  onBlur: field.handleBlur,
+                  onChange: (e) => field.handleChange(e.target.value),
+                }}
+              />
+            )}
+          </form.Field>
+        </div>
+      </div>
 
       <form.Subscribe selector={(s) => s.values.role}>
         {(role) =>

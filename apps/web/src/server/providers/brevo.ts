@@ -29,7 +29,7 @@ export interface SendEmailParams {
 
 async function sendViaSmtp({ to, subject, htmlContent, sender }: SendEmailParams) {
   const from = sender ?? {
-    email: process.env.EMAIL_FROM_ADDRESS ?? "noreply@stage-direct.beta.gouv.fr",
+    email: process.env.EMAIL_FROM_ADDRESS ?? "stagedirect-noreply@justice.fr",
     name: process.env.EMAIL_FROM_NAME ?? "Stage Direct",
   };
 
@@ -60,7 +60,7 @@ export async function sendEmail(params: SendEmailParams) {
     method: "POST",
     body: JSON.stringify({
       sender: params.sender ?? {
-        email: process.env.EMAIL_FROM_ADDRESS ?? "noreply@stage-direct.beta.gouv.fr",
+        email: process.env.EMAIL_FROM_ADDRESS ?? "stagedirect-noreply@justice.fr",
         name: process.env.EMAIL_FROM_NAME ?? "Stage Direct",
       },
       to: params.to,

@@ -1,4 +1,7 @@
+import "dotenv/config";
+
 import { PrismaPg } from "@prisma/adapter-pg";
+import { hashPassword } from "better-auth/crypto";
 import { PrismaClient } from "../src/generated/prisma/client.js";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL ?? "" });
@@ -108,6 +111,26 @@ function pick<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
+const seedEmailCounts = new Map<string, number>();
+
+function makeSeedEmail(
+  prefix: string,
+  prenom: string,
+  nom: string,
+  extraParts: Array<string | number> = [],
+): string {
+  const base = [
+    prefix,
+    prenom.toLowerCase(),
+    nom.toLowerCase(),
+    ...extraParts.map((part) => String(part).toLowerCase()),
+  ].join(".");
+  const occurrence = (seedEmailCounts.get(base) ?? 0) + 1;
+  seedEmailCounts.set(base, occurrence);
+
+  return occurrence === 1 ? `${base}@justice.fr` : `${base}.${occurrence}@justice.fr`;
+}
+
 function addWeeks(date: Date, weeks: number): Date {
   const result = new Date(date);
   result.setDate(result.getDate() + weeks * 7);
@@ -172,8 +195,10 @@ async function seed() {
     const nom = NOMS[i];
     const user = await prisma.user.create({
       data: {
-        email: `crf.${prenom.toLowerCase()}.${nom.toLowerCase()}@stage-direct.fr`,
+        email: makeSeedEmail("stagedirect-crf", prenom, nom),
         name: `${prenom} ${nom}`,
+        nom,
+        prenom,
         role: "CRF",
         emailVerified: true,
       },
@@ -196,8 +221,10 @@ async function seed() {
     const nom = NOMS[i + 2];
     const user = await prisma.user.create({
       data: {
-        email: `dcs.${prenom.toLowerCase()}.${nom.toLowerCase()}@stage-direct.fr`,
+        email: makeSeedEmail("stagedirect-dcs", prenom, nom),
         name: `${prenom} ${nom}`,
+        nom,
+        prenom,
         role: "DCS",
         emailVerified: true,
       },
@@ -211,18 +238,29 @@ async function seed() {
   // -- MDS (1 par fonction par juridiction, pas de compte user) --
   console.log("Creation des MDS...");
   const mdsMap: Record<string, Record<string, string>> = {};
-  for (const jur of juridictions) {
+  for (const [jurIndex, jur] of juridictions.entries()) {
     mdsMap[jur.id] = {};
-    for (const f of FONCTIONS_STAGE) {
+    for (const [fonctionIndex, f] of FONCTIONS_STAGE.entries()) {
       const prenom = pick(PRENOMS);
       const nom = pick(NOMS);
       const mds = await prisma.mds.create({
         data: {
-          nom,
-          prenom,
-          email: `mds.${prenom.toLowerCase()}.${nom.toLowerCase()}.${f.fonction.toLowerCase()}@stage-direct.fr`,
           fonction: f.fonction,
-          juridictionId: jur.id,
+          juridiction: { connect: { id: jur.id } },
+          user: {
+            create: {
+              email: makeSeedEmail("stagedirect-mds", prenom, nom, [
+                jurIndex + 1,
+                fonctionIndex + 1,
+                f.fonction,
+              ]),
+              nom,
+              prenom,
+              name: `${prenom} ${nom}`.trim(),
+              role: "MDS",
+              emailVerified: true,
+            },
+          },
         },
       });
       mdsMap[jur.id][f.fonction] = mds.id;
@@ -246,11 +284,18 @@ async function seed() {
 
       const auditeur = await prisma.auditeur.create({
         data: {
-          nom,
-          prenom,
-          email: `adj.${prenom.toLowerCase()}.${nom.toLowerCase()}@enm.stage-direct.fr`,
           type: "ADJ",
-          promotionId: promotion.id,
+          promotion: { connect: { id: promotion.id } },
+          user: {
+            create: {
+              email: makeSeedEmail("stagedirect-adj", prenom, nom),
+              nom,
+              prenom,
+              name: `${prenom} ${nom}`.trim(),
+              role: "ADJ",
+              emailVerified: true,
+            },
+          },
         },
       });
 
@@ -304,12 +349,107 @@ async function seed() {
     }
   }
 
+  // -- Compte DCS de test (Kevin Gallet) --
+  console.log("Creation du compte DCS de test...");
+  const kevinUser = await prisma.user.create({
+    data: {
+      email: "kevin.gallet@beta.gouv.fr",
+      name: "Kevin Gallet",
+      nom: "Gallet",
+      prenom: "Kevin",
+      role: "DCS",
+      emailVerified: true,
+    },
+  });
+  const kevinDcs = await prisma.dcs.create({
+    data: { userId: kevinUser.id, juridictionId: juridictions[0].id },
+  });
+  await prisma.account.create({
+    data: {
+      userId: kevinUser.id,
+      accountId: kevinUser.id,
+      providerId: "credential",
+      password: await hashPassword("Test987654321!"),
+    },
+  });
+
+  console.log("Affectation d'une dizaine d'auditeurs au compte DCS de test...");
+  for (let a = 0; a < 10; a++) {
+    const prenom = PRENOMS[(auditeurIndex * 3 + a) % PRENOMS.length];
+    const nom = NOMS[(auditeurIndex * 3 + a + 5) % NOMS.length];
+
+    const auditeur = await prisma.auditeur.create({
+      data: {
+        type: "ADJ",
+        promotion: { connect: { id: promotion.id } },
+        user: {
+          create: {
+            email: makeSeedEmail("stagedirect-adj-kevin", prenom, nom),
+            nom,
+            prenom,
+            name: `${prenom} ${nom}`.trim(),
+            role: "ADJ",
+            emailVerified: true,
+          },
+        },
+      },
+    });
+
+    let currentDate = new Date("2026-01-05");
+    for (let s = 0; s < FONCTIONS_STAGE.length; s++) {
+      const f = FONCTIONS_STAGE[s];
+      const dateDebut = new Date(currentDate);
+      const dateFin = addWeeks(dateDebut, f.duree);
+      const now = new Date();
+
+      let statut: "PLANIFIE" | "EN_COURS" | "TERMINE" | "CLOTURE" = "PLANIFIE";
+      if (dateFin < now) statut = "TERMINE";
+      else if (dateDebut <= now && dateFin >= now) statut = "EN_COURS";
+
+      const mdsId = mdsMap[juridictions[0].id][f.fonction];
+
+      const stage = await prisma.stage.create({
+        data: {
+          auditeurId: auditeur.id,
+          fonction: f.fonction,
+          ordre: s + 1,
+          dateDebut,
+          dateFin,
+          duree: f.duree,
+          statut,
+          juridictionId: juridictions[0].id,
+          dcsId: kevinDcs.id,
+          mdsId,
+        },
+      });
+
+      if (statut === "TERMINE" || statut === "EN_COURS") {
+        const isReceived = statut === "TERMINE" && Math.random() > 0.3;
+        await prisma.evaluation.create({
+          data: {
+            stageId: stage.id,
+            mdsId,
+            statut: isReceived ? "VALIDEE" : statut === "TERMINE" ? "EN_RETARD" : "ENVOYEE",
+            dateEnvoi: addWeeks(dateDebut, f.duree - 1),
+            dateLimite: addWeeks(dateFin, 2),
+            dateReception: isReceived ? addWeeks(dateFin, 1) : null,
+          },
+        });
+      }
+
+      currentDate = dateFin;
+    }
+    auditeurIndex++;
+  }
+
   // -- Admin user pour le dev --
   console.log("Creation du compte admin...");
   await prisma.user.create({
     data: {
-      email: "admin@stage-direct.beta.gouv.fr",
+      email: makeSeedEmail("stagedirect-admin", "Admin", "Dev"),
       name: "Admin Dev",
+      nom: "Dev",
+      prenom: "Admin",
       role: "ADMIN",
       emailVerified: true,
     },

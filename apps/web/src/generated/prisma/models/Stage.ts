@@ -38,50 +38,50 @@ export type StageSumAggregateOutputType = {
 
 export type StageMinAggregateOutputType = {
   id: string | null
-  auditeurId: string | null
   fonction: $Enums.FonctionStage | null
   ordre: number | null
   dateDebut: Date | null
   dateFin: Date | null
   duree: number | null
   statut: $Enums.StatutStage | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  auditeurId: string | null
   juridictionId: string | null
   dcsId: string | null
   mdsId: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type StageMaxAggregateOutputType = {
   id: string | null
-  auditeurId: string | null
   fonction: $Enums.FonctionStage | null
   ordre: number | null
   dateDebut: Date | null
   dateFin: Date | null
   duree: number | null
   statut: $Enums.StatutStage | null
+  createdAt: Date | null
+  updatedAt: Date | null
+  auditeurId: string | null
   juridictionId: string | null
   dcsId: string | null
   mdsId: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type StageCountAggregateOutputType = {
   id: number
-  auditeurId: number
   fonction: number
   ordre: number
   dateDebut: number
   dateFin: number
   duree: number
   statut: number
+  createdAt: number
+  updatedAt: number
+  auditeurId: number
   juridictionId: number
   dcsId: number
   mdsId: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
@@ -98,50 +98,50 @@ export type StageSumAggregateInputType = {
 
 export type StageMinAggregateInputType = {
   id?: true
-  auditeurId?: true
   fonction?: true
   ordre?: true
   dateDebut?: true
   dateFin?: true
   duree?: true
   statut?: true
+  createdAt?: true
+  updatedAt?: true
+  auditeurId?: true
   juridictionId?: true
   dcsId?: true
   mdsId?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type StageMaxAggregateInputType = {
   id?: true
-  auditeurId?: true
   fonction?: true
   ordre?: true
   dateDebut?: true
   dateFin?: true
   duree?: true
   statut?: true
+  createdAt?: true
+  updatedAt?: true
+  auditeurId?: true
   juridictionId?: true
   dcsId?: true
   mdsId?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type StageCountAggregateInputType = {
   id?: true
-  auditeurId?: true
   fonction?: true
   ordre?: true
   dateDebut?: true
   dateFin?: true
   duree?: true
   statut?: true
+  createdAt?: true
+  updatedAt?: true
+  auditeurId?: true
   juridictionId?: true
   dcsId?: true
   mdsId?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -233,18 +233,18 @@ export type StageGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type StageGroupByOutputType = {
   id: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date
   dateFin: Date
   duree: number
   statut: $Enums.StatutStage
+  createdAt: Date
+  updatedAt: Date
+  auditeurId: string
   juridictionId: string
   dcsId: string
   mdsId: string | null
-  createdAt: Date
-  updatedAt: Date
   _count: StageCountAggregateOutputType | null
   _avg: StageAvgAggregateOutputType | null
   _sum: StageSumAggregateOutputType | null
@@ -272,44 +272,44 @@ export type StageWhereInput = {
   OR?: Prisma.StageWhereInput[]
   NOT?: Prisma.StageWhereInput | Prisma.StageWhereInput[]
   id?: Prisma.StringFilter<"Stage"> | string
-  auditeurId?: Prisma.StringFilter<"Stage"> | string
   fonction?: Prisma.EnumFonctionStageFilter<"Stage"> | $Enums.FonctionStage
   ordre?: Prisma.IntFilter<"Stage"> | number
   dateDebut?: Prisma.DateTimeFilter<"Stage"> | Date | string
   dateFin?: Prisma.DateTimeFilter<"Stage"> | Date | string
   duree?: Prisma.IntFilter<"Stage"> | number
   statut?: Prisma.EnumStatutStageFilter<"Stage"> | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  auditeurId?: Prisma.StringFilter<"Stage"> | string
   juridictionId?: Prisma.StringFilter<"Stage"> | string
   dcsId?: Prisma.StringFilter<"Stage"> | string
   mdsId?: Prisma.StringNullableFilter<"Stage"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  evaluation?: Prisma.XOR<Prisma.EvaluationNullableScalarRelationFilter, Prisma.EvaluationWhereInput> | null
   auditeur?: Prisma.XOR<Prisma.AuditeurScalarRelationFilter, Prisma.AuditeurWhereInput>
   juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
   dcs?: Prisma.XOR<Prisma.DcsScalarRelationFilter, Prisma.DcsWhereInput>
   mds?: Prisma.XOR<Prisma.MdsNullableScalarRelationFilter, Prisma.MdsWhereInput> | null
-  evaluation?: Prisma.XOR<Prisma.EvaluationNullableScalarRelationFilter, Prisma.EvaluationWhereInput> | null
 }
 
 export type StageOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  auditeurId?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
   ordre?: Prisma.SortOrder
   dateDebut?: Prisma.SortOrder
   dateFin?: Prisma.SortOrder
   duree?: Prisma.SortOrder
   statut?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  auditeurId?: Prisma.SortOrder
   juridictionId?: Prisma.SortOrder
   dcsId?: Prisma.SortOrder
   mdsId?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
+  evaluation?: Prisma.EvaluationOrderByWithRelationInput
   auditeur?: Prisma.AuditeurOrderByWithRelationInput
   juridiction?: Prisma.JuridictionOrderByWithRelationInput
   dcs?: Prisma.DcsOrderByWithRelationInput
   mds?: Prisma.MdsOrderByWithRelationInput
-  evaluation?: Prisma.EvaluationOrderByWithRelationInput
 }
 
 export type StageWhereUniqueInput = Prisma.AtLeast<{
@@ -317,39 +317,39 @@ export type StageWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.StageWhereInput | Prisma.StageWhereInput[]
   OR?: Prisma.StageWhereInput[]
   NOT?: Prisma.StageWhereInput | Prisma.StageWhereInput[]
-  auditeurId?: Prisma.StringFilter<"Stage"> | string
   fonction?: Prisma.EnumFonctionStageFilter<"Stage"> | $Enums.FonctionStage
   ordre?: Prisma.IntFilter<"Stage"> | number
   dateDebut?: Prisma.DateTimeFilter<"Stage"> | Date | string
   dateFin?: Prisma.DateTimeFilter<"Stage"> | Date | string
   duree?: Prisma.IntFilter<"Stage"> | number
   statut?: Prisma.EnumStatutStageFilter<"Stage"> | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  auditeurId?: Prisma.StringFilter<"Stage"> | string
   juridictionId?: Prisma.StringFilter<"Stage"> | string
   dcsId?: Prisma.StringFilter<"Stage"> | string
   mdsId?: Prisma.StringNullableFilter<"Stage"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  evaluation?: Prisma.XOR<Prisma.EvaluationNullableScalarRelationFilter, Prisma.EvaluationWhereInput> | null
   auditeur?: Prisma.XOR<Prisma.AuditeurScalarRelationFilter, Prisma.AuditeurWhereInput>
   juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
   dcs?: Prisma.XOR<Prisma.DcsScalarRelationFilter, Prisma.DcsWhereInput>
   mds?: Prisma.XOR<Prisma.MdsNullableScalarRelationFilter, Prisma.MdsWhereInput> | null
-  evaluation?: Prisma.XOR<Prisma.EvaluationNullableScalarRelationFilter, Prisma.EvaluationWhereInput> | null
 }, "id">
 
 export type StageOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  auditeurId?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
   ordre?: Prisma.SortOrder
   dateDebut?: Prisma.SortOrder
   dateFin?: Prisma.SortOrder
   duree?: Prisma.SortOrder
   statut?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  auditeurId?: Prisma.SortOrder
   juridictionId?: Prisma.SortOrder
   dcsId?: Prisma.SortOrder
   mdsId?: Prisma.SortOrderInput | Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
   _count?: Prisma.StageCountOrderByAggregateInput
   _avg?: Prisma.StageAvgOrderByAggregateInput
   _max?: Prisma.StageMaxOrderByAggregateInput
@@ -362,18 +362,18 @@ export type StageScalarWhereWithAggregatesInput = {
   OR?: Prisma.StageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.StageScalarWhereWithAggregatesInput | Prisma.StageScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Stage"> | string
-  auditeurId?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   fonction?: Prisma.EnumFonctionStageWithAggregatesFilter<"Stage"> | $Enums.FonctionStage
   ordre?: Prisma.IntWithAggregatesFilter<"Stage"> | number
   dateDebut?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
   dateFin?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
   duree?: Prisma.IntWithAggregatesFilter<"Stage"> | number
   statut?: Prisma.EnumStatutStageWithAggregatesFilter<"Stage"> | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
+  auditeurId?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   juridictionId?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   dcsId?: Prisma.StringWithAggregatesFilter<"Stage"> | string
   mdsId?: Prisma.StringNullableWithAggregatesFilter<"Stage"> | string | null
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Stage"> | Date | string
 }
 
 export type StageCreateInput = {
@@ -386,27 +386,27 @@ export type StageCreateInput = {
   statut?: $Enums.StatutStage
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
   auditeur: Prisma.AuditeurCreateNestedOneWithoutStagesInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutStagesInput
   dcs: Prisma.DcsCreateNestedOneWithoutStagesInput
   mds?: Prisma.MdsCreateNestedOneWithoutStagesInput
-  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
 }
 
 export type StageUncheckedCreateInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditeurId: string
   juridictionId: string
   dcsId: string
   mdsId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   evaluation?: Prisma.EvaluationUncheckedCreateNestedOneWithoutStageInput
 }
 
@@ -420,44 +420,44 @@ export type StageUpdateInput = {
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
   auditeur?: Prisma.AuditeurUpdateOneRequiredWithoutStagesNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutStagesNestedInput
   dcs?: Prisma.DcsUpdateOneRequiredWithoutStagesNestedInput
   mds?: Prisma.MdsUpdateOneWithoutStagesNestedInput
-  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.EvaluationUncheckedUpdateOneWithoutStageNestedInput
 }
 
 export type StageCreateManyInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditeurId: string
   juridictionId: string
   dcsId: string
   mdsId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type StageUpdateManyMutationInput = {
@@ -474,18 +474,18 @@ export type StageUpdateManyMutationInput = {
 
 export type StageUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type StageListRelationFilter = {
@@ -500,18 +500,18 @@ export type StageOrderByRelationAggregateInput = {
 
 export type StageCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  auditeurId?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
   ordre?: Prisma.SortOrder
   dateDebut?: Prisma.SortOrder
   dateFin?: Prisma.SortOrder
   duree?: Prisma.SortOrder
   statut?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  auditeurId?: Prisma.SortOrder
   juridictionId?: Prisma.SortOrder
   dcsId?: Prisma.SortOrder
   mdsId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type StageAvgOrderByAggregateInput = {
@@ -521,34 +521,34 @@ export type StageAvgOrderByAggregateInput = {
 
 export type StageMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  auditeurId?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
   ordre?: Prisma.SortOrder
   dateDebut?: Prisma.SortOrder
   dateFin?: Prisma.SortOrder
   duree?: Prisma.SortOrder
   statut?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  auditeurId?: Prisma.SortOrder
   juridictionId?: Prisma.SortOrder
   dcsId?: Prisma.SortOrder
   mdsId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type StageMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  auditeurId?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
   ordre?: Prisma.SortOrder
   dateDebut?: Prisma.SortOrder
   dateFin?: Prisma.SortOrder
   duree?: Prisma.SortOrder
   statut?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
+  auditeurId?: Prisma.SortOrder
   juridictionId?: Prisma.SortOrder
   dcsId?: Prisma.SortOrder
   mdsId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type StageSumOrderByAggregateInput = {
@@ -761,25 +761,25 @@ export type StageCreateWithoutJuridictionInput = {
   statut?: $Enums.StatutStage
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
   auditeur: Prisma.AuditeurCreateNestedOneWithoutStagesInput
   dcs: Prisma.DcsCreateNestedOneWithoutStagesInput
   mds?: Prisma.MdsCreateNestedOneWithoutStagesInput
-  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutJuridictionInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  dcsId: string
-  mdsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  dcsId: string
+  mdsId?: string | null
   evaluation?: Prisma.EvaluationUncheckedCreateNestedOneWithoutStageInput
 }
 
@@ -814,18 +814,18 @@ export type StageScalarWhereInput = {
   OR?: Prisma.StageScalarWhereInput[]
   NOT?: Prisma.StageScalarWhereInput | Prisma.StageScalarWhereInput[]
   id?: Prisma.StringFilter<"Stage"> | string
-  auditeurId?: Prisma.StringFilter<"Stage"> | string
   fonction?: Prisma.EnumFonctionStageFilter<"Stage"> | $Enums.FonctionStage
   ordre?: Prisma.IntFilter<"Stage"> | number
   dateDebut?: Prisma.DateTimeFilter<"Stage"> | Date | string
   dateFin?: Prisma.DateTimeFilter<"Stage"> | Date | string
   duree?: Prisma.IntFilter<"Stage"> | number
   statut?: Prisma.EnumStatutStageFilter<"Stage"> | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
+  auditeurId?: Prisma.StringFilter<"Stage"> | string
   juridictionId?: Prisma.StringFilter<"Stage"> | string
   dcsId?: Prisma.StringFilter<"Stage"> | string
   mdsId?: Prisma.StringNullableFilter<"Stage"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Stage"> | Date | string
 }
 
 export type StageCreateWithoutDcsInput = {
@@ -838,25 +838,25 @@ export type StageCreateWithoutDcsInput = {
   statut?: $Enums.StatutStage
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
   auditeur: Prisma.AuditeurCreateNestedOneWithoutStagesInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutStagesInput
   mds?: Prisma.MdsCreateNestedOneWithoutStagesInput
-  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutDcsInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  juridictionId: string
-  mdsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  juridictionId: string
+  mdsId?: string | null
   evaluation?: Prisma.EvaluationUncheckedCreateNestedOneWithoutStageInput
 }
 
@@ -896,25 +896,25 @@ export type StageCreateWithoutMdsInput = {
   statut?: $Enums.StatutStage
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
   auditeur: Prisma.AuditeurCreateNestedOneWithoutStagesInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutStagesInput
   dcs: Prisma.DcsCreateNestedOneWithoutStagesInput
-  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutMdsInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  juridictionId: string
-  dcsId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  juridictionId: string
+  dcsId: string
   evaluation?: Prisma.EvaluationUncheckedCreateNestedOneWithoutStageInput
 }
 
@@ -954,10 +954,10 @@ export type StageCreateWithoutAuditeurInput = {
   statut?: $Enums.StatutStage
   createdAt?: Date | string
   updatedAt?: Date | string
+  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutStagesInput
   dcs: Prisma.DcsCreateNestedOneWithoutStagesInput
   mds?: Prisma.MdsCreateNestedOneWithoutStagesInput
-  evaluation?: Prisma.EvaluationCreateNestedOneWithoutStageInput
 }
 
 export type StageUncheckedCreateWithoutAuditeurInput = {
@@ -968,11 +968,11 @@ export type StageUncheckedCreateWithoutAuditeurInput = {
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
+  createdAt?: Date | string
+  updatedAt?: Date | string
   juridictionId: string
   dcsId: string
   mdsId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
   evaluation?: Prisma.EvaluationUncheckedCreateNestedOneWithoutStageInput
 }
 
@@ -1020,18 +1020,18 @@ export type StageCreateWithoutEvaluationInput = {
 
 export type StageUncheckedCreateWithoutEvaluationInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  auditeurId: string
   juridictionId: string
   dcsId: string
   mdsId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type StageCreateOrConnectWithoutEvaluationInput = {
@@ -1068,33 +1068,33 @@ export type StageUpdateWithoutEvaluationInput = {
 
 export type StageUncheckedUpdateWithoutEvaluationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type StageCreateManyJuridictionInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  dcsId: string
-  mdsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  dcsId: string
+  mdsId?: string | null
 }
 
 export type StageUpdateWithoutJuridictionInput = {
@@ -1107,56 +1107,56 @@ export type StageUpdateWithoutJuridictionInput = {
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
   auditeur?: Prisma.AuditeurUpdateOneRequiredWithoutStagesNestedInput
   dcs?: Prisma.DcsUpdateOneRequiredWithoutStagesNestedInput
   mds?: Prisma.MdsUpdateOneWithoutStagesNestedInput
-  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   evaluation?: Prisma.EvaluationUncheckedUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateManyWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StageCreateManyDcsInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  juridictionId: string
-  mdsId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  juridictionId: string
+  mdsId?: string | null
 }
 
 export type StageUpdateWithoutDcsInput = {
@@ -1169,56 +1169,56 @@ export type StageUpdateWithoutDcsInput = {
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
   auditeur?: Prisma.AuditeurUpdateOneRequiredWithoutStagesNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutStagesNestedInput
   mds?: Prisma.MdsUpdateOneWithoutStagesNestedInput
-  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutDcsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   evaluation?: Prisma.EvaluationUncheckedUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateManyWithoutDcsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StageCreateManyMdsInput = {
   id?: string
-  auditeurId: string
   fonction: $Enums.FonctionStage
   ordre: number
   dateDebut: Date | string
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
-  juridictionId: string
-  dcsId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  auditeurId: string
+  juridictionId: string
+  dcsId: string
 }
 
 export type StageUpdateWithoutMdsInput = {
@@ -1231,41 +1231,41 @@ export type StageUpdateWithoutMdsInput = {
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
   auditeur?: Prisma.AuditeurUpdateOneRequiredWithoutStagesNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutStagesNestedInput
   dcs?: Prisma.DcsUpdateOneRequiredWithoutStagesNestedInput
-  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutMdsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   evaluation?: Prisma.EvaluationUncheckedUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateManyWithoutMdsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.EnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage
   ordre?: Prisma.IntFieldUpdateOperationsInput | number
   dateDebut?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StageCreateManyAuditeurInput = {
@@ -1276,11 +1276,11 @@ export type StageCreateManyAuditeurInput = {
   dateFin: Date | string
   duree: number
   statut?: $Enums.StatutStage
+  createdAt?: Date | string
+  updatedAt?: Date | string
   juridictionId: string
   dcsId: string
   mdsId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
 }
 
 export type StageUpdateWithoutAuditeurInput = {
@@ -1293,10 +1293,10 @@ export type StageUpdateWithoutAuditeurInput = {
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutStagesNestedInput
   dcs?: Prisma.DcsUpdateOneRequiredWithoutStagesNestedInput
   mds?: Prisma.MdsUpdateOneWithoutStagesNestedInput
-  evaluation?: Prisma.EvaluationUpdateOneWithoutStageNestedInput
 }
 
 export type StageUncheckedUpdateWithoutAuditeurInput = {
@@ -1307,11 +1307,11 @@ export type StageUncheckedUpdateWithoutAuditeurInput = {
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evaluation?: Prisma.EvaluationUncheckedUpdateOneWithoutStageNestedInput
 }
 
@@ -1323,50 +1323,50 @@ export type StageUncheckedUpdateManyWithoutAuditeurInput = {
   dateFin?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   duree?: Prisma.IntFieldUpdateOperationsInput | number
   statut?: Prisma.EnumStatutStageFieldUpdateOperationsInput | $Enums.StatutStage
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   mdsId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type StageSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  auditeurId?: boolean
   fonction?: boolean
   ordre?: boolean
   dateDebut?: boolean
   dateFin?: boolean
   duree?: boolean
   statut?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  auditeurId?: boolean
   juridictionId?: boolean
   dcsId?: boolean
   mdsId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
+  evaluation?: boolean | Prisma.Stage$evaluationArgs<ExtArgs>
   auditeur?: boolean | Prisma.AuditeurDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.Stage$mdsArgs<ExtArgs>
-  evaluation?: boolean | Prisma.Stage$evaluationArgs<ExtArgs>
 }, ExtArgs["result"]["stage"]>
 
 export type StageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  auditeurId?: boolean
   fonction?: boolean
   ordre?: boolean
   dateDebut?: boolean
   dateFin?: boolean
   duree?: boolean
   statut?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  auditeurId?: boolean
   juridictionId?: boolean
   dcsId?: boolean
   mdsId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   auditeur?: boolean | Prisma.AuditeurDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
@@ -1375,18 +1375,18 @@ export type StageSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type StageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  auditeurId?: boolean
   fonction?: boolean
   ordre?: boolean
   dateDebut?: boolean
   dateFin?: boolean
   duree?: boolean
   statut?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  auditeurId?: boolean
   juridictionId?: boolean
   dcsId?: boolean
   mdsId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
   auditeur?: boolean | Prisma.AuditeurDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
@@ -1395,27 +1395,27 @@ export type StageSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 
 export type StageSelectScalar = {
   id?: boolean
-  auditeurId?: boolean
   fonction?: boolean
   ordre?: boolean
   dateDebut?: boolean
   dateFin?: boolean
   duree?: boolean
   statut?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
+  auditeurId?: boolean
   juridictionId?: boolean
   dcsId?: boolean
   mdsId?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type StageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "auditeurId" | "fonction" | "ordre" | "dateDebut" | "dateFin" | "duree" | "statut" | "juridictionId" | "dcsId" | "mdsId" | "createdAt" | "updatedAt", ExtArgs["result"]["stage"]>
+export type StageOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fonction" | "ordre" | "dateDebut" | "dateFin" | "duree" | "statut" | "createdAt" | "updatedAt" | "auditeurId" | "juridictionId" | "dcsId" | "mdsId", ExtArgs["result"]["stage"]>
 export type StageInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  evaluation?: boolean | Prisma.Stage$evaluationArgs<ExtArgs>
   auditeur?: boolean | Prisma.AuditeurDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.Stage$mdsArgs<ExtArgs>
-  evaluation?: boolean | Prisma.Stage$evaluationArgs<ExtArgs>
 }
 export type StageIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   auditeur?: boolean | Prisma.AuditeurDefaultArgs<ExtArgs>
@@ -1433,26 +1433,26 @@ export type StageIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $StagePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Stage"
   objects: {
+    evaluation: Prisma.$EvaluationPayload<ExtArgs> | null
     auditeur: Prisma.$AuditeurPayload<ExtArgs>
     juridiction: Prisma.$JuridictionPayload<ExtArgs>
     dcs: Prisma.$DcsPayload<ExtArgs>
     mds: Prisma.$MdsPayload<ExtArgs> | null
-    evaluation: Prisma.$EvaluationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    auditeurId: string
     fonction: $Enums.FonctionStage
     ordre: number
     dateDebut: Date
     dateFin: Date
     duree: number
     statut: $Enums.StatutStage
+    createdAt: Date
+    updatedAt: Date
+    auditeurId: string
     juridictionId: string
     dcsId: string
     mdsId: string | null
-    createdAt: Date
-    updatedAt: Date
   }, ExtArgs["result"]["stage"]>
   composites: {}
 }
@@ -1847,11 +1847,11 @@ readonly fields: StageFieldRefs;
  */
 export interface Prisma__StageClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  evaluation<T extends Prisma.Stage$evaluationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stage$evaluationArgs<ExtArgs>>): Prisma.Prisma__EvaluationClient<runtime.Types.Result.GetResult<Prisma.$EvaluationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   auditeur<T extends Prisma.AuditeurDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AuditeurDefaultArgs<ExtArgs>>): Prisma.Prisma__AuditeurClient<runtime.Types.Result.GetResult<Prisma.$AuditeurPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   juridiction<T extends Prisma.JuridictionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JuridictionDefaultArgs<ExtArgs>>): Prisma.Prisma__JuridictionClient<runtime.Types.Result.GetResult<Prisma.$JuridictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   dcs<T extends Prisma.DcsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DcsDefaultArgs<ExtArgs>>): Prisma.Prisma__DcsClient<runtime.Types.Result.GetResult<Prisma.$DcsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   mds<T extends Prisma.Stage$mdsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stage$mdsArgs<ExtArgs>>): Prisma.Prisma__MdsClient<runtime.Types.Result.GetResult<Prisma.$MdsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  evaluation<T extends Prisma.Stage$evaluationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Stage$evaluationArgs<ExtArgs>>): Prisma.Prisma__EvaluationClient<runtime.Types.Result.GetResult<Prisma.$EvaluationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1882,18 +1882,18 @@ export interface Prisma__StageClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface StageFieldRefs {
   readonly id: Prisma.FieldRef<"Stage", 'String'>
-  readonly auditeurId: Prisma.FieldRef<"Stage", 'String'>
   readonly fonction: Prisma.FieldRef<"Stage", 'FonctionStage'>
   readonly ordre: Prisma.FieldRef<"Stage", 'Int'>
   readonly dateDebut: Prisma.FieldRef<"Stage", 'DateTime'>
   readonly dateFin: Prisma.FieldRef<"Stage", 'DateTime'>
   readonly duree: Prisma.FieldRef<"Stage", 'Int'>
   readonly statut: Prisma.FieldRef<"Stage", 'StatutStage'>
+  readonly createdAt: Prisma.FieldRef<"Stage", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Stage", 'DateTime'>
+  readonly auditeurId: Prisma.FieldRef<"Stage", 'String'>
   readonly juridictionId: Prisma.FieldRef<"Stage", 'String'>
   readonly dcsId: Prisma.FieldRef<"Stage", 'String'>
   readonly mdsId: Prisma.FieldRef<"Stage", 'String'>
-  readonly createdAt: Prisma.FieldRef<"Stage", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Stage", 'DateTime'>
 }
     
 
@@ -2295,25 +2295,6 @@ export type StageDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Stage.mds
- */
-export type Stage$mdsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Mds
-   */
-  select?: Prisma.MdsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Mds
-   */
-  omit?: Prisma.MdsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MdsInclude<ExtArgs> | null
-  where?: Prisma.MdsWhereInput
-}
-
-/**
  * Stage.evaluation
  */
 export type Stage$evaluationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2330,6 +2311,25 @@ export type Stage$evaluationArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.EvaluationInclude<ExtArgs> | null
   where?: Prisma.EvaluationWhereInput
+}
+
+/**
+ * Stage.mds
+ */
+export type Stage$mdsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mds
+   */
+  select?: Prisma.MdsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mds
+   */
+  omit?: Prisma.MdsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MdsInclude<ExtArgs> | null
+  where?: Prisma.MdsWhereInput
 }
 
 /**

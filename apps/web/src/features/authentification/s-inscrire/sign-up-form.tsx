@@ -206,7 +206,7 @@ export function SignUpForm() {
         <Button type="submit" disabled={signUp.isPending} size="large">
           {signUp.isPending ? "Création..." : "Créer un compte"}
         </Button>
-        <a href="mailto:contact@stage-direct.beta.gouv.fr" className="fr-link">
+        <a href="mailto:stagedirect-contact@justice.fr" className="fr-link">
           Besoin d'aide ?
         </a>
       </div>

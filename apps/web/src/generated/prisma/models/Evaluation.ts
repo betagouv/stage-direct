@@ -26,8 +26,6 @@ export type AggregateEvaluation = {
 
 export type EvaluationMinAggregateOutputType = {
   id: string | null
-  stageId: string | null
-  mdsId: string | null
   statut: $Enums.StatutEvaluation | null
   lienEvaluation: string | null
   dateEnvoi: Date | null
@@ -36,12 +34,12 @@ export type EvaluationMinAggregateOutputType = {
   commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  stageId: string | null
+  mdsId: string | null
 }
 
 export type EvaluationMaxAggregateOutputType = {
   id: string | null
-  stageId: string | null
-  mdsId: string | null
   statut: $Enums.StatutEvaluation | null
   lienEvaluation: string | null
   dateEnvoi: Date | null
@@ -50,12 +48,12 @@ export type EvaluationMaxAggregateOutputType = {
   commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  stageId: string | null
+  mdsId: string | null
 }
 
 export type EvaluationCountAggregateOutputType = {
   id: number
-  stageId: number
-  mdsId: number
   statut: number
   lienEvaluation: number
   dateEnvoi: number
@@ -65,14 +63,14 @@ export type EvaluationCountAggregateOutputType = {
   commentaire: number
   createdAt: number
   updatedAt: number
+  stageId: number
+  mdsId: number
   _all: number
 }
 
 
 export type EvaluationMinAggregateInputType = {
   id?: true
-  stageId?: true
-  mdsId?: true
   statut?: true
   lienEvaluation?: true
   dateEnvoi?: true
@@ -81,12 +79,12 @@ export type EvaluationMinAggregateInputType = {
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  stageId?: true
+  mdsId?: true
 }
 
 export type EvaluationMaxAggregateInputType = {
   id?: true
-  stageId?: true
-  mdsId?: true
   statut?: true
   lienEvaluation?: true
   dateEnvoi?: true
@@ -95,12 +93,12 @@ export type EvaluationMaxAggregateInputType = {
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  stageId?: true
+  mdsId?: true
 }
 
 export type EvaluationCountAggregateInputType = {
   id?: true
-  stageId?: true
-  mdsId?: true
   statut?: true
   lienEvaluation?: true
   dateEnvoi?: true
@@ -110,6 +108,8 @@ export type EvaluationCountAggregateInputType = {
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  stageId?: true
+  mdsId?: true
   _all?: true
 }
 
@@ -187,8 +187,6 @@ export type EvaluationGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type EvaluationGroupByOutputType = {
   id: string
-  stageId: string
-  mdsId: string
   statut: $Enums.StatutEvaluation
   lienEvaluation: string | null
   dateEnvoi: Date | null
@@ -198,6 +196,8 @@ export type EvaluationGroupByOutputType = {
   commentaire: string | null
   createdAt: Date
   updatedAt: Date
+  stageId: string
+  mdsId: string
   _count: EvaluationCountAggregateOutputType | null
   _min: EvaluationMinAggregateOutputType | null
   _max: EvaluationMaxAggregateOutputType | null
@@ -223,8 +223,6 @@ export type EvaluationWhereInput = {
   OR?: Prisma.EvaluationWhereInput[]
   NOT?: Prisma.EvaluationWhereInput | Prisma.EvaluationWhereInput[]
   id?: Prisma.StringFilter<"Evaluation"> | string
-  stageId?: Prisma.StringFilter<"Evaluation"> | string
-  mdsId?: Prisma.StringFilter<"Evaluation"> | string
   statut?: Prisma.EnumStatutEvaluationFilter<"Evaluation"> | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   dateEnvoi?: Prisma.DateTimeNullableFilter<"Evaluation"> | Date | string | null
@@ -234,15 +232,15 @@ export type EvaluationWhereInput = {
   commentaire?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
+  stageId?: Prisma.StringFilter<"Evaluation"> | string
+  mdsId?: Prisma.StringFilter<"Evaluation"> | string
+  relances?: Prisma.RelanceListRelationFilter
   stage?: Prisma.XOR<Prisma.StageScalarRelationFilter, Prisma.StageWhereInput>
   mds?: Prisma.XOR<Prisma.MdsScalarRelationFilter, Prisma.MdsWhereInput>
-  relances?: Prisma.RelanceListRelationFilter
 }
 
 export type EvaluationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  stageId?: Prisma.SortOrder
-  mdsId?: Prisma.SortOrder
   statut?: Prisma.SortOrder
   lienEvaluation?: Prisma.SortOrderInput | Prisma.SortOrder
   dateEnvoi?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -252,9 +250,11 @@ export type EvaluationOrderByWithRelationInput = {
   commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mdsId?: Prisma.SortOrder
+  relances?: Prisma.RelanceOrderByRelationAggregateInput
   stage?: Prisma.StageOrderByWithRelationInput
   mds?: Prisma.MdsOrderByWithRelationInput
-  relances?: Prisma.RelanceOrderByRelationAggregateInput
 }
 
 export type EvaluationWhereUniqueInput = Prisma.AtLeast<{
@@ -263,7 +263,6 @@ export type EvaluationWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EvaluationWhereInput | Prisma.EvaluationWhereInput[]
   OR?: Prisma.EvaluationWhereInput[]
   NOT?: Prisma.EvaluationWhereInput | Prisma.EvaluationWhereInput[]
-  mdsId?: Prisma.StringFilter<"Evaluation"> | string
   statut?: Prisma.EnumStatutEvaluationFilter<"Evaluation"> | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   dateEnvoi?: Prisma.DateTimeNullableFilter<"Evaluation"> | Date | string | null
@@ -273,15 +272,14 @@ export type EvaluationWhereUniqueInput = Prisma.AtLeast<{
   commentaire?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
+  mdsId?: Prisma.StringFilter<"Evaluation"> | string
+  relances?: Prisma.RelanceListRelationFilter
   stage?: Prisma.XOR<Prisma.StageScalarRelationFilter, Prisma.StageWhereInput>
   mds?: Prisma.XOR<Prisma.MdsScalarRelationFilter, Prisma.MdsWhereInput>
-  relances?: Prisma.RelanceListRelationFilter
 }, "id" | "stageId">
 
 export type EvaluationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  stageId?: Prisma.SortOrder
-  mdsId?: Prisma.SortOrder
   statut?: Prisma.SortOrder
   lienEvaluation?: Prisma.SortOrderInput | Prisma.SortOrder
   dateEnvoi?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -291,6 +289,8 @@ export type EvaluationOrderByWithAggregationInput = {
   commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mdsId?: Prisma.SortOrder
   _count?: Prisma.EvaluationCountOrderByAggregateInput
   _max?: Prisma.EvaluationMaxOrderByAggregateInput
   _min?: Prisma.EvaluationMinOrderByAggregateInput
@@ -301,8 +301,6 @@ export type EvaluationScalarWhereWithAggregatesInput = {
   OR?: Prisma.EvaluationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EvaluationScalarWhereWithAggregatesInput | Prisma.EvaluationScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Evaluation"> | string
-  stageId?: Prisma.StringWithAggregatesFilter<"Evaluation"> | string
-  mdsId?: Prisma.StringWithAggregatesFilter<"Evaluation"> | string
   statut?: Prisma.EnumStatutEvaluationWithAggregatesFilter<"Evaluation"> | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.StringNullableWithAggregatesFilter<"Evaluation"> | string | null
   dateEnvoi?: Prisma.DateTimeNullableWithAggregatesFilter<"Evaluation"> | Date | string | null
@@ -312,6 +310,8 @@ export type EvaluationScalarWhereWithAggregatesInput = {
   commentaire?: Prisma.StringNullableWithAggregatesFilter<"Evaluation"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Evaluation"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Evaluation"> | Date | string
+  stageId?: Prisma.StringWithAggregatesFilter<"Evaluation"> | string
+  mdsId?: Prisma.StringWithAggregatesFilter<"Evaluation"> | string
 }
 
 export type EvaluationCreateInput = {
@@ -325,15 +325,13 @@ export type EvaluationCreateInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  relances?: Prisma.RelanceCreateNestedManyWithoutEvaluationInput
   stage: Prisma.StageCreateNestedOneWithoutEvaluationInput
   mds: Prisma.MdsCreateNestedOneWithoutEvaluationsInput
-  relances?: Prisma.RelanceCreateNestedManyWithoutEvaluationInput
 }
 
 export type EvaluationUncheckedCreateInput = {
   id?: string
-  stageId: string
-  mdsId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -343,6 +341,8 @@ export type EvaluationUncheckedCreateInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageId: string
+  mdsId: string
   relances?: Prisma.RelanceUncheckedCreateNestedManyWithoutEvaluationInput
 }
 
@@ -357,15 +357,13 @@ export type EvaluationUpdateInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  relances?: Prisma.RelanceUpdateManyWithoutEvaluationNestedInput
   stage?: Prisma.StageUpdateOneRequiredWithoutEvaluationNestedInput
   mds?: Prisma.MdsUpdateOneRequiredWithoutEvaluationsNestedInput
-  relances?: Prisma.RelanceUpdateManyWithoutEvaluationNestedInput
 }
 
 export type EvaluationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  stageId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -375,13 +373,13 @@ export type EvaluationUncheckedUpdateInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   relances?: Prisma.RelanceUncheckedUpdateManyWithoutEvaluationNestedInput
 }
 
 export type EvaluationCreateManyInput = {
   id?: string
-  stageId: string
-  mdsId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -391,6 +389,8 @@ export type EvaluationCreateManyInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageId: string
+  mdsId: string
 }
 
 export type EvaluationUpdateManyMutationInput = {
@@ -408,8 +408,6 @@ export type EvaluationUpdateManyMutationInput = {
 
 export type EvaluationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  stageId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -419,6 +417,8 @@ export type EvaluationUncheckedUpdateManyInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EvaluationListRelationFilter = {
@@ -438,8 +438,6 @@ export type EvaluationNullableScalarRelationFilter = {
 
 export type EvaluationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  stageId?: Prisma.SortOrder
-  mdsId?: Prisma.SortOrder
   statut?: Prisma.SortOrder
   lienEvaluation?: Prisma.SortOrder
   dateEnvoi?: Prisma.SortOrder
@@ -449,12 +447,12 @@ export type EvaluationCountOrderByAggregateInput = {
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mdsId?: Prisma.SortOrder
 }
 
 export type EvaluationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  stageId?: Prisma.SortOrder
-  mdsId?: Prisma.SortOrder
   statut?: Prisma.SortOrder
   lienEvaluation?: Prisma.SortOrder
   dateEnvoi?: Prisma.SortOrder
@@ -463,12 +461,12 @@ export type EvaluationMaxOrderByAggregateInput = {
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mdsId?: Prisma.SortOrder
 }
 
 export type EvaluationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  stageId?: Prisma.SortOrder
-  mdsId?: Prisma.SortOrder
   statut?: Prisma.SortOrder
   lienEvaluation?: Prisma.SortOrder
   dateEnvoi?: Prisma.SortOrder
@@ -477,6 +475,8 @@ export type EvaluationMinOrderByAggregateInput = {
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  stageId?: Prisma.SortOrder
+  mdsId?: Prisma.SortOrder
 }
 
 export type EvaluationScalarRelationFilter = {
@@ -587,13 +587,12 @@ export type EvaluationCreateWithoutMdsInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  stage: Prisma.StageCreateNestedOneWithoutEvaluationInput
   relances?: Prisma.RelanceCreateNestedManyWithoutEvaluationInput
+  stage: Prisma.StageCreateNestedOneWithoutEvaluationInput
 }
 
 export type EvaluationUncheckedCreateWithoutMdsInput = {
   id?: string
-  stageId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -603,6 +602,7 @@ export type EvaluationUncheckedCreateWithoutMdsInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageId: string
   relances?: Prisma.RelanceUncheckedCreateNestedManyWithoutEvaluationInput
 }
 
@@ -637,8 +637,6 @@ export type EvaluationScalarWhereInput = {
   OR?: Prisma.EvaluationScalarWhereInput[]
   NOT?: Prisma.EvaluationScalarWhereInput | Prisma.EvaluationScalarWhereInput[]
   id?: Prisma.StringFilter<"Evaluation"> | string
-  stageId?: Prisma.StringFilter<"Evaluation"> | string
-  mdsId?: Prisma.StringFilter<"Evaluation"> | string
   statut?: Prisma.EnumStatutEvaluationFilter<"Evaluation"> | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   dateEnvoi?: Prisma.DateTimeNullableFilter<"Evaluation"> | Date | string | null
@@ -648,6 +646,8 @@ export type EvaluationScalarWhereInput = {
   commentaire?: Prisma.StringNullableFilter<"Evaluation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Evaluation"> | Date | string
+  stageId?: Prisma.StringFilter<"Evaluation"> | string
+  mdsId?: Prisma.StringFilter<"Evaluation"> | string
 }
 
 export type EvaluationCreateWithoutStageInput = {
@@ -661,13 +661,12 @@ export type EvaluationCreateWithoutStageInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  mds: Prisma.MdsCreateNestedOneWithoutEvaluationsInput
   relances?: Prisma.RelanceCreateNestedManyWithoutEvaluationInput
+  mds: Prisma.MdsCreateNestedOneWithoutEvaluationsInput
 }
 
 export type EvaluationUncheckedCreateWithoutStageInput = {
   id?: string
-  mdsId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -677,6 +676,7 @@ export type EvaluationUncheckedCreateWithoutStageInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  mdsId: string
   relances?: Prisma.RelanceUncheckedCreateNestedManyWithoutEvaluationInput
 }
 
@@ -707,13 +707,12 @@ export type EvaluationUpdateWithoutStageInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  mds?: Prisma.MdsUpdateOneRequiredWithoutEvaluationsNestedInput
   relances?: Prisma.RelanceUpdateManyWithoutEvaluationNestedInput
+  mds?: Prisma.MdsUpdateOneRequiredWithoutEvaluationsNestedInput
 }
 
 export type EvaluationUncheckedUpdateWithoutStageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -723,6 +722,7 @@ export type EvaluationUncheckedUpdateWithoutStageInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   relances?: Prisma.RelanceUncheckedUpdateManyWithoutEvaluationNestedInput
 }
 
@@ -743,8 +743,6 @@ export type EvaluationCreateWithoutRelancesInput = {
 
 export type EvaluationUncheckedCreateWithoutRelancesInput = {
   id?: string
-  stageId: string
-  mdsId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -754,6 +752,8 @@ export type EvaluationUncheckedCreateWithoutRelancesInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageId: string
+  mdsId: string
 }
 
 export type EvaluationCreateOrConnectWithoutRelancesInput = {
@@ -789,8 +789,6 @@ export type EvaluationUpdateWithoutRelancesInput = {
 
 export type EvaluationUncheckedUpdateWithoutRelancesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  stageId?: Prisma.StringFieldUpdateOperationsInput | string
-  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -800,11 +798,12 @@ export type EvaluationUncheckedUpdateWithoutRelancesInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageId?: Prisma.StringFieldUpdateOperationsInput | string
+  mdsId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EvaluationCreateManyMdsInput = {
   id?: string
-  stageId: string
   statut?: $Enums.StatutEvaluation
   lienEvaluation?: string | null
   dateEnvoi?: Date | string | null
@@ -814,6 +813,7 @@ export type EvaluationCreateManyMdsInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stageId: string
 }
 
 export type EvaluationUpdateWithoutMdsInput = {
@@ -827,13 +827,12 @@ export type EvaluationUpdateWithoutMdsInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  stage?: Prisma.StageUpdateOneRequiredWithoutEvaluationNestedInput
   relances?: Prisma.RelanceUpdateManyWithoutEvaluationNestedInput
+  stage?: Prisma.StageUpdateOneRequiredWithoutEvaluationNestedInput
 }
 
 export type EvaluationUncheckedUpdateWithoutMdsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  stageId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -843,12 +842,12 @@ export type EvaluationUncheckedUpdateWithoutMdsInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageId?: Prisma.StringFieldUpdateOperationsInput | string
   relances?: Prisma.RelanceUncheckedUpdateManyWithoutEvaluationNestedInput
 }
 
 export type EvaluationUncheckedUpdateManyWithoutMdsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  stageId?: Prisma.StringFieldUpdateOperationsInput | string
   statut?: Prisma.EnumStatutEvaluationFieldUpdateOperationsInput | $Enums.StatutEvaluation
   lienEvaluation?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEnvoi?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -858,6 +857,7 @@ export type EvaluationUncheckedUpdateManyWithoutMdsInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stageId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -893,8 +893,6 @@ export type EvaluationCountOutputTypeCountRelancesArgs<ExtArgs extends runtime.T
 
 export type EvaluationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  stageId?: boolean
-  mdsId?: boolean
   statut?: boolean
   lienEvaluation?: boolean
   dateEnvoi?: boolean
@@ -904,16 +902,16 @@ export type EvaluationSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stageId?: boolean
+  mdsId?: boolean
+  relances?: boolean | Prisma.Evaluation$relancesArgs<ExtArgs>
   stage?: boolean | Prisma.StageDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.MdsDefaultArgs<ExtArgs>
-  relances?: boolean | Prisma.Evaluation$relancesArgs<ExtArgs>
   _count?: boolean | Prisma.EvaluationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluation"]>
 
 export type EvaluationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  stageId?: boolean
-  mdsId?: boolean
   statut?: boolean
   lienEvaluation?: boolean
   dateEnvoi?: boolean
@@ -923,14 +921,14 @@ export type EvaluationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stageId?: boolean
+  mdsId?: boolean
   stage?: boolean | Prisma.StageDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.MdsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluation"]>
 
 export type EvaluationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  stageId?: boolean
-  mdsId?: boolean
   statut?: boolean
   lienEvaluation?: boolean
   dateEnvoi?: boolean
@@ -940,14 +938,14 @@ export type EvaluationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stageId?: boolean
+  mdsId?: boolean
   stage?: boolean | Prisma.StageDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.MdsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluation"]>
 
 export type EvaluationSelectScalar = {
   id?: boolean
-  stageId?: boolean
-  mdsId?: boolean
   statut?: boolean
   lienEvaluation?: boolean
   dateEnvoi?: boolean
@@ -957,13 +955,15 @@ export type EvaluationSelectScalar = {
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  stageId?: boolean
+  mdsId?: boolean
 }
 
-export type EvaluationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stageId" | "mdsId" | "statut" | "lienEvaluation" | "dateEnvoi" | "dateReception" | "dateLimite" | "contenu" | "commentaire" | "createdAt" | "updatedAt", ExtArgs["result"]["evaluation"]>
+export type EvaluationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "statut" | "lienEvaluation" | "dateEnvoi" | "dateReception" | "dateLimite" | "contenu" | "commentaire" | "createdAt" | "updatedAt" | "stageId" | "mdsId", ExtArgs["result"]["evaluation"]>
 export type EvaluationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  relances?: boolean | Prisma.Evaluation$relancesArgs<ExtArgs>
   stage?: boolean | Prisma.StageDefaultArgs<ExtArgs>
   mds?: boolean | Prisma.MdsDefaultArgs<ExtArgs>
-  relances?: boolean | Prisma.Evaluation$relancesArgs<ExtArgs>
   _count?: boolean | Prisma.EvaluationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EvaluationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -978,14 +978,12 @@ export type EvaluationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $EvaluationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Evaluation"
   objects: {
+    relances: Prisma.$RelancePayload<ExtArgs>[]
     stage: Prisma.$StagePayload<ExtArgs>
     mds: Prisma.$MdsPayload<ExtArgs>
-    relances: Prisma.$RelancePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    stageId: string
-    mdsId: string
     statut: $Enums.StatutEvaluation
     lienEvaluation: string | null
     dateEnvoi: Date | null
@@ -995,6 +993,8 @@ export type $EvaluationPayload<ExtArgs extends runtime.Types.Extensions.Internal
     commentaire: string | null
     createdAt: Date
     updatedAt: Date
+    stageId: string
+    mdsId: string
   }, ExtArgs["result"]["evaluation"]>
   composites: {}
 }
@@ -1389,9 +1389,9 @@ readonly fields: EvaluationFieldRefs;
  */
 export interface Prisma__EvaluationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  relances<T extends Prisma.Evaluation$relancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evaluation$relancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RelancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stage<T extends Prisma.StageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StageDefaultArgs<ExtArgs>>): Prisma.Prisma__StageClient<runtime.Types.Result.GetResult<Prisma.$StagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   mds<T extends Prisma.MdsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MdsDefaultArgs<ExtArgs>>): Prisma.Prisma__MdsClient<runtime.Types.Result.GetResult<Prisma.$MdsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  relances<T extends Prisma.Evaluation$relancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Evaluation$relancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RelancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1422,8 +1422,6 @@ export interface Prisma__EvaluationClient<T, Null = never, ExtArgs extends runti
  */
 export interface EvaluationFieldRefs {
   readonly id: Prisma.FieldRef<"Evaluation", 'String'>
-  readonly stageId: Prisma.FieldRef<"Evaluation", 'String'>
-  readonly mdsId: Prisma.FieldRef<"Evaluation", 'String'>
   readonly statut: Prisma.FieldRef<"Evaluation", 'StatutEvaluation'>
   readonly lienEvaluation: Prisma.FieldRef<"Evaluation", 'String'>
   readonly dateEnvoi: Prisma.FieldRef<"Evaluation", 'DateTime'>
@@ -1433,6 +1431,8 @@ export interface EvaluationFieldRefs {
   readonly commentaire: Prisma.FieldRef<"Evaluation", 'String'>
   readonly createdAt: Prisma.FieldRef<"Evaluation", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Evaluation", 'DateTime'>
+  readonly stageId: Prisma.FieldRef<"Evaluation", 'String'>
+  readonly mdsId: Prisma.FieldRef<"Evaluation", 'String'>
 }
     
 

@@ -26,70 +26,70 @@ export type AggregateAlerte = {
 
 export type AlerteMinAggregateOutputType = {
   id: string | null
-  dcsId: string | null
   type: string | null
   titre: string | null
   description: string | null
   dateEcheance: Date | null
   lue: boolean | null
   createdAt: Date | null
+  dcsId: string | null
 }
 
 export type AlerteMaxAggregateOutputType = {
   id: string | null
-  dcsId: string | null
   type: string | null
   titre: string | null
   description: string | null
   dateEcheance: Date | null
   lue: boolean | null
   createdAt: Date | null
+  dcsId: string | null
 }
 
 export type AlerteCountAggregateOutputType = {
   id: number
-  dcsId: number
   type: number
   titre: number
   description: number
   dateEcheance: number
   lue: number
   createdAt: number
+  dcsId: number
   _all: number
 }
 
 
 export type AlerteMinAggregateInputType = {
   id?: true
-  dcsId?: true
   type?: true
   titre?: true
   description?: true
   dateEcheance?: true
   lue?: true
   createdAt?: true
+  dcsId?: true
 }
 
 export type AlerteMaxAggregateInputType = {
   id?: true
-  dcsId?: true
   type?: true
   titre?: true
   description?: true
   dateEcheance?: true
   lue?: true
   createdAt?: true
+  dcsId?: true
 }
 
 export type AlerteCountAggregateInputType = {
   id?: true
-  dcsId?: true
   type?: true
   titre?: true
   description?: true
   dateEcheance?: true
   lue?: true
   createdAt?: true
+  dcsId?: true
   _all?: true
 }
 
@@ -167,13 +167,13 @@ export type AlerteGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type AlerteGroupByOutputType = {
   id: string
-  dcsId: string
   type: string
   titre: string
   description: string | null
   dateEcheance: Date | null
   lue: boolean
   createdAt: Date
+  dcsId: string
   _count: AlerteCountAggregateOutputType | null
   _min: AlerteMinAggregateOutputType | null
   _max: AlerteMaxAggregateOutputType | null
@@ -199,25 +199,25 @@ export type AlerteWhereInput = {
   OR?: Prisma.AlerteWhereInput[]
   NOT?: Prisma.AlerteWhereInput | Prisma.AlerteWhereInput[]
   id?: Prisma.StringFilter<"Alerte"> | string
-  dcsId?: Prisma.StringFilter<"Alerte"> | string
   type?: Prisma.StringFilter<"Alerte"> | string
   titre?: Prisma.StringFilter<"Alerte"> | string
   description?: Prisma.StringNullableFilter<"Alerte"> | string | null
   dateEcheance?: Prisma.DateTimeNullableFilter<"Alerte"> | Date | string | null
   lue?: Prisma.BoolFilter<"Alerte"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Alerte"> | Date | string
+  dcsId?: Prisma.StringFilter<"Alerte"> | string
   dcs?: Prisma.XOR<Prisma.DcsScalarRelationFilter, Prisma.DcsWhereInput>
 }
 
 export type AlerteOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  dcsId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   titre?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   dateEcheance?: Prisma.SortOrderInput | Prisma.SortOrder
   lue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  dcsId?: Prisma.SortOrder
   dcs?: Prisma.DcsOrderByWithRelationInput
 }
 
@@ -226,25 +226,25 @@ export type AlerteWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AlerteWhereInput | Prisma.AlerteWhereInput[]
   OR?: Prisma.AlerteWhereInput[]
   NOT?: Prisma.AlerteWhereInput | Prisma.AlerteWhereInput[]
-  dcsId?: Prisma.StringFilter<"Alerte"> | string
   type?: Prisma.StringFilter<"Alerte"> | string
   titre?: Prisma.StringFilter<"Alerte"> | string
   description?: Prisma.StringNullableFilter<"Alerte"> | string | null
   dateEcheance?: Prisma.DateTimeNullableFilter<"Alerte"> | Date | string | null
   lue?: Prisma.BoolFilter<"Alerte"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Alerte"> | Date | string
+  dcsId?: Prisma.StringFilter<"Alerte"> | string
   dcs?: Prisma.XOR<Prisma.DcsScalarRelationFilter, Prisma.DcsWhereInput>
 }, "id">
 
 export type AlerteOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  dcsId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   titre?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   dateEcheance?: Prisma.SortOrderInput | Prisma.SortOrder
   lue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  dcsId?: Prisma.SortOrder
   _count?: Prisma.AlerteCountOrderByAggregateInput
   _max?: Prisma.AlerteMaxOrderByAggregateInput
   _min?: Prisma.AlerteMinOrderByAggregateInput
@@ -255,13 +255,13 @@ export type AlerteScalarWhereWithAggregatesInput = {
   OR?: Prisma.AlerteScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AlerteScalarWhereWithAggregatesInput | Prisma.AlerteScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Alerte"> | string
-  dcsId?: Prisma.StringWithAggregatesFilter<"Alerte"> | string
   type?: Prisma.StringWithAggregatesFilter<"Alerte"> | string
   titre?: Prisma.StringWithAggregatesFilter<"Alerte"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Alerte"> | string | null
   dateEcheance?: Prisma.DateTimeNullableWithAggregatesFilter<"Alerte"> | Date | string | null
   lue?: Prisma.BoolWithAggregatesFilter<"Alerte"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Alerte"> | Date | string
+  dcsId?: Prisma.StringWithAggregatesFilter<"Alerte"> | string
 }
 
 export type AlerteCreateInput = {
@@ -277,13 +277,13 @@ export type AlerteCreateInput = {
 
 export type AlerteUncheckedCreateInput = {
   id?: string
-  dcsId: string
   type: string
   titre: string
   description?: string | null
   dateEcheance?: Date | string | null
   lue?: boolean
   createdAt?: Date | string
+  dcsId: string
 }
 
 export type AlerteUpdateInput = {
@@ -299,24 +299,24 @@ export type AlerteUpdateInput = {
 
 export type AlerteUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   titre?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AlerteCreateManyInput = {
   id?: string
-  dcsId: string
   type: string
   titre: string
   description?: string | null
   dateEcheance?: Date | string | null
   lue?: boolean
   createdAt?: Date | string
+  dcsId: string
 }
 
 export type AlerteUpdateManyMutationInput = {
@@ -331,13 +331,13 @@ export type AlerteUpdateManyMutationInput = {
 
 export type AlerteUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   titre?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dateEcheance?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lue?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dcsId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AlerteListRelationFilter = {
@@ -352,35 +352,35 @@ export type AlerteOrderByRelationAggregateInput = {
 
 export type AlerteCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  dcsId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   titre?: Prisma.SortOrder
   description?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   lue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  dcsId?: Prisma.SortOrder
 }
 
 export type AlerteMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  dcsId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   titre?: Prisma.SortOrder
   description?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   lue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  dcsId?: Prisma.SortOrder
 }
 
 export type AlerteMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  dcsId?: Prisma.SortOrder
   type?: Prisma.SortOrder
   titre?: Prisma.SortOrder
   description?: Prisma.SortOrder
   dateEcheance?: Prisma.SortOrder
   lue?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  dcsId?: Prisma.SortOrder
 }
 
 export type AlerteCreateNestedManyWithoutDcsInput = {
@@ -476,13 +476,13 @@ export type AlerteScalarWhereInput = {
   OR?: Prisma.AlerteScalarWhereInput[]
   NOT?: Prisma.AlerteScalarWhereInput | Prisma.AlerteScalarWhereInput[]
   id?: Prisma.StringFilter<"Alerte"> | string
-  dcsId?: Prisma.StringFilter<"Alerte"> | string
   type?: Prisma.StringFilter<"Alerte"> | string
   titre?: Prisma.StringFilter<"Alerte"> | string
   description?: Prisma.StringNullableFilter<"Alerte"> | string | null
   dateEcheance?: Prisma.DateTimeNullableFilter<"Alerte"> | Date | string | null
   lue?: Prisma.BoolFilter<"Alerte"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Alerte"> | Date | string
+  dcsId?: Prisma.StringFilter<"Alerte"> | string
 }
 
 export type AlerteCreateManyDcsInput = {
@@ -529,52 +529,52 @@ export type AlerteUncheckedUpdateManyWithoutDcsInput = {
 
 export type AlerteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  dcsId?: boolean
   type?: boolean
   titre?: boolean
   description?: boolean
   dateEcheance?: boolean
   lue?: boolean
   createdAt?: boolean
+  dcsId?: boolean
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["alerte"]>
 
 export type AlerteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  dcsId?: boolean
   type?: boolean
   titre?: boolean
   description?: boolean
   dateEcheance?: boolean
   lue?: boolean
   createdAt?: boolean
+  dcsId?: boolean
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["alerte"]>
 
 export type AlerteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  dcsId?: boolean
   type?: boolean
   titre?: boolean
   description?: boolean
   dateEcheance?: boolean
   lue?: boolean
   createdAt?: boolean
+  dcsId?: boolean
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["alerte"]>
 
 export type AlerteSelectScalar = {
   id?: boolean
-  dcsId?: boolean
   type?: boolean
   titre?: boolean
   description?: boolean
   dateEcheance?: boolean
   lue?: boolean
   createdAt?: boolean
+  dcsId?: boolean
 }
 
-export type AlerteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dcsId" | "type" | "titre" | "description" | "dateEcheance" | "lue" | "createdAt", ExtArgs["result"]["alerte"]>
+export type AlerteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "titre" | "description" | "dateEcheance" | "lue" | "createdAt" | "dcsId", ExtArgs["result"]["alerte"]>
 export type AlerteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   dcs?: boolean | Prisma.DcsDefaultArgs<ExtArgs>
 }
@@ -592,13 +592,13 @@ export type $AlertePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    dcsId: string
     type: string
     titre: string
     description: string | null
     dateEcheance: Date | null
     lue: boolean
     createdAt: Date
+    dcsId: string
   }, ExtArgs["result"]["alerte"]>
   composites: {}
 }
@@ -1024,13 +1024,13 @@ export interface Prisma__AlerteClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface AlerteFieldRefs {
   readonly id: Prisma.FieldRef<"Alerte", 'String'>
-  readonly dcsId: Prisma.FieldRef<"Alerte", 'String'>
   readonly type: Prisma.FieldRef<"Alerte", 'String'>
   readonly titre: Prisma.FieldRef<"Alerte", 'String'>
   readonly description: Prisma.FieldRef<"Alerte", 'String'>
   readonly dateEcheance: Prisma.FieldRef<"Alerte", 'DateTime'>
   readonly lue: Prisma.FieldRef<"Alerte", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Alerte", 'DateTime'>
+  readonly dcsId: Prisma.FieldRef<"Alerte", 'String'>
 }
     
 

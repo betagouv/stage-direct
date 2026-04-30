@@ -19,11 +19,3 @@ export function redirectIfGuest({ context: { session } }: BeforeLoadCtx) {
   }
 }
 
-export function redirectIfProfileComplete({ context: { session } }: BeforeLoadCtx) {
-  if (!session?.user) {
-    throw redirect({ to: "/se-connecter" });
-  }
-  if (session.user.role) {
-    throw redirect({ to: "/" });
-  }
-}

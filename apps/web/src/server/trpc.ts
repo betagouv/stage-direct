@@ -1,7 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
 import type { UserRole } from "~/generated/prisma/enums";
-import { auth } from "./providers/auth";
+import { auth } from "./providers/better-auth";
 import { prisma } from "./providers/prisma";
 
 export const createTRPCContext = async ({ headers }: { headers: Headers }) => {

@@ -1,9 +1,12 @@
 import { QueryClient } from "@tanstack/react-query";
 import { createRouter } from "@tanstack/react-router";
 import { setupRouterSsrQueryIntegration } from "@tanstack/react-router-ssr-query";
-import { createTRPCClient, httpBatchLink } from "@trpc/client";
+import { createServerFn } from "@tanstack/react-start";
+import { getRequestHeaders } from "@tanstack/react-start/server";
+import { createTRPCClient, httpBatchStreamLink, loggerLink } from "@trpc/client";
 import { createTRPCOptionsProxy } from "@trpc/tanstack-react-query";
 import superjson from "superjson";
+import { DefaultCatchBoundary } from "./components/default-catch-boundary";
 import { routeTree } from "./routeTree.gen";
 import type { AppRouter } from "./server/router";
 
@@ -15,18 +18,33 @@ function getTrpcUrl() {
   return `${base}/api/trpc`;
 }
 
+const getSsrHeaders = createServerFn({ method: "GET" }).handler(() =>
+  Object.fromEntries(getRequestHeaders()),
+);
+
 export function getRouter() {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: { staleTime: 5 * 1000 },
+      dehydrate: { serializeData: superjson.serialize },
+      hydrate: { deserializeData: superjson.deserialize },
     },
   });
 
   const trpcClient = createTRPCClient<AppRouter>({
     links: [
-      httpBatchLink({
+      loggerLink({
+        enabled: (op) =>
+          process.env.NODE_ENV === "development" ||
+          (op.direction === "down" && op.result instanceof Error),
+      }),
+      httpBatchStreamLink({
         url: getTrpcUrl(),
         transformer: superjson,
+        async headers() {
+          if (typeof window !== "undefined") return {};
+          return await getSsrHeaders();
+        },
       }),
     ],
   });
@@ -38,6 +56,7 @@ export function getRouter() {
     context: { queryClient, trpcClient, trpc },
     scrollRestoration: true,
     defaultPreload: "intent",
+    defaultErrorComponent: DefaultCatchBoundary,
   });
 
   setupRouterSsrQueryIntegration({ router, queryClient });

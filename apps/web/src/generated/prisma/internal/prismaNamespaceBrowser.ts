@@ -89,6 +89,9 @@ export const UserScalarFieldEnum = {
   id: 'id',
   name: 'name',
   email: 'email',
+  nom: 'nom',
+  prenom: 'prenom',
+  telephone: 'telephone',
   emailVerified: 'emailVerified',
   image: 'image',
   role: 'role',
@@ -105,9 +108,9 @@ export const SessionScalarFieldEnum = {
   expiresAt: 'expiresAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
-  userId: 'userId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 } as const
 
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
@@ -117,7 +120,6 @@ export const AccountScalarFieldEnum = {
   id: 'id',
   accountId: 'accountId',
   providerId: 'providerId',
-  userId: 'userId',
   accessToken: 'accessToken',
   refreshToken: 'refreshToken',
   idToken: 'idToken',
@@ -126,7 +128,8 @@ export const AccountScalarFieldEnum = {
   scope: 'scope',
   password: 'password',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 } as const
 
 export type AccountScalarFieldEnum = (typeof AccountScalarFieldEnum)[keyof typeof AccountScalarFieldEnum]
@@ -173,11 +176,11 @@ export type PromotionScalarFieldEnum = (typeof PromotionScalarFieldEnum)[keyof t
 
 export const DcsScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  juridictionId: 'juridictionId',
   binomeId: 'binomeId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  juridictionId: 'juridictionId'
 } as const
 
 export type DcsScalarFieldEnum = (typeof DcsScalarFieldEnum)[keyof typeof DcsScalarFieldEnum]
@@ -185,10 +188,10 @@ export type DcsScalarFieldEnum = (typeof DcsScalarFieldEnum)[keyof typeof DcsSca
 
 export const CrfScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   region: 'region',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 } as const
 
 export type CrfScalarFieldEnum = (typeof CrfScalarFieldEnum)[keyof typeof CrfScalarFieldEnum]
@@ -196,14 +199,11 @@ export type CrfScalarFieldEnum = (typeof CrfScalarFieldEnum)[keyof typeof CrfSca
 
 export const MdsScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  nom: 'nom',
-  prenom: 'prenom',
-  email: 'email',
   fonction: 'fonction',
-  juridictionId: 'juridictionId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  juridictionId: 'juridictionId'
 } as const
 
 export type MdsScalarFieldEnum = (typeof MdsScalarFieldEnum)[keyof typeof MdsScalarFieldEnum]
@@ -211,15 +211,12 @@ export type MdsScalarFieldEnum = (typeof MdsScalarFieldEnum)[keyof typeof MdsSca
 
 export const AuditeurScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
-  nom: 'nom',
-  prenom: 'prenom',
-  email: 'email',
   type: 'type',
-  promotionId: 'promotionId',
   cvUrl: 'cvUrl',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId',
+  promotionId: 'promotionId'
 } as const
 
 export type AuditeurScalarFieldEnum = (typeof AuditeurScalarFieldEnum)[keyof typeof AuditeurScalarFieldEnum]
@@ -227,18 +224,18 @@ export type AuditeurScalarFieldEnum = (typeof AuditeurScalarFieldEnum)[keyof typ
 
 export const StageScalarFieldEnum = {
   id: 'id',
-  auditeurId: 'auditeurId',
   fonction: 'fonction',
   ordre: 'ordre',
   dateDebut: 'dateDebut',
   dateFin: 'dateFin',
   duree: 'duree',
   statut: 'statut',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  auditeurId: 'auditeurId',
   juridictionId: 'juridictionId',
   dcsId: 'dcsId',
-  mdsId: 'mdsId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  mdsId: 'mdsId'
 } as const
 
 export type StageScalarFieldEnum = (typeof StageScalarFieldEnum)[keyof typeof StageScalarFieldEnum]
@@ -246,8 +243,6 @@ export type StageScalarFieldEnum = (typeof StageScalarFieldEnum)[keyof typeof St
 
 export const EvaluationScalarFieldEnum = {
   id: 'id',
-  stageId: 'stageId',
-  mdsId: 'mdsId',
   statut: 'statut',
   lienEvaluation: 'lienEvaluation',
   dateEnvoi: 'dateEnvoi',
@@ -256,7 +251,9 @@ export const EvaluationScalarFieldEnum = {
   contenu: 'contenu',
   commentaire: 'commentaire',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  stageId: 'stageId',
+  mdsId: 'mdsId'
 } as const
 
 export type EvaluationScalarFieldEnum = (typeof EvaluationScalarFieldEnum)[keyof typeof EvaluationScalarFieldEnum]
@@ -264,14 +261,14 @@ export type EvaluationScalarFieldEnum = (typeof EvaluationScalarFieldEnum)[keyof
 
 export const EvaluationCrfScalarFieldEnum = {
   id: 'id',
-  crfId: 'crfId',
   auditeurId: 'auditeurId',
   audienceNumero: 'audienceNumero',
   dateAudience: 'dateAudience',
   contenu: 'contenu',
   commentaire: 'commentaire',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  crfId: 'crfId'
 } as const
 
 export type EvaluationCrfScalarFieldEnum = (typeof EvaluationCrfScalarFieldEnum)[keyof typeof EvaluationCrfScalarFieldEnum]
@@ -279,12 +276,12 @@ export type EvaluationCrfScalarFieldEnum = (typeof EvaluationCrfScalarFieldEnum)
 
 export const RelanceScalarFieldEnum = {
   id: 'id',
-  evaluationId: 'evaluationId',
   dateRelance: 'dateRelance',
   type: 'type',
   canal: 'canal',
   destinataire: 'destinataire',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  evaluationId: 'evaluationId'
 } as const
 
 export type RelanceScalarFieldEnum = (typeof RelanceScalarFieldEnum)[keyof typeof RelanceScalarFieldEnum]
@@ -292,13 +289,13 @@ export type RelanceScalarFieldEnum = (typeof RelanceScalarFieldEnum)[keyof typeo
 
 export const AlerteScalarFieldEnum = {
   id: 'id',
-  dcsId: 'dcsId',
   type: 'type',
   titre: 'titre',
   description: 'description',
   dateEcheance: 'dateEcheance',
   lue: 'lue',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  dcsId: 'dcsId'
 } as const
 
 export type AlerteScalarFieldEnum = (typeof AlerteScalarFieldEnum)[keyof typeof AlerteScalarFieldEnum]

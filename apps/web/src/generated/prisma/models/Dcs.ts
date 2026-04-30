@@ -26,58 +26,58 @@ export type AggregateDcs = {
 
 export type DcsMinAggregateOutputType = {
   id: string | null
-  userId: string | null
-  juridictionId: string | null
   binomeId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  juridictionId: string | null
 }
 
 export type DcsMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
-  juridictionId: string | null
   binomeId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  juridictionId: string | null
 }
 
 export type DcsCountAggregateOutputType = {
   id: number
-  userId: number
-  juridictionId: number
   binomeId: number
   createdAt: number
   updatedAt: number
+  userId: number
+  juridictionId: number
   _all: number
 }
 
 
 export type DcsMinAggregateInputType = {
   id?: true
-  userId?: true
-  juridictionId?: true
   binomeId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
 }
 
 export type DcsMaxAggregateInputType = {
   id?: true
-  userId?: true
-  juridictionId?: true
   binomeId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
 }
 
 export type DcsCountAggregateInputType = {
   id?: true
-  userId?: true
-  juridictionId?: true
   binomeId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
   _all?: true
 }
 
@@ -155,11 +155,11 @@ export type DcsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type DcsGroupByOutputType = {
   id: string
-  userId: string
-  juridictionId: string
   binomeId: string | null
   createdAt: Date
   updatedAt: Date
+  userId: string
+  juridictionId: string
   _count: DcsCountAggregateOutputType | null
   _min: DcsMinAggregateOutputType | null
   _max: DcsMaxAggregateOutputType | null
@@ -185,28 +185,28 @@ export type DcsWhereInput = {
   OR?: Prisma.DcsWhereInput[]
   NOT?: Prisma.DcsWhereInput | Prisma.DcsWhereInput[]
   id?: Prisma.StringFilter<"Dcs"> | string
-  userId?: Prisma.StringFilter<"Dcs"> | string
-  juridictionId?: Prisma.StringFilter<"Dcs"> | string
   binomeId?: Prisma.StringNullableFilter<"Dcs"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
+  userId?: Prisma.StringFilter<"Dcs"> | string
+  juridictionId?: Prisma.StringFilter<"Dcs"> | string
   stages?: Prisma.StageListRelationFilter
   alertes?: Prisma.AlerteListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
 }
 
 export type DcsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   binomeId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  juridiction?: Prisma.JuridictionOrderByWithRelationInput
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
   stages?: Prisma.StageOrderByRelationAggregateInput
   alertes?: Prisma.AlerteOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
+  juridiction?: Prisma.JuridictionOrderByWithRelationInput
 }
 
 export type DcsWhereUniqueInput = Prisma.AtLeast<{
@@ -215,23 +215,23 @@ export type DcsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.DcsWhereInput | Prisma.DcsWhereInput[]
   OR?: Prisma.DcsWhereInput[]
   NOT?: Prisma.DcsWhereInput | Prisma.DcsWhereInput[]
-  juridictionId?: Prisma.StringFilter<"Dcs"> | string
   binomeId?: Prisma.StringNullableFilter<"Dcs"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
+  juridictionId?: Prisma.StringFilter<"Dcs"> | string
   stages?: Prisma.StageListRelationFilter
   alertes?: Prisma.AlerteListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
 }, "id" | "userId">
 
 export type DcsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   binomeId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
   _count?: Prisma.DcsCountOrderByAggregateInput
   _max?: Prisma.DcsMaxOrderByAggregateInput
   _min?: Prisma.DcsMinOrderByAggregateInput
@@ -242,11 +242,11 @@ export type DcsScalarWhereWithAggregatesInput = {
   OR?: Prisma.DcsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DcsScalarWhereWithAggregatesInput | Prisma.DcsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Dcs"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Dcs"> | string
-  juridictionId?: Prisma.StringWithAggregatesFilter<"Dcs"> | string
   binomeId?: Prisma.StringNullableWithAggregatesFilter<"Dcs"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Dcs"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Dcs"> | Date | string
+  userId?: Prisma.StringWithAggregatesFilter<"Dcs"> | string
+  juridictionId?: Prisma.StringWithAggregatesFilter<"Dcs"> | string
 }
 
 export type DcsCreateInput = {
@@ -254,19 +254,19 @@ export type DcsCreateInput = {
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutDcsInput
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
   stages?: Prisma.StageCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteCreateNestedManyWithoutDcsInput
+  user: Prisma.UserCreateNestedOneWithoutDcsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
 }
 
 export type DcsUncheckedCreateInput = {
   id?: string
-  userId: string
-  juridictionId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteUncheckedCreateNestedManyWithoutDcsInput
 }
@@ -276,30 +276,30 @@ export type DcsUpdateInput = {
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
   stages?: Prisma.StageUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUpdateManyWithoutDcsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUncheckedUpdateManyWithoutDcsNestedInput
 }
 
 export type DcsCreateManyInput = {
   id?: string
-  userId: string
-  juridictionId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
 }
 
 export type DcsUpdateManyMutationInput = {
@@ -311,11 +311,11 @@ export type DcsUpdateManyMutationInput = {
 
 export type DcsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type DcsNullableScalarRelationFilter = {
@@ -335,29 +335,29 @@ export type DcsOrderByRelationAggregateInput = {
 
 export type DcsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   binomeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type DcsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   binomeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type DcsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   binomeId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type DcsScalarRelationFilter = {
@@ -472,17 +472,17 @@ export type DcsCreateWithoutUserInput = {
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
   stages?: Prisma.StageCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteCreateNestedManyWithoutDcsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
 }
 
 export type DcsUncheckedCreateWithoutUserInput = {
   id?: string
-  juridictionId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteUncheckedCreateNestedManyWithoutDcsInput
 }
@@ -508,17 +508,17 @@ export type DcsUpdateWithoutUserInput = {
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
   stages?: Prisma.StageUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUpdateManyWithoutDcsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUncheckedUpdateManyWithoutDcsNestedInput
 }
@@ -528,17 +528,17 @@ export type DcsCreateWithoutJuridictionInput = {
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutDcsInput
   stages?: Prisma.StageCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteCreateNestedManyWithoutDcsInput
+  user: Prisma.UserCreateNestedOneWithoutDcsInput
 }
 
 export type DcsUncheckedCreateWithoutJuridictionInput = {
   id?: string
-  userId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutDcsInput
   alertes?: Prisma.AlerteUncheckedCreateNestedManyWithoutDcsInput
 }
@@ -574,11 +574,11 @@ export type DcsScalarWhereInput = {
   OR?: Prisma.DcsScalarWhereInput[]
   NOT?: Prisma.DcsScalarWhereInput | Prisma.DcsScalarWhereInput[]
   id?: Prisma.StringFilter<"Dcs"> | string
-  userId?: Prisma.StringFilter<"Dcs"> | string
-  juridictionId?: Prisma.StringFilter<"Dcs"> | string
   binomeId?: Prisma.StringNullableFilter<"Dcs"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Dcs"> | Date | string
+  userId?: Prisma.StringFilter<"Dcs"> | string
+  juridictionId?: Prisma.StringFilter<"Dcs"> | string
 }
 
 export type DcsCreateWithoutStagesInput = {
@@ -586,18 +586,18 @@ export type DcsCreateWithoutStagesInput = {
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  alertes?: Prisma.AlerteCreateNestedManyWithoutDcsInput
   user: Prisma.UserCreateNestedOneWithoutDcsInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
-  alertes?: Prisma.AlerteCreateNestedManyWithoutDcsInput
 }
 
 export type DcsUncheckedCreateWithoutStagesInput = {
   id?: string
-  userId: string
-  juridictionId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   alertes?: Prisma.AlerteUncheckedCreateNestedManyWithoutDcsInput
 }
 
@@ -622,18 +622,18 @@ export type DcsUpdateWithoutStagesInput = {
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  alertes?: Prisma.AlerteUpdateManyWithoutDcsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
-  alertes?: Prisma.AlerteUpdateManyWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   alertes?: Prisma.AlerteUncheckedUpdateManyWithoutDcsNestedInput
 }
 
@@ -642,18 +642,18 @@ export type DcsCreateWithoutAlertesInput = {
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  stages?: Prisma.StageCreateNestedManyWithoutDcsInput
   user: Prisma.UserCreateNestedOneWithoutDcsInput
   juridiction: Prisma.JuridictionCreateNestedOneWithoutDcsInput
-  stages?: Prisma.StageCreateNestedManyWithoutDcsInput
 }
 
 export type DcsUncheckedCreateWithoutAlertesInput = {
   id?: string
-  userId: string
-  juridictionId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutDcsInput
 }
 
@@ -678,27 +678,27 @@ export type DcsUpdateWithoutAlertesInput = {
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stages?: Prisma.StageUpdateManyWithoutDcsNestedInput
   user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
   juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutDcsNestedInput
-  stages?: Prisma.StageUpdateManyWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateWithoutAlertesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutDcsNestedInput
 }
 
 export type DcsCreateManyJuridictionInput = {
   id?: string
-  userId: string
   binomeId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
 }
 
 export type DcsUpdateWithoutJuridictionInput = {
@@ -706,27 +706,27 @@ export type DcsUpdateWithoutJuridictionInput = {
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
   stages?: Prisma.StageUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUpdateManyWithoutDcsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutDcsNestedInput
   alertes?: Prisma.AlerteUncheckedUpdateManyWithoutDcsNestedInput
 }
 
 export type DcsUncheckedUpdateManyWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   binomeId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -771,55 +771,55 @@ export type DcsCountOutputTypeCountAlertesArgs<ExtArgs extends runtime.Types.Ext
 
 export type DcsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  juridictionId?: boolean
   binomeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
+  userId?: boolean
+  juridictionId?: boolean
   stages?: boolean | Prisma.Dcs$stagesArgs<ExtArgs>
   alertes?: boolean | Prisma.Dcs$alertesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DcsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dcs"]>
 
 export type DcsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  juridictionId?: boolean
   binomeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  juridictionId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dcs"]>
 
 export type DcsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  juridictionId?: boolean
   binomeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  juridictionId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["dcs"]>
 
 export type DcsSelectScalar = {
   id?: boolean
-  userId?: boolean
-  juridictionId?: boolean
   binomeId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  juridictionId?: boolean
 }
 
-export type DcsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "juridictionId" | "binomeId" | "createdAt" | "updatedAt", ExtArgs["result"]["dcs"]>
+export type DcsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "binomeId" | "createdAt" | "updatedAt" | "userId" | "juridictionId", ExtArgs["result"]["dcs"]>
 export type DcsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   stages?: boolean | Prisma.Dcs$stagesArgs<ExtArgs>
   alertes?: boolean | Prisma.Dcs$alertesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.DcsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type DcsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -834,18 +834,18 @@ export type DcsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type $DcsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Dcs"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
-    juridiction: Prisma.$JuridictionPayload<ExtArgs>
     stages: Prisma.$StagePayload<ExtArgs>[]
     alertes: Prisma.$AlertePayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
+    juridiction: Prisma.$JuridictionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string
-    juridictionId: string
     binomeId: string | null
     createdAt: Date
     updatedAt: Date
+    userId: string
+    juridictionId: string
   }, ExtArgs["result"]["dcs"]>
   composites: {}
 }
@@ -1240,10 +1240,10 @@ readonly fields: DcsFieldRefs;
  */
 export interface Prisma__DcsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  juridiction<T extends Prisma.JuridictionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JuridictionDefaultArgs<ExtArgs>>): Prisma.Prisma__JuridictionClient<runtime.Types.Result.GetResult<Prisma.$JuridictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stages<T extends Prisma.Dcs$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dcs$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   alertes<T extends Prisma.Dcs$alertesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Dcs$alertesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AlertePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  juridiction<T extends Prisma.JuridictionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JuridictionDefaultArgs<ExtArgs>>): Prisma.Prisma__JuridictionClient<runtime.Types.Result.GetResult<Prisma.$JuridictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1274,11 +1274,11 @@ export interface Prisma__DcsClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface DcsFieldRefs {
   readonly id: Prisma.FieldRef<"Dcs", 'String'>
-  readonly userId: Prisma.FieldRef<"Dcs", 'String'>
-  readonly juridictionId: Prisma.FieldRef<"Dcs", 'String'>
   readonly binomeId: Prisma.FieldRef<"Dcs", 'String'>
   readonly createdAt: Prisma.FieldRef<"Dcs", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Dcs", 'DateTime'>
+  readonly userId: Prisma.FieldRef<"Dcs", 'String'>
+  readonly juridictionId: Prisma.FieldRef<"Dcs", 'String'>
 }
     
 

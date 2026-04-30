@@ -26,82 +26,64 @@ export type AggregateAuditeur = {
 
 export type AuditeurMinAggregateOutputType = {
   id: string | null
-  userId: string | null
-  nom: string | null
-  prenom: string | null
-  email: string | null
   type: $Enums.TypeApprenant | null
-  promotionId: string | null
   cvUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  promotionId: string | null
 }
 
 export type AuditeurMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
-  nom: string | null
-  prenom: string | null
-  email: string | null
   type: $Enums.TypeApprenant | null
-  promotionId: string | null
   cvUrl: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  promotionId: string | null
 }
 
 export type AuditeurCountAggregateOutputType = {
   id: number
-  userId: number
-  nom: number
-  prenom: number
-  email: number
   type: number
-  promotionId: number
   cvUrl: number
   createdAt: number
   updatedAt: number
+  userId: number
+  promotionId: number
   _all: number
 }
 
 
 export type AuditeurMinAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   type?: true
-  promotionId?: true
   cvUrl?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  promotionId?: true
 }
 
 export type AuditeurMaxAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   type?: true
-  promotionId?: true
   cvUrl?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  promotionId?: true
 }
 
 export type AuditeurCountAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   type?: true
-  promotionId?: true
   cvUrl?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  promotionId?: true
   _all?: true
 }
 
@@ -179,15 +161,12 @@ export type AuditeurGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type AuditeurGroupByOutputType = {
   id: string
-  userId: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
-  promotionId: string
   cvUrl: string | null
   createdAt: Date
   updatedAt: Date
+  userId: string
+  promotionId: string
   _count: AuditeurCountAggregateOutputType | null
   _min: AuditeurMinAggregateOutputType | null
   _max: AuditeurMaxAggregateOutputType | null
@@ -213,34 +192,28 @@ export type AuditeurWhereInput = {
   OR?: Prisma.AuditeurWhereInput[]
   NOT?: Prisma.AuditeurWhereInput | Prisma.AuditeurWhereInput[]
   id?: Prisma.StringFilter<"Auditeur"> | string
-  userId?: Prisma.StringNullableFilter<"Auditeur"> | string | null
-  nom?: Prisma.StringFilter<"Auditeur"> | string
-  prenom?: Prisma.StringFilter<"Auditeur"> | string
-  email?: Prisma.StringFilter<"Auditeur"> | string
   type?: Prisma.EnumTypeApprenantFilter<"Auditeur"> | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFilter<"Auditeur"> | string
   cvUrl?: Prisma.StringNullableFilter<"Auditeur"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  promotion?: Prisma.XOR<Prisma.PromotionScalarRelationFilter, Prisma.PromotionWhereInput>
+  userId?: Prisma.StringFilter<"Auditeur"> | string
+  promotionId?: Prisma.StringFilter<"Auditeur"> | string
   stages?: Prisma.StageListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  promotion?: Prisma.XOR<Prisma.PromotionScalarRelationFilter, Prisma.PromotionWhereInput>
 }
 
 export type AuditeurOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  promotionId?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  promotionId?: Prisma.SortOrder
+  stages?: Prisma.StageOrderByRelationAggregateInput
   user?: Prisma.UserOrderByWithRelationInput
   promotion?: Prisma.PromotionOrderByWithRelationInput
-  stages?: Prisma.StageOrderByRelationAggregateInput
 }
 
 export type AuditeurWhereUniqueInput = Prisma.AtLeast<{
@@ -249,30 +222,24 @@ export type AuditeurWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.AuditeurWhereInput | Prisma.AuditeurWhereInput[]
   OR?: Prisma.AuditeurWhereInput[]
   NOT?: Prisma.AuditeurWhereInput | Prisma.AuditeurWhereInput[]
-  nom?: Prisma.StringFilter<"Auditeur"> | string
-  prenom?: Prisma.StringFilter<"Auditeur"> | string
-  email?: Prisma.StringFilter<"Auditeur"> | string
   type?: Prisma.EnumTypeApprenantFilter<"Auditeur"> | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFilter<"Auditeur"> | string
   cvUrl?: Prisma.StringNullableFilter<"Auditeur"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  promotion?: Prisma.XOR<Prisma.PromotionScalarRelationFilter, Prisma.PromotionWhereInput>
+  promotionId?: Prisma.StringFilter<"Auditeur"> | string
   stages?: Prisma.StageListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  promotion?: Prisma.XOR<Prisma.PromotionScalarRelationFilter, Prisma.PromotionWhereInput>
 }, "id" | "userId">
 
 export type AuditeurOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  promotionId?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  promotionId?: Prisma.SortOrder
   _count?: Prisma.AuditeurCountOrderByAggregateInput
   _max?: Prisma.AuditeurMaxOrderByAggregateInput
   _min?: Prisma.AuditeurMinOrderByAggregateInput
@@ -283,91 +250,70 @@ export type AuditeurScalarWhereWithAggregatesInput = {
   OR?: Prisma.AuditeurScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AuditeurScalarWhereWithAggregatesInput | Prisma.AuditeurScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
-  userId?: Prisma.StringNullableWithAggregatesFilter<"Auditeur"> | string | null
-  nom?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
-  prenom?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
-  email?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
   type?: Prisma.EnumTypeApprenantWithAggregatesFilter<"Auditeur"> | $Enums.TypeApprenant
-  promotionId?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
   cvUrl?: Prisma.StringNullableWithAggregatesFilter<"Auditeur"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Auditeur"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Auditeur"> | Date | string
+  userId?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
+  promotionId?: Prisma.StringWithAggregatesFilter<"Auditeur"> | string
 }
 
 export type AuditeurCreateInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutAuditeurInput
-  promotion: Prisma.PromotionCreateNestedOneWithoutAuditeursInput
   stages?: Prisma.StageCreateNestedManyWithoutAuditeurInput
+  user: Prisma.UserCreateNestedOneWithoutAuditeurInput
+  promotion: Prisma.PromotionCreateNestedOneWithoutAuditeursInput
 }
 
 export type AuditeurUncheckedCreateInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
-  promotionId: string
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  promotionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutAuditeurInput
 }
 
 export type AuditeurUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutAuditeurNestedInput
-  promotion?: Prisma.PromotionUpdateOneRequiredWithoutAuditeursNestedInput
   stages?: Prisma.StageUpdateManyWithoutAuditeurNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAuditeurNestedInput
+  promotion?: Prisma.PromotionUpdateOneRequiredWithoutAuditeursNestedInput
 }
 
 export type AuditeurUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutAuditeurNestedInput
 }
 
 export type AuditeurCreateManyInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
-  promotionId: string
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  promotionId: string
 }
 
 export type AuditeurUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -376,15 +322,12 @@ export type AuditeurUpdateManyMutationInput = {
 
 export type AuditeurUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuditeurNullableScalarRelationFilter = {
@@ -404,41 +347,32 @@ export type AuditeurOrderByRelationAggregateInput = {
 
 export type AuditeurCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  promotionId?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  promotionId?: Prisma.SortOrder
 }
 
 export type AuditeurMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  promotionId?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  promotionId?: Prisma.SortOrder
 }
 
 export type AuditeurMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   type?: Prisma.SortOrder
-  promotionId?: Prisma.SortOrder
   cvUrl?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  promotionId?: Prisma.SortOrder
 }
 
 export type AuditeurScalarRelationFilter = {
@@ -536,27 +470,21 @@ export type AuditeurUpdateOneRequiredWithoutStagesNestedInput = {
 
 export type AuditeurCreateWithoutUserInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  promotion: Prisma.PromotionCreateNestedOneWithoutAuditeursInput
   stages?: Prisma.StageCreateNestedManyWithoutAuditeurInput
+  promotion: Prisma.PromotionCreateNestedOneWithoutAuditeursInput
 }
 
 export type AuditeurUncheckedCreateWithoutUserInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
-  promotionId: string
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  promotionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutAuditeurInput
 }
 
@@ -578,53 +506,41 @@ export type AuditeurUpdateToOneWithWhereWithoutUserInput = {
 
 export type AuditeurUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  promotion?: Prisma.PromotionUpdateOneRequiredWithoutAuditeursNestedInput
   stages?: Prisma.StageUpdateManyWithoutAuditeurNestedInput
+  promotion?: Prisma.PromotionUpdateOneRequiredWithoutAuditeursNestedInput
 }
 
 export type AuditeurUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutAuditeurNestedInput
 }
 
 export type AuditeurCreateWithoutPromotionInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutAuditeurInput
   stages?: Prisma.StageCreateNestedManyWithoutAuditeurInput
+  user: Prisma.UserCreateNestedOneWithoutAuditeurInput
 }
 
 export type AuditeurUncheckedCreateWithoutPromotionInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutAuditeurInput
 }
 
@@ -659,41 +575,32 @@ export type AuditeurScalarWhereInput = {
   OR?: Prisma.AuditeurScalarWhereInput[]
   NOT?: Prisma.AuditeurScalarWhereInput | Prisma.AuditeurScalarWhereInput[]
   id?: Prisma.StringFilter<"Auditeur"> | string
-  userId?: Prisma.StringNullableFilter<"Auditeur"> | string | null
-  nom?: Prisma.StringFilter<"Auditeur"> | string
-  prenom?: Prisma.StringFilter<"Auditeur"> | string
-  email?: Prisma.StringFilter<"Auditeur"> | string
   type?: Prisma.EnumTypeApprenantFilter<"Auditeur"> | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFilter<"Auditeur"> | string
   cvUrl?: Prisma.StringNullableFilter<"Auditeur"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Auditeur"> | Date | string
+  userId?: Prisma.StringFilter<"Auditeur"> | string
+  promotionId?: Prisma.StringFilter<"Auditeur"> | string
 }
 
 export type AuditeurCreateWithoutStagesInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutAuditeurInput
+  user: Prisma.UserCreateNestedOneWithoutAuditeurInput
   promotion: Prisma.PromotionCreateNestedOneWithoutAuditeursInput
 }
 
 export type AuditeurUncheckedCreateWithoutStagesInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
-  promotionId: string
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  promotionId: string
 }
 
 export type AuditeurCreateOrConnectWithoutStagesInput = {
@@ -714,78 +621,60 @@ export type AuditeurUpdateToOneWithWhereWithoutStagesInput = {
 
 export type AuditeurUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutAuditeurNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAuditeurNestedInput
   promotion?: Prisma.PromotionUpdateOneRequiredWithoutAuditeursNestedInput
 }
 
 export type AuditeurUncheckedUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
-  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  promotionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AuditeurCreateManyPromotionInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   type: $Enums.TypeApprenant
   cvUrl?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
 }
 
 export type AuditeurUpdateWithoutPromotionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutAuditeurNestedInput
   stages?: Prisma.StageUpdateManyWithoutAuditeurNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutAuditeurNestedInput
 }
 
 export type AuditeurUncheckedUpdateWithoutPromotionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutAuditeurNestedInput
 }
 
 export type AuditeurUncheckedUpdateManyWithoutPromotionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.EnumTypeApprenantFieldUpdateOperationsInput | $Enums.TypeApprenant
   cvUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -821,98 +710,83 @@ export type AuditeurCountOutputTypeCountStagesArgs<ExtArgs extends runtime.Types
 
 export type AuditeurSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   type?: boolean
-  promotionId?: boolean
   cvUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
-  promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
+  userId?: boolean
+  promotionId?: boolean
   stages?: boolean | Prisma.Auditeur$stagesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AuditeurCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["auditeur"]>
 
 export type AuditeurSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   type?: boolean
-  promotionId?: boolean
   cvUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
+  userId?: boolean
+  promotionId?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["auditeur"]>
 
 export type AuditeurSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   type?: boolean
-  promotionId?: boolean
   cvUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
+  userId?: boolean
+  promotionId?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["auditeur"]>
 
 export type AuditeurSelectScalar = {
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   type?: boolean
-  promotionId?: boolean
   cvUrl?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  promotionId?: boolean
 }
 
-export type AuditeurOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "nom" | "prenom" | "email" | "type" | "promotionId" | "cvUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["auditeur"]>
+export type AuditeurOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "cvUrl" | "createdAt" | "updatedAt" | "userId" | "promotionId", ExtArgs["result"]["auditeur"]>
 export type AuditeurInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
-  promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
   stages?: boolean | Prisma.Auditeur$stagesArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.AuditeurCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AuditeurIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
 }
 export type AuditeurIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Auditeur$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   promotion?: boolean | Prisma.PromotionDefaultArgs<ExtArgs>
 }
 
 export type $AuditeurPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Auditeur"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs> | null
-    promotion: Prisma.$PromotionPayload<ExtArgs>
     stages: Prisma.$StagePayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
+    promotion: Prisma.$PromotionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string | null
-    nom: string
-    prenom: string
-    email: string
     type: $Enums.TypeApprenant
-    promotionId: string
     cvUrl: string | null
     createdAt: Date
     updatedAt: Date
+    userId: string
+    promotionId: string
   }, ExtArgs["result"]["auditeur"]>
   composites: {}
 }
@@ -1307,9 +1181,9 @@ readonly fields: AuditeurFieldRefs;
  */
 export interface Prisma__AuditeurClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.Auditeur$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Auditeur$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  promotion<T extends Prisma.PromotionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PromotionDefaultArgs<ExtArgs>>): Prisma.Prisma__PromotionClient<runtime.Types.Result.GetResult<Prisma.$PromotionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stages<T extends Prisma.Auditeur$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Auditeur$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  promotion<T extends Prisma.PromotionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PromotionDefaultArgs<ExtArgs>>): Prisma.Prisma__PromotionClient<runtime.Types.Result.GetResult<Prisma.$PromotionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1340,15 +1214,12 @@ export interface Prisma__AuditeurClient<T, Null = never, ExtArgs extends runtime
  */
 export interface AuditeurFieldRefs {
   readonly id: Prisma.FieldRef<"Auditeur", 'String'>
-  readonly userId: Prisma.FieldRef<"Auditeur", 'String'>
-  readonly nom: Prisma.FieldRef<"Auditeur", 'String'>
-  readonly prenom: Prisma.FieldRef<"Auditeur", 'String'>
-  readonly email: Prisma.FieldRef<"Auditeur", 'String'>
   readonly type: Prisma.FieldRef<"Auditeur", 'TypeApprenant'>
-  readonly promotionId: Prisma.FieldRef<"Auditeur", 'String'>
   readonly cvUrl: Prisma.FieldRef<"Auditeur", 'String'>
   readonly createdAt: Prisma.FieldRef<"Auditeur", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Auditeur", 'DateTime'>
+  readonly userId: Prisma.FieldRef<"Auditeur", 'String'>
+  readonly promotionId: Prisma.FieldRef<"Auditeur", 'String'>
 }
     
 
@@ -1747,25 +1618,6 @@ export type AuditeurDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Auditeurs to delete.
    */
   limit?: number
-}
-
-/**
- * Auditeur.user
- */
-export type Auditeur$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
 }
 
 /**

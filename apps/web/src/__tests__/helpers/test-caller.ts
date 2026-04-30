@@ -6,6 +6,10 @@ type Session = {
     id: string;
     email: string;
     name: string;
+    role: string;
+    nom: string;
+    prenom: string;
+    telephone: string | null;
     emailVerified: boolean;
     image: string | null;
     createdAt: Date;
@@ -25,11 +29,16 @@ type Session = {
 
 function makeSession(overrides: { id: string; email: string; name: string }): Session {
   const now = new Date();
+  const [prenom, nom] = overrides.name.split(" ");
   return {
     user: {
       id: overrides.id,
       email: overrides.email,
       name: overrides.name,
+      role: "DCS",
+      nom: nom ?? overrides.name,
+      prenom: prenom ?? overrides.name,
+      telephone: null,
       emailVerified: true,
       image: null,
       createdAt: now,
@@ -59,28 +68,28 @@ export const caller = createCaller(null);
 
 export const dcsSession = makeSession({
   id: "dcs-test-id",
-  email: "dcs.test@justice.fr",
+  email: "stagedirect-dcs.test@justice.fr",
   name: "DCS Test",
 });
 export const dcsCaller = createCaller(dcsSession);
 
 export const crfSession = makeSession({
   id: "crf-test-id",
-  email: "crf.test@justice.fr",
+  email: "stagedirect-crf.test@justice.fr",
   name: "CRF Test",
 });
 export const crfCaller = createCaller(crfSession);
 
 export const adjSession = makeSession({
   id: "adj-test-id",
-  email: "adj.test@enm.justice.fr",
+  email: "stagedirect-adj.test@justice.fr",
   name: "ADJ Test",
 });
 export const adjCaller = createCaller(adjSession);
 
 export const adminSession = makeSession({
   id: "admin-test-id",
-  email: "admin@stage-direct.beta.gouv.fr",
+  email: "stagedirect-admin@justice.fr",
   name: "Admin Test",
 });
 export const adminCaller = createCaller(adminSession);

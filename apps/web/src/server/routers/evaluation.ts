@@ -11,8 +11,8 @@ export const evaluationRouter = router({
           .optional(),
       }),
     )
-    .query(({ ctx, input }) => {
-      return ctx.prisma.evaluation.findMany({
+    .query(async ({ ctx, input }) => {
+      const evaluations = await ctx.prisma.evaluation.findMany({
         where: {
           stage: { dcsId: input.dcsId },
           statut: input.statut,
@@ -23,14 +23,32 @@ export const evaluationRouter = router({
               fonction: true,
               dateDebut: true,
               dateFin: true,
-              auditeur: { select: { nom: true, prenom: true } },
+              auditeur: { include: { user: { select: { nom: true, prenom: true } } } },
             },
           },
-          mds: { select: { nom: true, prenom: true, email: true } },
+          mds: { include: { user: { select: { nom: true, prenom: true, email: true } } } },
           _count: { select: { relances: true } },
         },
         orderBy: { dateLimite: "asc" },
       });
+
+      return evaluations.map(({ stage, mds, ...evaluation }) => ({
+        ...evaluation,
+        stage: {
+          ...stage,
+          auditeur: {
+            ...stage.auditeur,
+            nom: stage.auditeur.user.nom,
+            prenom: stage.auditeur.user.prenom,
+          },
+        },
+        mds: {
+          ...mds,
+          nom: mds.user.nom,
+          prenom: mds.user.prenom,
+          email: mds.user.email,
+        },
+      }));
     }),
 
   updateStatut: dcsProcedure

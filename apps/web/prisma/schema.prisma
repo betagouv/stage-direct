@@ -53,14 +53,17 @@ enum StatutStage {
 // ── Auth ────────────────────────────────────────────────
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified Boolean   @default(false)
-  image         String?
-  role          UserRole?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id            String    @id @default(cuid()) @map("id")
+  name          String?   @map("name")
+  email         String    @unique @map("email")
+  nom           String   @map("nom")
+  prenom        String   @map("prenom")
+  telephone     String?   @map("telephone")
+  emailVerified Boolean   @default(false) @map("email_verified")
+  image         String?   @map("image")
+  role          UserRole @map("role")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
 
   sessions Session[]
   accounts Account[]
@@ -68,217 +71,248 @@ model User {
   crf      Crf?
   mds      Mds?
   auditeur Auditeur?
+
+  @@map("user")
 }
 
 model Session {
-  id        String   @id @default(cuid())
-  token     String   @unique
-  expiresAt DateTime
-  ipAddress String?
-  userAgent String?
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid()) @map("id")
+  token     String   @unique @map("token")
+  expiresAt DateTime @map("expires_at")
+  ipAddress String?  @map("ip_address")
+  userAgent String?  @map("user_agent")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("session")
 }
 
 model Account {
-  id                    String    @id @default(cuid())
-  accountId             String
-  providerId            String
-  userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  accessToken           String?
-  refreshToken          String?
-  idToken               String?
-  accessTokenExpiresAt  DateTime?
-  refreshTokenExpiresAt DateTime?
-  scope                 String?
-  password              String?
-  createdAt             DateTime  @default(now())
-  updatedAt             DateTime  @updatedAt
+  id                    String    @id @default(cuid()) @map("id")
+  accountId             String    @map("account_id")
+  providerId            String    @map("provider_id")
+  accessToken           String?   @map("access_token")
+  refreshToken          String?   @map("refresh_token")
+  idToken               String?   @map("id_token")
+  accessTokenExpiresAt  DateTime? @map("access_token_expires_at")
+  refreshTokenExpiresAt DateTime? @map("refresh_token_expires_at")
+  scope                 String?   @map("scope")
+  password              String?   @map("password")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("account")
 }
 
 model Verification {
-  id         String   @id @default(cuid())
-  identifier String
-  value      String
-  expiresAt  DateTime
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id         String   @id @default(cuid()) @map("id")
+  identifier String   @map("identifier")
+  value      String   @map("value")
+  expiresAt  DateTime @map("expires_at")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("verification")
 }
 
 // ── Metier ──────────────────────────────────────────────
 
 model Juridiction {
-  id        String   @id @default(cuid())
-  nom       String
-  ville     String
-  region    String
-  taille    String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid()) @map("id")
+  nom       String   @map("nom")
+  ville     String   @map("ville")
+  region    String   @map("region")
+  taille    String?  @map("taille")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   dcs    Dcs[]
   mds    Mds[]
   stages Stage[]
+
+  @@map("juridiction")
 }
 
 model Promotion {
-  id        String        @id @default(cuid())
-  annee     Int
-  nom       String?
-  type      TypeApprenant
-  dateDebut DateTime
-  dateFin   DateTime
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @updatedAt
+  id        String        @id @default(cuid()) @map("id")
+  annee     Int           @map("annee")
+  nom       String?       @map("nom")
+  type      TypeApprenant @map("type")
+  dateDebut DateTime      @map("date_debut")
+  dateFin   DateTime      @map("date_fin")
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
 
   auditeurs Auditeur[]
+
+  @@map("promotion")
 }
 
 model Dcs {
-  id            String      @id @default(cuid())
-  userId        String      @unique
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  juridictionId String
-  juridiction   Juridiction @relation(fields: [juridictionId], references: [id])
-  binomeId      String?
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id        String   @id @default(cuid()) @map("id")
+  binomeId  String?  @map("binome_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
-  stages  Stage[]
-  alertes Alerte[]
+  stages        Stage[]
+  alertes       Alerte[]
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String      @unique @map("user_id")
+  juridiction   Juridiction @relation(fields: [juridictionId], references: [id])
+  juridictionId String      @map("juridiction_id")
+
+  @@map("dcs")
 }
 
 model Crf {
-  id        String   @id @default(cuid())
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  region    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid()) @map("id")
+  region    String   @map("region")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   evaluationsCrf EvaluationCrf[]
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId         String          @unique @map("user_id")
+
+  @@map("crf")
 }
 
 model Mds {
-  id            String        @id @default(cuid())
-  userId        String?       @unique
-  user          User?         @relation(fields: [userId], references: [id])
-  nom           String
-  prenom        String
-  email         String
-  fonction      FonctionStage?
-  juridictionId String
-  juridiction   Juridiction    @relation(fields: [juridictionId], references: [id])
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id        String         @id @default(cuid()) @map("id")
+  fonction  FonctionStage? @map("fonction")
+  createdAt DateTime       @default(now()) @map("created_at")
+  updatedAt DateTime       @updatedAt @map("updated_at")
 
-  stages      Stage[]
-  evaluations Evaluation[]
+  stages        Stage[]
+  evaluations   Evaluation[]
+  user          User         @relation(fields: [userId], references: [id])
+  userId        String       @unique @map("user_id")
+  juridiction   Juridiction  @relation(fields: [juridictionId], references: [id])
+  juridictionId String       @map("juridiction_id")
+
+  @@map("mds")
 }
 
 model Auditeur {
-  id          String        @id @default(cuid())
-  userId      String?       @unique
-  user        User?         @relation(fields: [userId], references: [id])
-  nom         String
-  prenom      String
-  email       String
-  type        TypeApprenant
-  promotionId String
-  promotion   Promotion     @relation(fields: [promotionId], references: [id])
-  cvUrl       String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+  id        String        @id @default(cuid()) @map("id")
+  type      TypeApprenant @map("type")
+  cvUrl     String?       @map("cv_url")
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
 
-  stages Stage[]
+  stages      Stage[]
+  user        User      @relation(fields: [userId], references: [id])
+  userId      String    @unique @map("user_id")
+  promotion   Promotion @relation(fields: [promotionId], references: [id])
+  promotionId String    @map("promotion_id")
+
+  @@map("auditeur")
 }
 
 model Stage {
-  id            String        @id @default(cuid())
-  auditeurId    String
-  auditeur      Auditeur      @relation(fields: [auditeurId], references: [id], onDelete: Cascade)
-  fonction      FonctionStage
-  ordre         Int
-  dateDebut     DateTime
-  dateFin       DateTime
-  duree         Int
-  statut        StatutStage   @default(PLANIFIE)
-  juridictionId String
-  juridiction   Juridiction   @relation(fields: [juridictionId], references: [id])
-  dcsId         String
-  dcs           Dcs           @relation(fields: [dcsId], references: [id])
-  mdsId         String?
-  mds           Mds?          @relation(fields: [mdsId], references: [id])
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  id        String        @id @default(cuid()) @map("id")
+  fonction  FonctionStage @map("fonction")
+  ordre     Int           @map("ordre")
+  dateDebut DateTime      @map("date_debut")
+  dateFin   DateTime      @map("date_fin")
+  duree     Int           @map("duree")
+  statut    StatutStage   @default(PLANIFIE) @map("statut")
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
 
-  evaluation Evaluation?
+  evaluation    Evaluation?
+  auditeur      Auditeur    @relation(fields: [auditeurId], references: [id], onDelete: Cascade)
+  auditeurId    String      @map("auditeur_id")
+  juridiction   Juridiction @relation(fields: [juridictionId], references: [id])
+  juridictionId String      @map("juridiction_id")
+  dcs           Dcs         @relation(fields: [dcsId], references: [id])
+  dcsId         String      @map("dcs_id")
+  mds           Mds?        @relation(fields: [mdsId], references: [id])
+  mdsId         String?     @map("mds_id")
+
+  @@map("stage")
 }
 
 model Evaluation {
-  id             String           @id @default(cuid())
-  stageId        String           @unique
-  stage          Stage            @relation(fields: [stageId], references: [id], onDelete: Cascade)
-  mdsId          String
-  mds            Mds              @relation(fields: [mdsId], references: [id])
-  statut         StatutEvaluation @default(ATTENDUE)
-  lienEvaluation String?
-  dateEnvoi      DateTime?
-  dateReception  DateTime?
-  dateLimite     DateTime?
-  contenu        Json?
-  commentaire    String?
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  id             String           @id @default(cuid()) @map("id")
+  statut         StatutEvaluation @default(ATTENDUE) @map("statut")
+  lienEvaluation String?          @map("lien_evaluation")
+  dateEnvoi      DateTime?        @map("date_envoi")
+  dateReception  DateTime?        @map("date_reception")
+  dateLimite     DateTime?        @map("date_limite")
+  contenu        Json?            @map("contenu")
+  commentaire    String?          @map("commentaire")
+  createdAt      DateTime         @default(now()) @map("created_at")
+  updatedAt      DateTime         @updatedAt @map("updated_at")
 
   relances Relance[]
+  stage    Stage     @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  stageId  String    @unique @map("stage_id")
+  mds      Mds       @relation(fields: [mdsId], references: [id])
+  mdsId    String    @map("mds_id")
+
+  @@map("evaluation")
 }
 
 model EvaluationCrf {
-  id             String    @id @default(cuid())
-  crfId          String
+  id             String    @id @default(cuid()) @map("id")
+  auditeurId     String    @map("auditeur_id")
+  audienceNumero Int       @map("audience_numero")
+  dateAudience   DateTime? @map("date_audience")
+  contenu        Json?     @map("contenu")
+  commentaire    String?   @map("commentaire")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
   crf            Crf       @relation(fields: [crfId], references: [id])
-  auditeurId     String
-  audienceNumero Int
-  dateAudience   DateTime?
-  contenu        Json?
-  commentaire    String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  crfId          String    @map("crf_id")
+
+  @@map("evaluation_crf")
 }
 
 model Relance {
-  id           String     @id @default(cuid())
-  evaluationId String
+  id           String     @id @default(cuid()) @map("id")
+  dateRelance  DateTime   @default(now()) @map("date_relance")
+  type         String     @map("type")
+  canal        String     @default("EMAIL") @map("canal")
+  destinataire String     @map("destinataire")
+  createdAt    DateTime   @default(now()) @map("created_at")
+
   evaluation   Evaluation @relation(fields: [evaluationId], references: [id], onDelete: Cascade)
-  dateRelance  DateTime   @default(now())
-  type         String
-  canal        String     @default("EMAIL")
-  destinataire String
-  createdAt    DateTime   @default(now())
+  evaluationId String     @map("evaluation_id")
+
+  @@map("relance")
 }
 
 model Alerte {
-  id           String    @id @default(cuid())
-  dcsId        String
+  id           String    @id @default(cuid()) @map("id")
+  type         String    @map("type")
+  titre        String    @map("titre")
+  description  String?   @map("description")
+  dateEcheance DateTime? @map("date_echeance")
+  lue          Boolean   @default(false) @map("lue")
+  createdAt    DateTime  @default(now()) @map("created_at")
+
   dcs          Dcs       @relation(fields: [dcsId], references: [id], onDelete: Cascade)
-  type         String
-  titre        String
-  description  String?
-  dateEcheance DateTime?
-  lue          Boolean   @default(false)
-  createdAt    DateTime  @default(now())
+  dcsId        String    @map("dcs_id")
+
+  @@map("alerte")
 }
 
 model Circulaire {
-  id        String   @id @default(cuid())
-  annee     Int
-  nom       String
-  contenu   Json?
-  fonctions Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String   @id @default(cuid()) @map("id")
+  annee     Int      @map("annee")
+  nom       String   @map("nom")
+  contenu   Json?    @map("contenu")
+  fonctions Json     @map("fonctions")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("circulaire")
 }

@@ -26,64 +26,64 @@ export type AggregateRelance = {
 
 export type RelanceMinAggregateOutputType = {
   id: string | null
-  evaluationId: string | null
   dateRelance: Date | null
   type: string | null
   canal: string | null
   destinataire: string | null
   createdAt: Date | null
+  evaluationId: string | null
 }
 
 export type RelanceMaxAggregateOutputType = {
   id: string | null
-  evaluationId: string | null
   dateRelance: Date | null
   type: string | null
   canal: string | null
   destinataire: string | null
   createdAt: Date | null
+  evaluationId: string | null
 }
 
 export type RelanceCountAggregateOutputType = {
   id: number
-  evaluationId: number
   dateRelance: number
   type: number
   canal: number
   destinataire: number
   createdAt: number
+  evaluationId: number
   _all: number
 }
 
 
 export type RelanceMinAggregateInputType = {
   id?: true
-  evaluationId?: true
   dateRelance?: true
   type?: true
   canal?: true
   destinataire?: true
   createdAt?: true
+  evaluationId?: true
 }
 
 export type RelanceMaxAggregateInputType = {
   id?: true
-  evaluationId?: true
   dateRelance?: true
   type?: true
   canal?: true
   destinataire?: true
   createdAt?: true
+  evaluationId?: true
 }
 
 export type RelanceCountAggregateInputType = {
   id?: true
-  evaluationId?: true
   dateRelance?: true
   type?: true
   canal?: true
   destinataire?: true
   createdAt?: true
+  evaluationId?: true
   _all?: true
 }
 
@@ -161,12 +161,12 @@ export type RelanceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type RelanceGroupByOutputType = {
   id: string
-  evaluationId: string
   dateRelance: Date
   type: string
   canal: string
   destinataire: string
   createdAt: Date
+  evaluationId: string
   _count: RelanceCountAggregateOutputType | null
   _min: RelanceMinAggregateOutputType | null
   _max: RelanceMaxAggregateOutputType | null
@@ -192,23 +192,23 @@ export type RelanceWhereInput = {
   OR?: Prisma.RelanceWhereInput[]
   NOT?: Prisma.RelanceWhereInput | Prisma.RelanceWhereInput[]
   id?: Prisma.StringFilter<"Relance"> | string
-  evaluationId?: Prisma.StringFilter<"Relance"> | string
   dateRelance?: Prisma.DateTimeFilter<"Relance"> | Date | string
   type?: Prisma.StringFilter<"Relance"> | string
   canal?: Prisma.StringFilter<"Relance"> | string
   destinataire?: Prisma.StringFilter<"Relance"> | string
   createdAt?: Prisma.DateTimeFilter<"Relance"> | Date | string
+  evaluationId?: Prisma.StringFilter<"Relance"> | string
   evaluation?: Prisma.XOR<Prisma.EvaluationScalarRelationFilter, Prisma.EvaluationWhereInput>
 }
 
 export type RelanceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  evaluationId?: Prisma.SortOrder
   dateRelance?: Prisma.SortOrder
   type?: Prisma.SortOrder
   canal?: Prisma.SortOrder
   destinataire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  evaluationId?: Prisma.SortOrder
   evaluation?: Prisma.EvaluationOrderByWithRelationInput
 }
 
@@ -217,23 +217,23 @@ export type RelanceWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RelanceWhereInput | Prisma.RelanceWhereInput[]
   OR?: Prisma.RelanceWhereInput[]
   NOT?: Prisma.RelanceWhereInput | Prisma.RelanceWhereInput[]
-  evaluationId?: Prisma.StringFilter<"Relance"> | string
   dateRelance?: Prisma.DateTimeFilter<"Relance"> | Date | string
   type?: Prisma.StringFilter<"Relance"> | string
   canal?: Prisma.StringFilter<"Relance"> | string
   destinataire?: Prisma.StringFilter<"Relance"> | string
   createdAt?: Prisma.DateTimeFilter<"Relance"> | Date | string
+  evaluationId?: Prisma.StringFilter<"Relance"> | string
   evaluation?: Prisma.XOR<Prisma.EvaluationScalarRelationFilter, Prisma.EvaluationWhereInput>
 }, "id">
 
 export type RelanceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  evaluationId?: Prisma.SortOrder
   dateRelance?: Prisma.SortOrder
   type?: Prisma.SortOrder
   canal?: Prisma.SortOrder
   destinataire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  evaluationId?: Prisma.SortOrder
   _count?: Prisma.RelanceCountOrderByAggregateInput
   _max?: Prisma.RelanceMaxOrderByAggregateInput
   _min?: Prisma.RelanceMinOrderByAggregateInput
@@ -244,12 +244,12 @@ export type RelanceScalarWhereWithAggregatesInput = {
   OR?: Prisma.RelanceScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RelanceScalarWhereWithAggregatesInput | Prisma.RelanceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Relance"> | string
-  evaluationId?: Prisma.StringWithAggregatesFilter<"Relance"> | string
   dateRelance?: Prisma.DateTimeWithAggregatesFilter<"Relance"> | Date | string
   type?: Prisma.StringWithAggregatesFilter<"Relance"> | string
   canal?: Prisma.StringWithAggregatesFilter<"Relance"> | string
   destinataire?: Prisma.StringWithAggregatesFilter<"Relance"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Relance"> | Date | string
+  evaluationId?: Prisma.StringWithAggregatesFilter<"Relance"> | string
 }
 
 export type RelanceCreateInput = {
@@ -264,12 +264,12 @@ export type RelanceCreateInput = {
 
 export type RelanceUncheckedCreateInput = {
   id?: string
-  evaluationId: string
   dateRelance?: Date | string
   type: string
   canal?: string
   destinataire: string
   createdAt?: Date | string
+  evaluationId: string
 }
 
 export type RelanceUpdateInput = {
@@ -284,22 +284,22 @@ export type RelanceUpdateInput = {
 
 export type RelanceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  evaluationId?: Prisma.StringFieldUpdateOperationsInput | string
   dateRelance?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   canal?: Prisma.StringFieldUpdateOperationsInput | string
   destinataire?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluationId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RelanceCreateManyInput = {
   id?: string
-  evaluationId: string
   dateRelance?: Date | string
   type: string
   canal?: string
   destinataire: string
   createdAt?: Date | string
+  evaluationId: string
 }
 
 export type RelanceUpdateManyMutationInput = {
@@ -313,12 +313,12 @@ export type RelanceUpdateManyMutationInput = {
 
 export type RelanceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  evaluationId?: Prisma.StringFieldUpdateOperationsInput | string
   dateRelance?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   type?: Prisma.StringFieldUpdateOperationsInput | string
   canal?: Prisma.StringFieldUpdateOperationsInput | string
   destinataire?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evaluationId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type RelanceListRelationFilter = {
@@ -333,32 +333,32 @@ export type RelanceOrderByRelationAggregateInput = {
 
 export type RelanceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  evaluationId?: Prisma.SortOrder
   dateRelance?: Prisma.SortOrder
   type?: Prisma.SortOrder
   canal?: Prisma.SortOrder
   destinataire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  evaluationId?: Prisma.SortOrder
 }
 
 export type RelanceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  evaluationId?: Prisma.SortOrder
   dateRelance?: Prisma.SortOrder
   type?: Prisma.SortOrder
   canal?: Prisma.SortOrder
   destinataire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  evaluationId?: Prisma.SortOrder
 }
 
 export type RelanceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  evaluationId?: Prisma.SortOrder
   dateRelance?: Prisma.SortOrder
   type?: Prisma.SortOrder
   canal?: Prisma.SortOrder
   destinataire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  evaluationId?: Prisma.SortOrder
 }
 
 export type RelanceCreateNestedManyWithoutEvaluationInput = {
@@ -452,12 +452,12 @@ export type RelanceScalarWhereInput = {
   OR?: Prisma.RelanceScalarWhereInput[]
   NOT?: Prisma.RelanceScalarWhereInput | Prisma.RelanceScalarWhereInput[]
   id?: Prisma.StringFilter<"Relance"> | string
-  evaluationId?: Prisma.StringFilter<"Relance"> | string
   dateRelance?: Prisma.DateTimeFilter<"Relance"> | Date | string
   type?: Prisma.StringFilter<"Relance"> | string
   canal?: Prisma.StringFilter<"Relance"> | string
   destinataire?: Prisma.StringFilter<"Relance"> | string
   createdAt?: Prisma.DateTimeFilter<"Relance"> | Date | string
+  evaluationId?: Prisma.StringFilter<"Relance"> | string
 }
 
 export type RelanceCreateManyEvaluationInput = {
@@ -500,48 +500,48 @@ export type RelanceUncheckedUpdateManyWithoutEvaluationInput = {
 
 export type RelanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  evaluationId?: boolean
   dateRelance?: boolean
   type?: boolean
   canal?: boolean
   destinataire?: boolean
   createdAt?: boolean
+  evaluationId?: boolean
   evaluation?: boolean | Prisma.EvaluationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["relance"]>
 
 export type RelanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  evaluationId?: boolean
   dateRelance?: boolean
   type?: boolean
   canal?: boolean
   destinataire?: boolean
   createdAt?: boolean
+  evaluationId?: boolean
   evaluation?: boolean | Prisma.EvaluationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["relance"]>
 
 export type RelanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  evaluationId?: boolean
   dateRelance?: boolean
   type?: boolean
   canal?: boolean
   destinataire?: boolean
   createdAt?: boolean
+  evaluationId?: boolean
   evaluation?: boolean | Prisma.EvaluationDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["relance"]>
 
 export type RelanceSelectScalar = {
   id?: boolean
-  evaluationId?: boolean
   dateRelance?: boolean
   type?: boolean
   canal?: boolean
   destinataire?: boolean
   createdAt?: boolean
+  evaluationId?: boolean
 }
 
-export type RelanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "evaluationId" | "dateRelance" | "type" | "canal" | "destinataire" | "createdAt", ExtArgs["result"]["relance"]>
+export type RelanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "dateRelance" | "type" | "canal" | "destinataire" | "createdAt" | "evaluationId", ExtArgs["result"]["relance"]>
 export type RelanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   evaluation?: boolean | Prisma.EvaluationDefaultArgs<ExtArgs>
 }
@@ -559,12 +559,12 @@ export type $RelancePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    evaluationId: string
     dateRelance: Date
     type: string
     canal: string
     destinataire: string
     createdAt: Date
+    evaluationId: string
   }, ExtArgs["result"]["relance"]>
   composites: {}
 }
@@ -990,12 +990,12 @@ export interface Prisma__RelanceClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface RelanceFieldRefs {
   readonly id: Prisma.FieldRef<"Relance", 'String'>
-  readonly evaluationId: Prisma.FieldRef<"Relance", 'String'>
   readonly dateRelance: Prisma.FieldRef<"Relance", 'DateTime'>
   readonly type: Prisma.FieldRef<"Relance", 'String'>
   readonly canal: Prisma.FieldRef<"Relance", 'String'>
   readonly destinataire: Prisma.FieldRef<"Relance", 'String'>
   readonly createdAt: Prisma.FieldRef<"Relance", 'DateTime'>
+  readonly evaluationId: Prisma.FieldRef<"Relance", 'String'>
 }
     
 

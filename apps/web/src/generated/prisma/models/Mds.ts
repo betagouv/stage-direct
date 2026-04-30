@@ -26,76 +26,58 @@ export type AggregateMds = {
 
 export type MdsMinAggregateOutputType = {
   id: string | null
-  userId: string | null
-  nom: string | null
-  prenom: string | null
-  email: string | null
   fonction: $Enums.FonctionStage | null
-  juridictionId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  juridictionId: string | null
 }
 
 export type MdsMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
-  nom: string | null
-  prenom: string | null
-  email: string | null
   fonction: $Enums.FonctionStage | null
-  juridictionId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
+  juridictionId: string | null
 }
 
 export type MdsCountAggregateOutputType = {
   id: number
-  userId: number
-  nom: number
-  prenom: number
-  email: number
   fonction: number
-  juridictionId: number
   createdAt: number
   updatedAt: number
+  userId: number
+  juridictionId: number
   _all: number
 }
 
 
 export type MdsMinAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   fonction?: true
-  juridictionId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
 }
 
 export type MdsMaxAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   fonction?: true
-  juridictionId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
 }
 
 export type MdsCountAggregateInputType = {
   id?: true
-  userId?: true
-  nom?: true
-  prenom?: true
-  email?: true
   fonction?: true
-  juridictionId?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
+  juridictionId?: true
   _all?: true
 }
 
@@ -173,14 +155,11 @@ export type MdsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type MdsGroupByOutputType = {
   id: string
-  userId: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt: Date
   updatedAt: Date
+  userId: string
+  juridictionId: string
   _count: MdsCountAggregateOutputType | null
   _min: MdsMinAggregateOutputType | null
   _max: MdsMaxAggregateOutputType | null
@@ -206,34 +185,28 @@ export type MdsWhereInput = {
   OR?: Prisma.MdsWhereInput[]
   NOT?: Prisma.MdsWhereInput | Prisma.MdsWhereInput[]
   id?: Prisma.StringFilter<"Mds"> | string
-  userId?: Prisma.StringNullableFilter<"Mds"> | string | null
-  nom?: Prisma.StringFilter<"Mds"> | string
-  prenom?: Prisma.StringFilter<"Mds"> | string
-  email?: Prisma.StringFilter<"Mds"> | string
   fonction?: Prisma.EnumFonctionStageNullableFilter<"Mds"> | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFilter<"Mds"> | string
   createdAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
+  userId?: Prisma.StringFilter<"Mds"> | string
+  juridictionId?: Prisma.StringFilter<"Mds"> | string
   stages?: Prisma.StageListRelationFilter
   evaluations?: Prisma.EvaluationListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
 }
 
 export type MdsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   fonction?: Prisma.SortOrderInput | Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
-  juridiction?: Prisma.JuridictionOrderByWithRelationInput
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
   stages?: Prisma.StageOrderByRelationAggregateInput
   evaluations?: Prisma.EvaluationOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
+  juridiction?: Prisma.JuridictionOrderByWithRelationInput
 }
 
 export type MdsWhereUniqueInput = Prisma.AtLeast<{
@@ -242,29 +215,23 @@ export type MdsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.MdsWhereInput | Prisma.MdsWhereInput[]
   OR?: Prisma.MdsWhereInput[]
   NOT?: Prisma.MdsWhereInput | Prisma.MdsWhereInput[]
-  nom?: Prisma.StringFilter<"Mds"> | string
-  prenom?: Prisma.StringFilter<"Mds"> | string
-  email?: Prisma.StringFilter<"Mds"> | string
   fonction?: Prisma.EnumFonctionStageNullableFilter<"Mds"> | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFilter<"Mds"> | string
   createdAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
-  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
+  juridictionId?: Prisma.StringFilter<"Mds"> | string
   stages?: Prisma.StageListRelationFilter
   evaluations?: Prisma.EvaluationListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  juridiction?: Prisma.XOR<Prisma.JuridictionScalarRelationFilter, Prisma.JuridictionWhereInput>
 }, "id" | "userId">
 
 export type MdsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   fonction?: Prisma.SortOrderInput | Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
   _count?: Prisma.MdsCountOrderByAggregateInput
   _max?: Prisma.MdsMaxOrderByAggregateInput
   _min?: Prisma.MdsMinOrderByAggregateInput
@@ -275,89 +242,68 @@ export type MdsScalarWhereWithAggregatesInput = {
   OR?: Prisma.MdsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MdsScalarWhereWithAggregatesInput | Prisma.MdsScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Mds"> | string
-  userId?: Prisma.StringNullableWithAggregatesFilter<"Mds"> | string | null
-  nom?: Prisma.StringWithAggregatesFilter<"Mds"> | string
-  prenom?: Prisma.StringWithAggregatesFilter<"Mds"> | string
-  email?: Prisma.StringWithAggregatesFilter<"Mds"> | string
   fonction?: Prisma.EnumFonctionStageNullableWithAggregatesFilter<"Mds"> | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringWithAggregatesFilter<"Mds"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Mds"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Mds"> | Date | string
+  userId?: Prisma.StringWithAggregatesFilter<"Mds"> | string
+  juridictionId?: Prisma.StringWithAggregatesFilter<"Mds"> | string
 }
 
 export type MdsCreateInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutMdsInput
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
   stages?: Prisma.StageCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationCreateNestedManyWithoutMdsInput
+  user: Prisma.UserCreateNestedOneWithoutMdsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
 }
 
 export type MdsUncheckedCreateInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationUncheckedCreateNestedManyWithoutMdsInput
 }
 
 export type MdsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutMdsNestedInput
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
   stages?: Prisma.StageUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUpdateManyWithoutMdsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutMdsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUncheckedUpdateManyWithoutMdsNestedInput
 }
 
 export type MdsCreateManyInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
 }
 
 export type MdsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -365,14 +311,11 @@ export type MdsUpdateManyMutationInput = {
 
 export type MdsUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MdsNullableScalarRelationFilter = {
@@ -392,38 +335,29 @@ export type MdsOrderByRelationAggregateInput = {
 
 export type MdsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type MdsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type MdsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
-  nom?: Prisma.SortOrder
-  prenom?: Prisma.SortOrder
-  email?: Prisma.SortOrder
   fonction?: Prisma.SortOrder
-  juridictionId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
+  juridictionId?: Prisma.SortOrder
 }
 
 export type MdsScalarRelationFilter = {
@@ -541,26 +475,20 @@ export type MdsUpdateOneRequiredWithoutEvaluationsNestedInput = {
 
 export type MdsCreateWithoutUserInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
   stages?: Prisma.StageCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationCreateNestedManyWithoutMdsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
 }
 
 export type MdsUncheckedCreateWithoutUserInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationUncheckedCreateNestedManyWithoutMdsInput
 }
@@ -583,52 +511,40 @@ export type MdsUpdateToOneWithWhereWithoutUserInput = {
 
 export type MdsUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
   stages?: Prisma.StageUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUpdateManyWithoutMdsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUncheckedUpdateManyWithoutMdsNestedInput
 }
 
 export type MdsCreateWithoutJuridictionInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutMdsInput
   stages?: Prisma.StageCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationCreateNestedManyWithoutMdsInput
+  user: Prisma.UserCreateNestedOneWithoutMdsInput
 }
 
 export type MdsUncheckedCreateWithoutJuridictionInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutMdsInput
   evaluations?: Prisma.EvaluationUncheckedCreateNestedManyWithoutMdsInput
 }
@@ -664,39 +580,30 @@ export type MdsScalarWhereInput = {
   OR?: Prisma.MdsScalarWhereInput[]
   NOT?: Prisma.MdsScalarWhereInput | Prisma.MdsScalarWhereInput[]
   id?: Prisma.StringFilter<"Mds"> | string
-  userId?: Prisma.StringNullableFilter<"Mds"> | string | null
-  nom?: Prisma.StringFilter<"Mds"> | string
-  prenom?: Prisma.StringFilter<"Mds"> | string
-  email?: Prisma.StringFilter<"Mds"> | string
   fonction?: Prisma.EnumFonctionStageNullableFilter<"Mds"> | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFilter<"Mds"> | string
   createdAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mds"> | Date | string
+  userId?: Prisma.StringFilter<"Mds"> | string
+  juridictionId?: Prisma.StringFilter<"Mds"> | string
 }
 
 export type MdsCreateWithoutStagesInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutMdsInput
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
   evaluations?: Prisma.EvaluationCreateNestedManyWithoutMdsInput
+  user: Prisma.UserCreateNestedOneWithoutMdsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
 }
 
 export type MdsUncheckedCreateWithoutStagesInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   evaluations?: Prisma.EvaluationUncheckedCreateNestedManyWithoutMdsInput
 }
 
@@ -718,53 +625,41 @@ export type MdsUpdateToOneWithWhereWithoutStagesInput = {
 
 export type MdsUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutMdsNestedInput
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUpdateManyWithoutMdsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutMdsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   evaluations?: Prisma.EvaluationUncheckedUpdateManyWithoutMdsNestedInput
 }
 
 export type MdsCreateWithoutEvaluationsInput = {
   id?: string
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user?: Prisma.UserCreateNestedOneWithoutMdsInput
-  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
   stages?: Prisma.StageCreateNestedManyWithoutMdsInput
+  user: Prisma.UserCreateNestedOneWithoutMdsInput
+  juridiction: Prisma.JuridictionCreateNestedOneWithoutMdsInput
 }
 
 export type MdsUncheckedCreateWithoutEvaluationsInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
-  juridictionId: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
+  juridictionId: string
   stages?: Prisma.StageUncheckedCreateNestedManyWithoutMdsInput
 }
 
@@ -786,76 +681,58 @@ export type MdsUpdateToOneWithWhereWithoutEvaluationsInput = {
 
 export type MdsUpdateWithoutEvaluationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutMdsNestedInput
-  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
   stages?: Prisma.StageUpdateManyWithoutMdsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutMdsNestedInput
+  juridiction?: Prisma.JuridictionUpdateOneRequiredWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateWithoutEvaluationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
-  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  juridictionId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutMdsNestedInput
 }
 
 export type MdsCreateManyJuridictionInput = {
   id?: string
-  userId?: string | null
-  nom: string
-  prenom: string
-  email: string
   fonction?: $Enums.FonctionStage | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
 }
 
 export type MdsUpdateWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneWithoutMdsNestedInput
   stages?: Prisma.StageUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUpdateManyWithoutMdsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   stages?: Prisma.StageUncheckedUpdateManyWithoutMdsNestedInput
   evaluations?: Prisma.EvaluationUncheckedUpdateManyWithoutMdsNestedInput
 }
 
 export type MdsUncheckedUpdateManyWithoutJuridictionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nom?: Prisma.StringFieldUpdateOperationsInput | string
-  prenom?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
   fonction?: Prisma.NullableEnumFonctionStageFieldUpdateOperationsInput | $Enums.FonctionStage | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -900,96 +777,81 @@ export type MdsCountOutputTypeCountEvaluationsArgs<ExtArgs extends runtime.Types
 
 export type MdsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   fonction?: boolean
-  juridictionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
-  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
+  userId?: boolean
+  juridictionId?: boolean
   stages?: boolean | Prisma.Mds$stagesArgs<ExtArgs>
   evaluations?: boolean | Prisma.Mds$evaluationsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MdsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mds"]>
 
 export type MdsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   fonction?: boolean
-  juridictionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
+  userId?: boolean
+  juridictionId?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mds"]>
 
 export type MdsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   fonction?: boolean
-  juridictionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
+  userId?: boolean
+  juridictionId?: boolean
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mds"]>
 
 export type MdsSelectScalar = {
   id?: boolean
-  userId?: boolean
-  nom?: boolean
-  prenom?: boolean
-  email?: boolean
   fonction?: boolean
-  juridictionId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
+  juridictionId?: boolean
 }
 
-export type MdsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "nom" | "prenom" | "email" | "fonction" | "juridictionId" | "createdAt" | "updatedAt", ExtArgs["result"]["mds"]>
+export type MdsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fonction" | "createdAt" | "updatedAt" | "userId" | "juridictionId", ExtArgs["result"]["mds"]>
 export type MdsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
-  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   stages?: boolean | Prisma.Mds$stagesArgs<ExtArgs>
   evaluations?: boolean | Prisma.Mds$evaluationsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MdsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MdsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }
 export type MdsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.Mds$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   juridiction?: boolean | Prisma.JuridictionDefaultArgs<ExtArgs>
 }
 
 export type $MdsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Mds"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs> | null
-    juridiction: Prisma.$JuridictionPayload<ExtArgs>
     stages: Prisma.$StagePayload<ExtArgs>[]
     evaluations: Prisma.$EvaluationPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
+    juridiction: Prisma.$JuridictionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string | null
-    nom: string
-    prenom: string
-    email: string
     fonction: $Enums.FonctionStage | null
-    juridictionId: string
     createdAt: Date
     updatedAt: Date
+    userId: string
+    juridictionId: string
   }, ExtArgs["result"]["mds"]>
   composites: {}
 }
@@ -1384,10 +1246,10 @@ readonly fields: MdsFieldRefs;
  */
 export interface Prisma__MdsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.Mds$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mds$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  juridiction<T extends Prisma.JuridictionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JuridictionDefaultArgs<ExtArgs>>): Prisma.Prisma__JuridictionClient<runtime.Types.Result.GetResult<Prisma.$JuridictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   stages<T extends Prisma.Mds$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mds$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   evaluations<T extends Prisma.Mds$evaluationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mds$evaluationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  juridiction<T extends Prisma.JuridictionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JuridictionDefaultArgs<ExtArgs>>): Prisma.Prisma__JuridictionClient<runtime.Types.Result.GetResult<Prisma.$JuridictionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1418,14 +1280,11 @@ export interface Prisma__MdsClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface MdsFieldRefs {
   readonly id: Prisma.FieldRef<"Mds", 'String'>
-  readonly userId: Prisma.FieldRef<"Mds", 'String'>
-  readonly nom: Prisma.FieldRef<"Mds", 'String'>
-  readonly prenom: Prisma.FieldRef<"Mds", 'String'>
-  readonly email: Prisma.FieldRef<"Mds", 'String'>
   readonly fonction: Prisma.FieldRef<"Mds", 'FonctionStage'>
-  readonly juridictionId: Prisma.FieldRef<"Mds", 'String'>
   readonly createdAt: Prisma.FieldRef<"Mds", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Mds", 'DateTime'>
+  readonly userId: Prisma.FieldRef<"Mds", 'String'>
+  readonly juridictionId: Prisma.FieldRef<"Mds", 'String'>
 }
     
 
@@ -1824,25 +1683,6 @@ export type MdsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Limit how many Mds to delete.
    */
   limit?: number
-}
-
-/**
- * Mds.user
- */
-export type Mds$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
 }
 
 /**

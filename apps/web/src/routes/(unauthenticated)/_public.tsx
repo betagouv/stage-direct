@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { SignInPage } from "~/features/authentification/se-connecter";
 import { redirectIfAuthenticated } from "~/lib/route-guards";
 
-export const Route = createFileRoute("/se-connecter")({
+export const Route = createFileRoute("/(unauthenticated)/_public")({
   beforeLoad: redirectIfAuthenticated,
-  component: SignInPage,
 });

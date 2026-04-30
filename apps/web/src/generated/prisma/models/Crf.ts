@@ -26,52 +26,52 @@ export type AggregateCrf = {
 
 export type CrfMinAggregateOutputType = {
   id: string | null
-  userId: string | null
   region: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
 }
 
 export type CrfMaxAggregateOutputType = {
   id: string | null
-  userId: string | null
   region: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  userId: string | null
 }
 
 export type CrfCountAggregateOutputType = {
   id: number
-  userId: number
   region: number
   createdAt: number
   updatedAt: number
+  userId: number
   _all: number
 }
 
 
 export type CrfMinAggregateInputType = {
   id?: true
-  userId?: true
   region?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
 }
 
 export type CrfMaxAggregateInputType = {
   id?: true
-  userId?: true
   region?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
 }
 
 export type CrfCountAggregateInputType = {
   id?: true
-  userId?: true
   region?: true
   createdAt?: true
   updatedAt?: true
+  userId?: true
   _all?: true
 }
 
@@ -149,10 +149,10 @@ export type CrfGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type CrfGroupByOutputType = {
   id: string
-  userId: string
   region: string
   createdAt: Date
   updatedAt: Date
+  userId: string
   _count: CrfCountAggregateOutputType | null
   _min: CrfMinAggregateOutputType | null
   _max: CrfMaxAggregateOutputType | null
@@ -178,22 +178,22 @@ export type CrfWhereInput = {
   OR?: Prisma.CrfWhereInput[]
   NOT?: Prisma.CrfWhereInput | Prisma.CrfWhereInput[]
   id?: Prisma.StringFilter<"Crf"> | string
-  userId?: Prisma.StringFilter<"Crf"> | string
   region?: Prisma.StringFilter<"Crf"> | string
   createdAt?: Prisma.DateTimeFilter<"Crf"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Crf"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  userId?: Prisma.StringFilter<"Crf"> | string
   evaluationsCrf?: Prisma.EvaluationCrfListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type CrfOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  userId?: Prisma.SortOrder
   evaluationsCrf?: Prisma.EvaluationCrfOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type CrfWhereUniqueInput = Prisma.AtLeast<{
@@ -205,16 +205,16 @@ export type CrfWhereUniqueInput = Prisma.AtLeast<{
   region?: Prisma.StringFilter<"Crf"> | string
   createdAt?: Prisma.DateTimeFilter<"Crf"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Crf"> | Date | string
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   evaluationsCrf?: Prisma.EvaluationCrfListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id" | "userId">
 
 export type CrfOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
   _count?: Prisma.CrfCountOrderByAggregateInput
   _max?: Prisma.CrfMaxOrderByAggregateInput
   _min?: Prisma.CrfMinOrderByAggregateInput
@@ -225,10 +225,10 @@ export type CrfScalarWhereWithAggregatesInput = {
   OR?: Prisma.CrfScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CrfScalarWhereWithAggregatesInput | Prisma.CrfScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Crf"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Crf"> | string
   region?: Prisma.StringWithAggregatesFilter<"Crf"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Crf"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Crf"> | Date | string
+  userId?: Prisma.StringWithAggregatesFilter<"Crf"> | string
 }
 
 export type CrfCreateInput = {
@@ -236,16 +236,16 @@ export type CrfCreateInput = {
   region: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutCrfInput
   evaluationsCrf?: Prisma.EvaluationCrfCreateNestedManyWithoutCrfInput
+  user: Prisma.UserCreateNestedOneWithoutCrfInput
 }
 
 export type CrfUncheckedCreateInput = {
   id?: string
-  userId: string
   region: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
   evaluationsCrf?: Prisma.EvaluationCrfUncheckedCreateNestedManyWithoutCrfInput
 }
 
@@ -254,25 +254,25 @@ export type CrfUpdateInput = {
   region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutCrfNestedInput
   evaluationsCrf?: Prisma.EvaluationCrfUpdateManyWithoutCrfNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutCrfNestedInput
 }
 
 export type CrfUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   evaluationsCrf?: Prisma.EvaluationCrfUncheckedUpdateManyWithoutCrfNestedInput
 }
 
 export type CrfCreateManyInput = {
   id?: string
-  userId: string
   region: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
 }
 
 export type CrfUpdateManyMutationInput = {
@@ -284,10 +284,10 @@ export type CrfUpdateManyMutationInput = {
 
 export type CrfUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CrfNullableScalarRelationFilter = {
@@ -297,26 +297,26 @@ export type CrfNullableScalarRelationFilter = {
 
 export type CrfCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type CrfMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type CrfMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   region?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type CrfScalarRelationFilter = {
@@ -428,10 +428,10 @@ export type CrfCreateWithoutEvaluationsCrfInput = {
 
 export type CrfUncheckedCreateWithoutEvaluationsCrfInput = {
   id?: string
-  userId: string
   region: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  userId: string
 }
 
 export type CrfCreateOrConnectWithoutEvaluationsCrfInput = {
@@ -460,10 +460,10 @@ export type CrfUpdateWithoutEvaluationsCrfInput = {
 
 export type CrfUncheckedUpdateWithoutEvaluationsCrfInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   region?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -499,45 +499,45 @@ export type CrfCountOutputTypeCountEvaluationsCrfArgs<ExtArgs extends runtime.Ty
 
 export type CrfSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  userId?: boolean
   evaluationsCrf?: boolean | Prisma.Crf$evaluationsCrfArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CrfCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crf"]>
 
 export type CrfSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crf"]>
 
 export type CrfSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userId?: boolean
   region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["crf"]>
 
 export type CrfSelectScalar = {
   id?: boolean
-  userId?: boolean
   region?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  userId?: boolean
 }
 
-export type CrfOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "region" | "createdAt" | "updatedAt", ExtArgs["result"]["crf"]>
+export type CrfOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "region" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["crf"]>
 export type CrfInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   evaluationsCrf?: boolean | Prisma.Crf$evaluationsCrfArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.CrfCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type CrfIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -550,15 +550,15 @@ export type CrfIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type $CrfPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Crf"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs>
     evaluationsCrf: Prisma.$EvaluationCrfPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    userId: string
     region: string
     createdAt: Date
     updatedAt: Date
+    userId: string
   }, ExtArgs["result"]["crf"]>
   composites: {}
 }
@@ -953,8 +953,8 @@ readonly fields: CrfFieldRefs;
  */
 export interface Prisma__CrfClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   evaluationsCrf<T extends Prisma.Crf$evaluationsCrfArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Crf$evaluationsCrfArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EvaluationCrfPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -985,10 +985,10 @@ export interface Prisma__CrfClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface CrfFieldRefs {
   readonly id: Prisma.FieldRef<"Crf", 'String'>
-  readonly userId: Prisma.FieldRef<"Crf", 'String'>
   readonly region: Prisma.FieldRef<"Crf", 'String'>
   readonly createdAt: Prisma.FieldRef<"Crf", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Crf", 'DateTime'>
+  readonly userId: Prisma.FieldRef<"Crf", 'String'>
 }
     
 

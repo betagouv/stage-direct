@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { auth } from "~/server/providers/auth";
+import { auth } from "~/server/providers/better-auth";
 
 function handler({ request }: { request: Request }) {
   return auth.handler(request);

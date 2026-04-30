@@ -8,7 +8,6 @@ type HeaderProps = {
 };
 
 const HOME_LINK_PROPS = { href: "/", title: "Stage Direct" };
-const SERVICE_TAGLINE = "Connectons les futurs magistrats à leurs lieux de formation";
 
 export function Header({ user }: HeaderProps) {
   const quickAccessItems = user
@@ -51,7 +50,6 @@ export function Header({ user }: HeaderProps) {
       brandTop={<BrandTop />}
       homeLinkProps={HOME_LINK_PROPS}
       serviceTitle="Stage Direct"
-      serviceTagline={SERVICE_TAGLINE}
       quickAccessItems={quickAccessItems}
     />
   );

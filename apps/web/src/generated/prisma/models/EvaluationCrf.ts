@@ -36,29 +36,28 @@ export type EvaluationCrfSumAggregateOutputType = {
 
 export type EvaluationCrfMinAggregateOutputType = {
   id: string | null
-  crfId: string | null
   auditeurId: string | null
   audienceNumero: number | null
   dateAudience: Date | null
   commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  crfId: string | null
 }
 
 export type EvaluationCrfMaxAggregateOutputType = {
   id: string | null
-  crfId: string | null
   auditeurId: string | null
   audienceNumero: number | null
   dateAudience: Date | null
   commentaire: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  crfId: string | null
 }
 
 export type EvaluationCrfCountAggregateOutputType = {
   id: number
-  crfId: number
   auditeurId: number
   audienceNumero: number
   dateAudience: number
@@ -66,6 +65,7 @@ export type EvaluationCrfCountAggregateOutputType = {
   commentaire: number
   createdAt: number
   updatedAt: number
+  crfId: number
   _all: number
 }
 
@@ -80,29 +80,28 @@ export type EvaluationCrfSumAggregateInputType = {
 
 export type EvaluationCrfMinAggregateInputType = {
   id?: true
-  crfId?: true
   auditeurId?: true
   audienceNumero?: true
   dateAudience?: true
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  crfId?: true
 }
 
 export type EvaluationCrfMaxAggregateInputType = {
   id?: true
-  crfId?: true
   auditeurId?: true
   audienceNumero?: true
   dateAudience?: true
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  crfId?: true
 }
 
 export type EvaluationCrfCountAggregateInputType = {
   id?: true
-  crfId?: true
   auditeurId?: true
   audienceNumero?: true
   dateAudience?: true
@@ -110,6 +109,7 @@ export type EvaluationCrfCountAggregateInputType = {
   commentaire?: true
   createdAt?: true
   updatedAt?: true
+  crfId?: true
   _all?: true
 }
 
@@ -201,7 +201,6 @@ export type EvaluationCrfGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type EvaluationCrfGroupByOutputType = {
   id: string
-  crfId: string
   auditeurId: string
   audienceNumero: number
   dateAudience: Date | null
@@ -209,6 +208,7 @@ export type EvaluationCrfGroupByOutputType = {
   commentaire: string | null
   createdAt: Date
   updatedAt: Date
+  crfId: string
   _count: EvaluationCrfCountAggregateOutputType | null
   _avg: EvaluationCrfAvgAggregateOutputType | null
   _sum: EvaluationCrfSumAggregateOutputType | null
@@ -236,7 +236,6 @@ export type EvaluationCrfWhereInput = {
   OR?: Prisma.EvaluationCrfWhereInput[]
   NOT?: Prisma.EvaluationCrfWhereInput | Prisma.EvaluationCrfWhereInput[]
   id?: Prisma.StringFilter<"EvaluationCrf"> | string
-  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
   auditeurId?: Prisma.StringFilter<"EvaluationCrf"> | string
   audienceNumero?: Prisma.IntFilter<"EvaluationCrf"> | number
   dateAudience?: Prisma.DateTimeNullableFilter<"EvaluationCrf"> | Date | string | null
@@ -244,12 +243,12 @@ export type EvaluationCrfWhereInput = {
   commentaire?: Prisma.StringNullableFilter<"EvaluationCrf"> | string | null
   createdAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
+  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
   crf?: Prisma.XOR<Prisma.CrfScalarRelationFilter, Prisma.CrfWhereInput>
 }
 
 export type EvaluationCrfOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  crfId?: Prisma.SortOrder
   auditeurId?: Prisma.SortOrder
   audienceNumero?: Prisma.SortOrder
   dateAudience?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -257,6 +256,7 @@ export type EvaluationCrfOrderByWithRelationInput = {
   commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  crfId?: Prisma.SortOrder
   crf?: Prisma.CrfOrderByWithRelationInput
 }
 
@@ -265,7 +265,6 @@ export type EvaluationCrfWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.EvaluationCrfWhereInput | Prisma.EvaluationCrfWhereInput[]
   OR?: Prisma.EvaluationCrfWhereInput[]
   NOT?: Prisma.EvaluationCrfWhereInput | Prisma.EvaluationCrfWhereInput[]
-  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
   auditeurId?: Prisma.StringFilter<"EvaluationCrf"> | string
   audienceNumero?: Prisma.IntFilter<"EvaluationCrf"> | number
   dateAudience?: Prisma.DateTimeNullableFilter<"EvaluationCrf"> | Date | string | null
@@ -273,12 +272,12 @@ export type EvaluationCrfWhereUniqueInput = Prisma.AtLeast<{
   commentaire?: Prisma.StringNullableFilter<"EvaluationCrf"> | string | null
   createdAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
+  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
   crf?: Prisma.XOR<Prisma.CrfScalarRelationFilter, Prisma.CrfWhereInput>
 }, "id">
 
 export type EvaluationCrfOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  crfId?: Prisma.SortOrder
   auditeurId?: Prisma.SortOrder
   audienceNumero?: Prisma.SortOrder
   dateAudience?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -286,6 +285,7 @@ export type EvaluationCrfOrderByWithAggregationInput = {
   commentaire?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  crfId?: Prisma.SortOrder
   _count?: Prisma.EvaluationCrfCountOrderByAggregateInput
   _avg?: Prisma.EvaluationCrfAvgOrderByAggregateInput
   _max?: Prisma.EvaluationCrfMaxOrderByAggregateInput
@@ -298,7 +298,6 @@ export type EvaluationCrfScalarWhereWithAggregatesInput = {
   OR?: Prisma.EvaluationCrfScalarWhereWithAggregatesInput[]
   NOT?: Prisma.EvaluationCrfScalarWhereWithAggregatesInput | Prisma.EvaluationCrfScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"EvaluationCrf"> | string
-  crfId?: Prisma.StringWithAggregatesFilter<"EvaluationCrf"> | string
   auditeurId?: Prisma.StringWithAggregatesFilter<"EvaluationCrf"> | string
   audienceNumero?: Prisma.IntWithAggregatesFilter<"EvaluationCrf"> | number
   dateAudience?: Prisma.DateTimeNullableWithAggregatesFilter<"EvaluationCrf"> | Date | string | null
@@ -306,6 +305,7 @@ export type EvaluationCrfScalarWhereWithAggregatesInput = {
   commentaire?: Prisma.StringNullableWithAggregatesFilter<"EvaluationCrf"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"EvaluationCrf"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"EvaluationCrf"> | Date | string
+  crfId?: Prisma.StringWithAggregatesFilter<"EvaluationCrf"> | string
 }
 
 export type EvaluationCrfCreateInput = {
@@ -322,7 +322,6 @@ export type EvaluationCrfCreateInput = {
 
 export type EvaluationCrfUncheckedCreateInput = {
   id?: string
-  crfId: string
   auditeurId: string
   audienceNumero: number
   dateAudience?: Date | string | null
@@ -330,6 +329,7 @@ export type EvaluationCrfUncheckedCreateInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  crfId: string
 }
 
 export type EvaluationCrfUpdateInput = {
@@ -346,7 +346,6 @@ export type EvaluationCrfUpdateInput = {
 
 export type EvaluationCrfUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  crfId?: Prisma.StringFieldUpdateOperationsInput | string
   auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   audienceNumero?: Prisma.IntFieldUpdateOperationsInput | number
   dateAudience?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -354,11 +353,11 @@ export type EvaluationCrfUncheckedUpdateInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crfId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EvaluationCrfCreateManyInput = {
   id?: string
-  crfId: string
   auditeurId: string
   audienceNumero: number
   dateAudience?: Date | string | null
@@ -366,6 +365,7 @@ export type EvaluationCrfCreateManyInput = {
   commentaire?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  crfId: string
 }
 
 export type EvaluationCrfUpdateManyMutationInput = {
@@ -381,7 +381,6 @@ export type EvaluationCrfUpdateManyMutationInput = {
 
 export type EvaluationCrfUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  crfId?: Prisma.StringFieldUpdateOperationsInput | string
   auditeurId?: Prisma.StringFieldUpdateOperationsInput | string
   audienceNumero?: Prisma.IntFieldUpdateOperationsInput | number
   dateAudience?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -389,6 +388,7 @@ export type EvaluationCrfUncheckedUpdateManyInput = {
   commentaire?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  crfId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type EvaluationCrfListRelationFilter = {
@@ -403,7 +403,6 @@ export type EvaluationCrfOrderByRelationAggregateInput = {
 
 export type EvaluationCrfCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  crfId?: Prisma.SortOrder
   auditeurId?: Prisma.SortOrder
   audienceNumero?: Prisma.SortOrder
   dateAudience?: Prisma.SortOrder
@@ -411,6 +410,7 @@ export type EvaluationCrfCountOrderByAggregateInput = {
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  crfId?: Prisma.SortOrder
 }
 
 export type EvaluationCrfAvgOrderByAggregateInput = {
@@ -419,24 +419,24 @@ export type EvaluationCrfAvgOrderByAggregateInput = {
 
 export type EvaluationCrfMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  crfId?: Prisma.SortOrder
   auditeurId?: Prisma.SortOrder
   audienceNumero?: Prisma.SortOrder
   dateAudience?: Prisma.SortOrder
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  crfId?: Prisma.SortOrder
 }
 
 export type EvaluationCrfMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  crfId?: Prisma.SortOrder
   auditeurId?: Prisma.SortOrder
   audienceNumero?: Prisma.SortOrder
   dateAudience?: Prisma.SortOrder
   commentaire?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  crfId?: Prisma.SortOrder
 }
 
 export type EvaluationCrfSumOrderByAggregateInput = {
@@ -538,7 +538,6 @@ export type EvaluationCrfScalarWhereInput = {
   OR?: Prisma.EvaluationCrfScalarWhereInput[]
   NOT?: Prisma.EvaluationCrfScalarWhereInput | Prisma.EvaluationCrfScalarWhereInput[]
   id?: Prisma.StringFilter<"EvaluationCrf"> | string
-  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
   auditeurId?: Prisma.StringFilter<"EvaluationCrf"> | string
   audienceNumero?: Prisma.IntFilter<"EvaluationCrf"> | number
   dateAudience?: Prisma.DateTimeNullableFilter<"EvaluationCrf"> | Date | string | null
@@ -546,6 +545,7 @@ export type EvaluationCrfScalarWhereInput = {
   commentaire?: Prisma.StringNullableFilter<"EvaluationCrf"> | string | null
   createdAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EvaluationCrf"> | Date | string
+  crfId?: Prisma.StringFilter<"EvaluationCrf"> | string
 }
 
 export type EvaluationCrfCreateManyCrfInput = {
@@ -596,7 +596,6 @@ export type EvaluationCrfUncheckedUpdateManyWithoutCrfInput = {
 
 export type EvaluationCrfSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  crfId?: boolean
   auditeurId?: boolean
   audienceNumero?: boolean
   dateAudience?: boolean
@@ -604,12 +603,12 @@ export type EvaluationCrfSelect<ExtArgs extends runtime.Types.Extensions.Interna
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  crfId?: boolean
   crf?: boolean | Prisma.CrfDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluationCrf"]>
 
 export type EvaluationCrfSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  crfId?: boolean
   auditeurId?: boolean
   audienceNumero?: boolean
   dateAudience?: boolean
@@ -617,12 +616,12 @@ export type EvaluationCrfSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  crfId?: boolean
   crf?: boolean | Prisma.CrfDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluationCrf"]>
 
 export type EvaluationCrfSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  crfId?: boolean
   auditeurId?: boolean
   audienceNumero?: boolean
   dateAudience?: boolean
@@ -630,12 +629,12 @@ export type EvaluationCrfSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  crfId?: boolean
   crf?: boolean | Prisma.CrfDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["evaluationCrf"]>
 
 export type EvaluationCrfSelectScalar = {
   id?: boolean
-  crfId?: boolean
   auditeurId?: boolean
   audienceNumero?: boolean
   dateAudience?: boolean
@@ -643,9 +642,10 @@ export type EvaluationCrfSelectScalar = {
   commentaire?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  crfId?: boolean
 }
 
-export type EvaluationCrfOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "crfId" | "auditeurId" | "audienceNumero" | "dateAudience" | "contenu" | "commentaire" | "createdAt" | "updatedAt", ExtArgs["result"]["evaluationCrf"]>
+export type EvaluationCrfOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "auditeurId" | "audienceNumero" | "dateAudience" | "contenu" | "commentaire" | "createdAt" | "updatedAt" | "crfId", ExtArgs["result"]["evaluationCrf"]>
 export type EvaluationCrfInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   crf?: boolean | Prisma.CrfDefaultArgs<ExtArgs>
 }
@@ -663,7 +663,6 @@ export type $EvaluationCrfPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    crfId: string
     auditeurId: string
     audienceNumero: number
     dateAudience: Date | null
@@ -671,6 +670,7 @@ export type $EvaluationCrfPayload<ExtArgs extends runtime.Types.Extensions.Inter
     commentaire: string | null
     createdAt: Date
     updatedAt: Date
+    crfId: string
   }, ExtArgs["result"]["evaluationCrf"]>
   composites: {}
 }
@@ -1096,7 +1096,6 @@ export interface Prisma__EvaluationCrfClient<T, Null = never, ExtArgs extends ru
  */
 export interface EvaluationCrfFieldRefs {
   readonly id: Prisma.FieldRef<"EvaluationCrf", 'String'>
-  readonly crfId: Prisma.FieldRef<"EvaluationCrf", 'String'>
   readonly auditeurId: Prisma.FieldRef<"EvaluationCrf", 'String'>
   readonly audienceNumero: Prisma.FieldRef<"EvaluationCrf", 'Int'>
   readonly dateAudience: Prisma.FieldRef<"EvaluationCrf", 'DateTime'>
@@ -1104,6 +1103,7 @@ export interface EvaluationCrfFieldRefs {
   readonly commentaire: Prisma.FieldRef<"EvaluationCrf", 'String'>
   readonly createdAt: Prisma.FieldRef<"EvaluationCrf", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"EvaluationCrf", 'DateTime'>
+  readonly crfId: Prisma.FieldRef<"EvaluationCrf", 'String'>
 }
     
 

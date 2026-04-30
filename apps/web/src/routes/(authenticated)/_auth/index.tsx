@@ -1,13 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useTRPC } from "~/utils/trpc";
 
-export const Route = createFileRoute("/")({
-  beforeLoad: ({ context: { session } }) => {
-    if (!session) {
-      throw redirect({ to: "/se-connecter" });
-    }
-  },
+export const Route = createFileRoute("/(authenticated)/_auth/")({
   loader: ({ context: { queryClient, trpc } }) =>
     queryClient.ensureQueryData(trpc.user.list.queryOptions()),
   component: HomePage,

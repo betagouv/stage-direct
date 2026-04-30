@@ -26,17 +26,15 @@ export const ZOnboarding = z
         message: "Veuillez sélectionner une région",
       });
     }
-    if (data.role === "MDS") {
-      if (!data.nom) {
-        ctx.addIssue({ path: ["nom"], code: "custom", message: "Veuillez saisir votre nom" });
-      }
-      if (!data.prenom) {
-        ctx.addIssue({
-          path: ["prenom"],
-          code: "custom",
-          message: "Veuillez saisir votre prénom",
-        });
-      }
+    if (!data.nom) {
+      ctx.addIssue({ path: ["nom"], code: "custom", message: "Veuillez saisir votre nom" });
+    }
+    if (!data.prenom) {
+      ctx.addIssue({
+        path: ["prenom"],
+        code: "custom",
+        message: "Veuillez saisir votre prénom",
+      });
     }
   });
 

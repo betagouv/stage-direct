@@ -15,13 +15,18 @@ export function useSignUp() {
       const { email, password, prenom, nom } = input;
       const name = `${prenom} ${nom}`.trim();
 
-      const signUpResult = await authClient.signUp.email({ email, password, name });
+      const signUpResult = await authClient.signUp.email({ email, password, name, nom, prenom });
       if (signUpResult.error) {
         throw new Error(signUpResult.error.message || "Erreur à l'inscription");
       }
 
       if (input.role === "DCS") {
-        await setProfile.mutateAsync({ role: "DCS", juridictionId: input.juridictionId });
+        await setProfile.mutateAsync({
+          role: "DCS",
+          juridictionId: input.juridictionId,
+          nom,
+          prenom,
+        });
       } else if (input.role === "MDS") {
         await setProfile.mutateAsync({
           role: "MDS",
@@ -30,7 +35,7 @@ export function useSignUp() {
           prenom,
         });
       } else {
-        await setProfile.mutateAsync({ role: "CRF", region: input.region });
+        await setProfile.mutateAsync({ role: "CRF", region: input.region, nom, prenom });
       }
     },
     onSuccess: async () => {

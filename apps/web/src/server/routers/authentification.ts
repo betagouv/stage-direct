@@ -6,6 +6,8 @@ const ZSetUserRoleAndProfile = z.discriminatedUnion("role", [
   z.object({
     role: z.literal("DCS"),
     juridictionId: z.string().min(1),
+    nom: z.string().min(1),
+    prenom: z.string().min(1),
   }),
   z.object({
     role: z.literal("MDS"),
@@ -16,6 +18,8 @@ const ZSetUserRoleAndProfile = z.discriminatedUnion("role", [
   z.object({
     role: z.literal("CRF"),
     region: z.string().min(1),
+    nom: z.string().min(1),
+    prenom: z.string().min(1),
   }),
 ]);
 
@@ -40,14 +44,18 @@ export const authentificationRouter = router({
     .input(ZSetUserRoleAndProfile)
     .mutation(async ({ ctx, input }) => {
       const userId = ctx.session?.user.id;
-      const email = ctx.session?.user.email;
-      if (!userId || !email) {
+      if (!userId) {
         throw new TRPCError({ code: "UNAUTHORIZED" });
       }
 
       await ctx.prisma.user.update({
         where: { id: userId },
-        data: { role: input.role },
+        data: {
+          role: input.role,
+          nom: input.nom,
+          prenom: input.prenom,
+          name: `${input.prenom} ${input.nom}`.trim(),
+        },
       });
 
       if (input.role === "DCS") {
@@ -62,14 +70,9 @@ export const authentificationRouter = router({
           create: {
             userId,
             juridictionId: input.juridictionId,
-            nom: input.nom,
-            prenom: input.prenom,
-            email,
           },
           update: {
             juridictionId: input.juridictionId,
-            nom: input.nom,
-            prenom: input.prenom,
           },
         });
       } else {

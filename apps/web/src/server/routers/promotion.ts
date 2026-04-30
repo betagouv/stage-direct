@@ -9,15 +9,26 @@ export const promotionRouter = router({
     });
   }),
 
-  byId: protectedProcedure.input(z.object({ id: z.string() })).query(({ ctx, input }) => {
-    return ctx.prisma.promotion.findUniqueOrThrow({
+  byId: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
+    const promotion = await ctx.prisma.promotion.findUniqueOrThrow({
       where: { id: input.id },
       include: {
         auditeurs: {
-          orderBy: { nom: "asc" },
-          select: { id: true, nom: true, prenom: true, email: true, type: true },
+          orderBy: { user: { nom: "asc" } },
+          include: { user: { select: { nom: true, prenom: true, email: true, telephone: true } } },
         },
       },
     });
+
+    return {
+      ...promotion,
+      auditeurs: promotion.auditeurs.map(({ user, ...auditeur }) => ({
+        ...auditeur,
+        nom: user.nom,
+        prenom: user.prenom,
+        email: user.email,
+        telephone: user.telephone,
+      })),
+    };
   }),
 });
