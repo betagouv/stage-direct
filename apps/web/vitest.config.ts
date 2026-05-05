@@ -1,4 +1,8 @@
-import path from "node:path";
+rimport;
+path;
+from;
+("node:path");
+
 import { defineConfig } from "vitest/config";
 
 const alias = {

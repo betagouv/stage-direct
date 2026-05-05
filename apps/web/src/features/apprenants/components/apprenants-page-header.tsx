@@ -1,7 +1,7 @@
 import { Breadcrumb } from "@codegouvfr/react-dsfr/Breadcrumb";
+import Ecosystem from "@codegouvfr/react-dsfr/picto/Ecosystem";
 import { SegmentedControl } from "@codegouvfr/react-dsfr/SegmentedControl";
-import styles from "./apprenants.module.css";
-import { formatPerimetreLabel } from "./helpers";
+import { formatPerimetreLabel } from "../helpers";
 
 type Perimetre =
   | { type: "DCS"; juridiction: { nom: string } }
@@ -19,19 +19,16 @@ export function ApprenantsPageHeader({ perimetre, type, onTypeChange }: Props) {
     <>
       <Breadcrumb
         currentPageLabel="Apprenants"
+        className="fr-mb-0"
         segments={[{ label: "Tableau de bord", linkProps: { href: "/tableau-de-bord" } }]}
       />
-      <div className={styles.headerRow}>
-        <div className={styles.headerTitle}>
-          <span
-            className="fr-icon-team-line"
-            aria-hidden="true"
-            style={{ fontSize: "2rem", color: "var(--text-action-high-blue-france)" }}
-          />
-          <div className={styles.headerTitleText}>
-            <h1>Apprenants</h1>
+      <div className="fr-flex fr-flex-wrap fr-justify-content-space-between fr-align-items-center fr-flex-gap-6v fr-py-3w fr-mb-4w fr-border-bottom">
+        <div className="fr-flex fr-align-items-center fr-flex-gap-5v">
+          <Ecosystem color="blue-ecume" width={80} height={80} />
+          <div>
+            <h1 className="fr-mb-0">Apprenants</h1>
             {perimetre && (
-              <p className={styles.headerSubtitle}>{formatPerimetreLabel(perimetre)}</p>
+              <p className="fr-text-mention--grey">{formatPerimetreLabel(perimetre)}</p>
             )}
           </div>
         </div>

@@ -1,13 +1,18 @@
 import { Pagination } from "@codegouvfr/react-dsfr/Pagination";
 import { useQuery } from "@tanstack/react-query";
+import clsx from "clsx";
 import { useState } from "react";
 import { useDebounceValue } from "usehooks-ts";
 import { Route } from "~/routes/(authenticated)/_auth/apprenants";
 import { useTRPC } from "~/utils/trpc";
-import { ApprenantCard } from "./apprenant-card";
-import styles from "./apprenants.module.css";
-import { ApprenantsPageHeader } from "./apprenants-page-header";
-import { ApprenantsToolbar, type SortValue, type StatutFilter } from "./apprenants-toolbar";
+import { ApprenantsPageHeader } from "./components/apprenants-page-header";
+import {
+  ApprenantsToolbar,
+  type SortValue,
+  type StatutFilter,
+} from "./components/apprenants-toolbar";
+import { ApprenantCard } from "./components/card/apprenant-card";
+import styles from "./page.module.css";
 
 export function ApprenantsPage() {
   const navigate = Route.useNavigate();
@@ -29,7 +34,7 @@ export function ApprenantsPage() {
   );
 
   return (
-    <div className={styles.pageWrapper}>
+    <div className={clsx(styles.pageWrapper, "fr-height-full")}>
       <div className="fr-container fr-py-4w">
         <ApprenantsPageHeader
           perimetre={data?.perimetre}
@@ -56,7 +61,9 @@ export function ApprenantsPage() {
         {!data && isFetching ? (
           <p>Chargement…</p>
         ) : data && data.items.length === 0 ? (
-          <div className={styles.empty}>Aucun apprenant ne correspond à ces filtres.</div>
+          <div className="fr-py-12v fr-px-6v fr-text--center fr-text-mention--grey">
+            Aucun apprenant ne correspond à ces filtres.
+          </div>
         ) : data ? (
           <div className={styles.list}>
             {data.items.map((apprenant) => (
@@ -66,7 +73,7 @@ export function ApprenantsPage() {
         ) : null}
 
         {data && data.pageCount > 1 && (
-          <div className={styles.pagination}>
+          <div className="fr-flex fr-justify-content-center fr-mt-4w">
             <Pagination
               count={data.pageCount}
               defaultPage={data.page}
