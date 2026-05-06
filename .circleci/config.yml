@@ -104,6 +104,9 @@ jobs:
             done
             echo "postgres did not become ready for schema push" && exit 1
       - run:
+          name: Seed test DB
+          command: pnpm --filter web db:seed
+      - run:
           name: Run Playwright tests
           command: pnpm test:e2e
 

@@ -46,3 +46,4 @@ export const dcsProcedure = t.procedure.use(hasRole("DCS"));
 export const crfProcedure = t.procedure.use(hasRole("CRF"));
 export const adminProcedure = t.procedure.use(hasRole("ADMIN"));
 export const enmProcedure = t.procedure.use(hasRole("ENM"));
+export const gestionnaireProcedure = t.procedure.use(hasRole("DCS", "CRF", "ENM"));

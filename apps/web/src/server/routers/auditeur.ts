@@ -1,5 +1,11 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { dcsProcedure, protectedProcedure, router } from "../trpc";
+import type { Prisma, PrismaClient } from "~/generated/prisma/client";
+import { dcsProcedure, gestionnaireProcedure, protectedProcedure, router } from "../trpc";
+
+const TYPE_FILTER = z.enum(["ALL", "ADJ", "CONCOURS_PRO"]);
+const STATUT_FILTER = z.enum(["ALL", "EN_COURS", "EN_ATTENTE", "TERMINE"]);
+const SORT = z.enum(["nom_asc", "nom_desc"]);
 
 export const auditeurRouter = router({
   list: protectedProcedure
@@ -38,6 +44,126 @@ export const auditeurRouter = router({
         email: user.email,
         telephone: user.telephone,
       }));
+    }),
+
+  listForGestionnaire: gestionnaireProcedure
+    .input(
+      z.object({
+        type: TYPE_FILTER.default("ALL"),
+        statut: STATUT_FILTER.default("ALL"),
+        search: z.string().trim().min(1).max(100).optional(),
+        sort: SORT.default("nom_asc"),
+        page: z.number().int().min(1).default(1),
+        pageSize: z.number().int().min(1).max(50).default(8),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const role = ctx.role as Role;
+      const userId = ctx.session.user.id;
+
+      const { stagesScope, perimetre } = await resolveScope(ctx.prisma, role, userId);
+
+      const where: Prisma.AuditeurWhereInput = {
+        ...(input.type !== "ALL" && { type: input.type }),
+        ...(input.search && {
+          user: {
+            OR: [
+              { nom: { contains: input.search, mode: "insensitive" } },
+              { prenom: { contains: input.search, mode: "insensitive" } },
+            ],
+          },
+        }),
+        stages: { some: stagesScope },
+      };
+
+      if (input.statut === "EN_COURS") {
+        where.AND = [{ stages: { some: { ...stagesScope, statut: "EN_COURS" } } }];
+      } else if (input.statut === "EN_ATTENTE") {
+        where.AND = [
+          { stages: { none: { ...stagesScope, statut: "EN_COURS" } } },
+          { stages: { some: { ...stagesScope, statut: "PLANIFIE" } } },
+        ];
+      } else if (input.statut === "TERMINE") {
+        where.AND = [
+          {
+            stages: {
+              none: { ...stagesScope, statut: { in: ["EN_COURS", "PLANIFIE"] } },
+            },
+          },
+        ];
+      }
+
+      const skip = (input.page - 1) * input.pageSize;
+
+      const [total, auditeurs] = await Promise.all([
+        ctx.prisma.auditeur.count({ where }),
+        ctx.prisma.auditeur.findMany({
+          where,
+          orderBy: { user: { nom: input.sort === "nom_asc" ? "asc" : "desc" } },
+          skip,
+          take: input.pageSize,
+          include: {
+            user: { select: { nom: true, prenom: true } },
+            stages: {
+              where: stagesScope,
+              select: {
+                fonction: true,
+                statut: true,
+                evaluation: { select: { statut: true } },
+              },
+            },
+          },
+        }),
+      ]);
+
+      const items = auditeurs.map(({ user, stages, ...auditeur }) => {
+        const stagesPlanifies = stages.filter((s) => s.statut === "PLANIFIE").length;
+        const evaluationsCompletees = stages.filter(
+          (s) =>
+            s.evaluation &&
+            (s.evaluation.statut === "SOUMISE" || s.evaluation.statut === "VALIDEE"),
+        ).length;
+        const evaluationsEnAttente = stages.filter(
+          (s) =>
+            s.evaluation &&
+            (s.evaluation.statut === "ATTENDUE" ||
+              s.evaluation.statut === "ENVOYEE" ||
+              s.evaluation.statut === "EN_COURS" ||
+              s.evaluation.statut === "EN_RETARD"),
+        ).length;
+
+        let statutGlobal: "EN_COURS" | "EN_ATTENTE" | "TERMINE";
+        if (stages.some((s) => s.statut === "EN_COURS")) {
+          statutGlobal = "EN_COURS";
+        } else if (stages.every((s) => s.statut === "TERMINE" || s.statut === "CLOTURE")) {
+          statutGlobal = "TERMINE";
+        } else {
+          statutGlobal = "EN_ATTENTE";
+        }
+
+        const fonctions = stages.map((s) => ({ fonction: s.fonction, statut: s.statut }));
+
+        return {
+          id: auditeur.id,
+          type: auditeur.type,
+          nom: user.nom,
+          prenom: user.prenom,
+          statutGlobal,
+          stagesPlanifies,
+          evaluationsCompletees,
+          evaluationsEnAttente,
+          fonctions,
+        };
+      });
+
+      return {
+        items,
+        total,
+        page: input.page,
+        pageSize: input.pageSize,
+        pageCount: Math.max(1, Math.ceil(total / input.pageSize)),
+        perimetre,
+      };
     }),
 
   byId: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
@@ -149,3 +275,41 @@ export const auditeurRouter = router({
       });
     }),
 });
+
+type Role = "DCS" | "CRF" | "ENM";
+
+type Perimetre =
+  | { type: "DCS"; juridiction: { id: string; nom: string; ville: string } }
+  | { type: "CRF"; region: string }
+  | { type: "ENM" };
+
+async function resolveScope(
+  prisma: PrismaClient,
+  role: Role,
+  userId: string,
+): Promise<{ stagesScope: Prisma.StageWhereInput; perimetre: Perimetre }> {
+  if (role === "DCS") {
+    const dcs = await prisma.dcs.findUnique({
+      where: { userId },
+      include: { juridiction: { select: { id: true, nom: true, ville: true } } },
+    });
+    if (!dcs) {
+      throw new TRPCError({ code: "FORBIDDEN", message: "Profil DCS introuvable" });
+    }
+    return {
+      stagesScope: { dcsId: dcs.id },
+      perimetre: { type: "DCS", juridiction: dcs.juridiction },
+    };
+  }
+  if (role === "CRF") {
+    const crf = await prisma.crf.findUnique({ where: { userId } });
+    if (!crf) {
+      throw new TRPCError({ code: "FORBIDDEN", message: "Profil CRF introuvable" });
+    }
+    return {
+      stagesScope: { juridiction: { region: crf.region } },
+      perimetre: { type: "CRF", region: crf.region },
+    };
+  }
+  return { stagesScope: {}, perimetre: { type: "ENM" } };
+}

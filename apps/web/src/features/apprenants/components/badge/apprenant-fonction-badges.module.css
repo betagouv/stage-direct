@@ -1,0 +1,20 @@
+.fonctionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  background: var(--background-alt-grey);
+  color: var(--text-mention-grey);
+}
+
+.fonctionBadgeValide {
+  background: var(--background-contrast-success);
+  color: var(--text-default-success);
+}
+
+.fonctionBadgeEnCours {
+  background: #feecc2;
+  color: #716043;
+}

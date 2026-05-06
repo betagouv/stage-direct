@@ -93,3 +93,17 @@ export const adminSession = makeSession({
   name: "Admin Test",
 });
 export const adminCaller = createCaller(adminSession);
+
+export const enmSession = makeSession({
+  id: "enm-test-id",
+  email: "stagedirect-enm.test@justice.fr",
+  name: "ENM Test",
+});
+export const enmCaller = createCaller(enmSession);
+
+export const mdsSession = makeSession({
+  id: "mds-test-id",
+  email: "stagedirect-mds.test@justice.fr",
+  name: "MDS Test",
+});
+export const mdsCaller = createCaller(mdsSession);

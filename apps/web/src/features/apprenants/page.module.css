@@ -1,0 +1,15 @@
+.pageWrapper {
+  background: var(--beige-gris-galet-875);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 48em) {
+  .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

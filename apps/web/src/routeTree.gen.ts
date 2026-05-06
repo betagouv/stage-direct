@@ -26,6 +26,7 @@ import { Route as authenticatedAuthOnboardingRouteImport } from './routes/(authe
 import { Route as authenticatedAuthEvaluationsRouteImport } from './routes/(authenticated)/_auth/evaluations'
 import { Route as authenticatedAuthCentreDAideRouteImport } from './routes/(authenticated)/_auth/centre-d-aide'
 import { Route as authenticatedAuthApprenantsRouteImport } from './routes/(authenticated)/_auth/apprenants'
+import { Route as authenticatedAuthApprenantsIdRouteImport } from './routes/(authenticated)/_auth/apprenants_.$id'
 
 const ReinitialiserSonMotDePasseRoute =
   ReinitialiserSonMotDePasseRouteImport.update({
@@ -121,6 +122,12 @@ const authenticatedAuthApprenantsRoute =
     path: '/apprenants',
     getParentRoute: () => authenticatedAuthRoute,
   } as any)
+const authenticatedAuthApprenantsIdRoute =
+  authenticatedAuthApprenantsIdRouteImport.update({
+    id: '/apprenants_/$id',
+    path: '/apprenants/$id',
+    getParentRoute: () => authenticatedAuthRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/': typeof authenticatedAuthIndexRoute
+  '/apprenants/$id': typeof authenticatedAuthApprenantsIdRoute
 }
 export interface FileRoutesByTo {
   '/foire-aux-questions': typeof FoireAuxQuestionsRoute
@@ -155,6 +163,7 @@ export interface FileRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/': typeof authenticatedAuthIndexRoute
+  '/apprenants/$id': typeof authenticatedAuthApprenantsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -175,6 +184,7 @@ export interface FileRoutesById {
   '/api/auth/$': typeof ApiAuthSplatRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
   '/(authenticated)/_auth/': typeof authenticatedAuthIndexRoute
+  '/(authenticated)/_auth/apprenants_/$id': typeof authenticatedAuthApprenantsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -194,6 +204,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/'
+    | '/apprenants/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/foire-aux-questions'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/'
+    | '/apprenants/$id'
   id:
     | '__root__'
     | '/foire-aux-questions'
@@ -230,6 +242,7 @@ export interface FileRouteTypes {
     | '/api/auth/$'
     | '/api/trpc/$'
     | '/(authenticated)/_auth/'
+    | '/(authenticated)/_auth/apprenants_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -362,6 +375,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authenticatedAuthApprenantsRouteImport
       parentRoute: typeof authenticatedAuthRoute
     }
+    '/(authenticated)/_auth/apprenants_/$id': {
+      id: '/(authenticated)/_auth/apprenants_/$id'
+      path: '/apprenants/$id'
+      fullPath: '/apprenants/$id'
+      preLoaderRoute: typeof authenticatedAuthApprenantsIdRouteImport
+      parentRoute: typeof authenticatedAuthRoute
+    }
   }
 }
 
@@ -374,6 +394,7 @@ interface authenticatedAuthRouteChildren {
   authenticatedAuthRessourcesEnmRoute: typeof authenticatedAuthRessourcesEnmRoute
   authenticatedAuthTableauDeBordRoute: typeof authenticatedAuthTableauDeBordRoute
   authenticatedAuthIndexRoute: typeof authenticatedAuthIndexRoute
+  authenticatedAuthApprenantsIdRoute: typeof authenticatedAuthApprenantsIdRoute
 }
 
 const authenticatedAuthRouteChildren: authenticatedAuthRouteChildren = {
@@ -385,6 +406,7 @@ const authenticatedAuthRouteChildren: authenticatedAuthRouteChildren = {
   authenticatedAuthRessourcesEnmRoute: authenticatedAuthRessourcesEnmRoute,
   authenticatedAuthTableauDeBordRoute: authenticatedAuthTableauDeBordRoute,
   authenticatedAuthIndexRoute: authenticatedAuthIndexRoute,
+  authenticatedAuthApprenantsIdRoute: authenticatedAuthApprenantsIdRoute,
 }
 
 const authenticatedAuthRouteWithChildren =

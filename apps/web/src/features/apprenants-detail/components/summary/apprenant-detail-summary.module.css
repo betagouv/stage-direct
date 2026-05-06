@@ -1,0 +1,12 @@
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.statCell {
+  border-right: 1px solid var(--border-default-grey);
+}
+
+.statCell:last-child {
+  border-right: none;
+}

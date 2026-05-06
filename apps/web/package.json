@@ -2,6 +2,9 @@
   "name": "web",
   "private": true,
   "type": "module",
+  "exports": {
+    "./prisma/seed-constants": "./prisma/seed-constants.ts"
+  },
   "scripts": {
     "predev": "react-dsfr update-icons",
     "prebuild": "react-dsfr update-icons",
@@ -38,6 +41,7 @@
     "better-auth": "^1.6.7",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.20",
     "dotenv": "^17.4.2",
     "pg": "^8.13.0",
     "prisma": "^7.8.0",

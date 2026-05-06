@@ -6,3 +6,4 @@ dist
 .env.local
 *.tsbuildinfo
 src/generated
+.DS_Store
