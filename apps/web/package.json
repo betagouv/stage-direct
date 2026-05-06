@@ -2,6 +2,9 @@
   "name": "web",
   "private": true,
   "type": "module",
+  "exports": {
+    "./prisma/seed-constants": "./prisma/seed-constants.ts"
+  },
   "scripts": {
     "predev": "react-dsfr update-icons",
     "prebuild": "react-dsfr update-icons",

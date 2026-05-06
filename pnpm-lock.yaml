@@ -141,6 +141,10 @@ importers:
         version: 5.9.3
 
   packages/e2e:
+    dependencies:
+      web:
+        specifier: workspace:*
+        version: link:../../apps/web
     devDependencies:
       '@playwright/test':
         specifier: 1.59.1

@@ -3,6 +3,7 @@ import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { hashPassword } from "better-auth/crypto";
 import { PrismaClient } from "../src/generated/prisma/client.js";
+import { TEST_USER_EMAIL, TEST_USER_PASSWORD } from "./seed-constants.js";
 
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL ?? "" });
 const prisma = new PrismaClient({ adapter });
@@ -353,7 +354,7 @@ async function seed() {
   console.log("Creation du compte DCS de test...");
   const kevinUser = await prisma.user.create({
     data: {
-      email: "kevin.gallet@beta.gouv.fr",
+      email: TEST_USER_EMAIL,
       name: "Kevin Gallet",
       nom: "Gallet",
       prenom: "Kevin",
@@ -369,7 +370,7 @@ async function seed() {
       userId: kevinUser.id,
       accountId: kevinUser.id,
       providerId: "credential",
-      password: await hashPassword("Test987654321!"),
+      password: await hashPassword(TEST_USER_PASSWORD),
     },
   });
 
