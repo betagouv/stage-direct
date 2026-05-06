@@ -1,5 +1,5 @@
 .pageWrapper {
-  background: #f4efe8;
+  background: var(--beige-gris-galet-875);
 }
 
 .list {

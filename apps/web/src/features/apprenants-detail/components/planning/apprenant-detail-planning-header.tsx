@@ -8,7 +8,7 @@ export function ApprenantDetailPlanningHeader() {
       <div
         className={clsx(
           styles.leftPanel,
-          "fr-text--sm fr-mb-0 fr-border-right fr-flex fr-align-items-center fr-py-3v fr-px-4v fr-text--bold fr-text--uppercase fr-text-mention--grey fr-justify-content-center",
+          "fr-text--sm fr-mb-0 fr-border-right fr-flex fr-align-items-center fr-py-3v fr-px-4v fr-text--bold fr-text--uppercase fr-justify-content-center",
         )}
       >
         Planning
@@ -33,7 +33,7 @@ export function ApprenantDetailPlanningHeader() {
       <div
         className={clsx(
           styles.evalPanel,
-          "fr-border-left fr-text--xs fr-mb-0 fr-flex fr-align-items-center fr-justify-content-center fr-py-3v fr-px-3v fr-text--bold fr-text--uppercase fr-text-mention--grey",
+          "fr-border-left fr-text--xs fr-mb-0 fr-flex fr-align-items-center fr-justify-content-center fr-py-3v fr-px-3v fr-text--bold fr-text--uppercase",
         )}
       >
         Évaluations
